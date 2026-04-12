@@ -146,17 +146,17 @@
 <!-- TopNavBar -->
 <nav class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline">
 <div class="flex justify-between items-center max-w-[1440px] mx-auto px-8 md:px-16 py-6">
-<div class="text-xl font-bold tracking-tighter flex items-center gap-2 font-headline">
+<a href="index.html" class="text-xl font-bold tracking-tighter flex items-center gap-2 font-headline">
 <span class="w-2 h-2 bg-primary"></span>
-                PORTFOLIO.SYS
-            </div>
+                ARJUN CHAVAN
+            </a>
 <div class="hidden md:flex items-center space-x-12">
 <a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-primary border-b border-primary/40 pb-1 font-label" href="index.html">[ 01 ] HOME</a>
 <a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-label" href="projects.html">[ 02 ] PROJECTS</a>
 <a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-label" href="about.html">[ 03 ] ABOUT</a>
 </div>
 <div class="flex items-center space-x-6">
-<a class="text-[0.7rem] uppercase tracking-[0.2em] font-bold text-primary hover:bg-primary hover:text-black px-4 py-2 border border-primary/20 transition-all duration-300 font-label" href="mailto:akchavan@umich.edu">CONNECT</a>
+<button onclick="document.getElementById('connect-modal').classList.remove('hidden')" class="text-[0.7rem] uppercase tracking-[0.2em] font-bold text-primary hover:bg-primary hover:text-black px-4 py-2 border border-primary/20 transition-all duration-300 font-label">CONNECT</button>
 <button class="md:hidden text-on-surface">
 <span class="material-symbols-outlined">menu</span>
 </button>
@@ -206,26 +206,60 @@
 <!-- Superpower / Core Expertise Section -->
 <section class="px-8 md:px-16 py-32 border-x border-t border-[#484847]/10 bg-surface/30">
 <div class="max-w-6xl">
-<div class="flex items-center gap-4 mb-16">
-<span class="text-primary text-[0.75rem] font-space-grotesk uppercase tracking-[0.3em] font-bold">CORE_SUPERPOWER // 01</span>
-</div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 <h2 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-none">
                         Building <span class="text-primary italic">full-stack applications</span>, ML systems, and embedded solutions that solve real problems and make technology accessible.
                     </h2>
-<div class="grid grid-cols-2 gap-4">
-<div class="glass-panel p-8 border-l-4 border-l-primary">
-<div class="text-4xl font-bold font-space-grotesk mb-2">4+</div>
-<div class="text-[10px] text-on-surface-variant uppercase tracking-[0.2em]">Internships</div>
+<div class="space-y-4">
+<div class="glass-panel p-6 border-l-4 border-l-primary">
+<div class="text-[10px] text-primary uppercase tracking-[0.25em] font-bold font-space-grotesk mb-3">Languages</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Python</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">C</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">C++</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Java</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">SQL</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">JavaScript</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">TypeScript</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">HTML/CSS</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Bash</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">LaTeX</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Verilog</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">R</span>
 </div>
-<div class="glass-panel p-8">
-<div class="text-4xl font-bold font-space-grotesk mb-2">5+</div>
-<div class="text-[10px] text-on-surface-variant uppercase tracking-[0.2em]">ML Projects</div>
 </div>
-<div class="col-span-2 glass-panel p-6 border-t border-primary/10">
-<p class="text-sm text-on-surface-variant italic font-light">
-                                "Passionate about bridging software and hardware — from ML models to underwater ROVs."
-                            </p>
+<div class="glass-panel p-6">
+<div class="text-[10px] text-primary uppercase tracking-[0.25em] font-bold font-space-grotesk mb-3">Tools & Web</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">React</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Vite</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Node.js</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Git/GitHub</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Linux/Unix</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">VS Code</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Figma</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Google Stitch</span>
+</div>
+</div>
+<div class="glass-panel p-6">
+<div class="text-[10px] text-primary uppercase tracking-[0.25em] font-bold font-space-grotesk mb-3">AI</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">OpenCV</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">PyTorch</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">TensorFlow</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Prompt Engineering</span>
+</div>
+</div>
+<div class="glass-panel p-6">
+<div class="text-[10px] text-primary uppercase tracking-[0.25em] font-bold font-space-grotesk mb-3">Hardware</div>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Circuit Design</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Arduino</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Raspberry Pi</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Magnetic Induction</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Soldering</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">FPGAs</span>
+</div>
 </div>
 </div>
 </div>
@@ -254,6 +288,11 @@
 <div class="p-12 hover:bg-primary/5 transition-colors group relative overflow-hidden">
 <div class="absolute top-8 right-8 text-6xl font-black text-white/5 group-hover:text-primary/10 transition-colors font-space-grotesk">02</div>
 <div class="space-y-6">
+<div class="mb-4 border border-[#484847]/30 overflow-hidden">
+<video class="w-full h-auto" autoplay loop muted playsinline>
+<source src="rov-showcase.mp4" type="video/mp4">
+</video>
+</div>
 <h4 class="text-xl font-bold uppercase tracking-tight text-primary">UMich ROV — Embedded Systems</h4>
 <p class="text-sm text-on-surface-variant leading-relaxed">Prototyped a functional underwater ROV for aquatic exploration. Architected custom C++ control system with 3-axis propulsion and integrated physical controller.</p>
 <div class="flex flex-wrap gap-2 pt-4">
@@ -280,82 +319,20 @@
 <div class="p-12 hover:bg-primary/5 transition-colors group relative overflow-hidden border-t border-[#484847]/20">
 <div class="absolute top-8 right-8 text-6xl font-black text-white/5 group-hover:text-primary/10 transition-colors font-space-grotesk">04</div>
 <div class="space-y-6">
-<h4 class="text-xl font-bold uppercase tracking-tight text-primary">MIT Beaver Works — Autonomous Nav</h4>
-<p class="text-sm text-on-surface-variant leading-relaxed">Programmed autonomous navigation using OpenCV for real-time pool lane line tracking. Synthesized AprilTag detection for 3D positioning and tuned PID controllers for stable trajectory.</p>
+<h4 class="text-xl font-bold uppercase tracking-tight text-primary">Assignment Calendar — Full Stack Project</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Built and delivered a technical presentation on an assignment calendar that consolidates deadlines from multiple course websites into a single unified view, solving the problem of checking too many platforms to stay up to date.</p>
 <div class="flex flex-wrap gap-2 pt-4">
-<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">OpenCV</span>
-<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Python</span>
-<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">PID</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Full Stack</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Web Scraping</span>
+<span class="text-[10px] px-3 py-1 bg-white/5 border border-white/10 text-on-surface-variant font-space-grotesk uppercase">Calendar API</span>
 </div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Featured Projects - Modular Grid -->
-<section class="border-b border-[#484847]/20">
-<div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x border-[#484847]/20">
-<!-- Project 1 -->
-<div class="group p-8 md:p-16 space-y-8 hover:bg-white/5 transition-colors duration-500">
-<div class="relative overflow-hidden border border-[#484847]/30">
-<img alt="TartanHacks Project" class="w-full h-[500px] object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="Financial dashboard with gamified interface" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"/>
-<div class="absolute top-4 right-4 px-3 py-1 bg-black/80 text-primary text-[10px] font-space-grotesk border border-primary/30">ID_001.2026</div>
-</div>
-<div class="space-y-4">
-<h2 class="text-4xl font-bold uppercase tracking-tighter">TartanHacks Winner</h2>
-<p class="text-on-surface-variant max-w-sm">Gamified financial dashboard with AI-driven pet system. 1st Place Visa Track at CMU TartanHacks 2026.</p>
-<a class="inline-flex items-center gap-4 pt-4 text-primary font-bold uppercase tracking-widest text-xs group" href="https://devpost.com" target="_blank">
-                            VIEW_PROJECT
-                            <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform">arrow_forward</span>
-</a>
-</div>
-</div>
-<!-- Project 2 -->
-<div class="group p-8 md:p-16 space-y-8 hover:bg-white/5 transition-colors duration-500">
-<div class="relative overflow-hidden border border-[#484847]/30">
-<img alt="Emotion Recognition" class="w-full h-[500px] object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="Facial recognition visualization" src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=800&q=80"/>
-<div class="absolute top-4 right-4 px-3 py-1 bg-black/80 text-primary text-[10px] font-space-grotesk border border-primary/30">ID_002.2024</div>
-</div>
-<div class="space-y-4">
-<h2 class="text-4xl font-bold uppercase tracking-tighter">Emotion Recognition</h2>
-<p class="text-on-surface-variant max-w-sm">Real-time emotion classifier using facial landmark detection and Deep Neural Network with TensorFlow and OpenCV.</p>
-<a class="inline-flex items-center gap-4 pt-4 text-primary font-bold uppercase tracking-widest text-xs group" href="https://github.com" target="_blank">
-                            VIEW_CODE
-                            <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform">arrow_forward</span>
+<a class="inline-flex items-center gap-3 pt-4 text-primary font-bold uppercase tracking-widest text-[10px] hover:opacity-70 transition-opacity" href="https://github.com/ArjunChavan2/assignment-calendar" target="_blank">
+VIEW_CODE
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
 </div>
 </div>
-</section>
-<!-- Whack a Bug Mini-Game Section -->
-<section class="px-8 md:px-16 py-32 border-x border-[#484847]/10">
-<div class="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
-<div>
-<h3 class="text-5xl font-black tracking-tighter uppercase mb-4">WHACK_A_BUG.SYS</h3>
-<p class="text-on-surface-variant max-w-md font-light">Every support engineer's dream. Click the bugs before they escape — how fast are your debugging reflexes?</p>
-</div>
-<div class="flex gap-12 glass-panel p-6 border-primary/20">
-<div class="text-center">
-<div class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">SCORE</div>
-<div class="text-3xl font-bold text-primary" id="score">0</div>
-</div>
-<div class="text-center">
-<div class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">TIME</div>
-<div class="text-3xl font-bold text-primary" id="timer">30</div>
-</div>
-<button class="bg-primary/10 border border-primary text-primary px-6 py-2 text-xs uppercase tracking-widest font-bold hover:bg-primary hover:text-background transition-colors self-center" id="start-game">START_SESSION</button>
-</div>
-</div>
-<div class="relative w-full h-[400px] glass-panel border border-[#484847]/30 overflow-hidden cursor-crosshair flex items-center justify-center" id="game-container">
-<div class="text-center z-10" id="game-overlay">
-<span class="material-symbols-outlined text-primary text-6xl mb-4 opacity-50">bug_report</span>
-<p class="font-space-grotesk text-sm tracking-[0.2em] text-white/40 uppercase">PRESS START TO DEPLOY BUGS</p>
-</div>
-<!-- Bugs will be injected here by JS -->
-</div>
-<div class="mt-4 text-[10px] font-space-grotesk tracking-widest text-on-surface-variant/40 flex justify-between">
-<span>SYSTEM_DIFFICULTY: ADAPTIVE</span>
-<span>BUG_VELOCITY: INCREMENTAL</span>
 </div>
 </section>
 <!-- Statement Section -->
@@ -369,47 +346,6 @@
 <blockquote class="text-3xl md:text-6xl font-bold leading-tight uppercase tracking-tighter text-on-surface">
                         "The best solutions emerge at the intersection of <span class="text-primary italic">software and hardware</span>. From ML models to embedded systems — code that bridges the gap."
                     </blockquote>
-</div>
-</div>
-</section>
-<!-- Journal Section -->
-<section class="px-8 md:px-16 pb-48 border-x border-[#484847]/10">
-<div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-8 border-b border-[#484847]/20 pb-8">
-<h3 class="text-5xl font-black tracking-tighter uppercase">EXPERIENCE_LOGS</h3>
-<a class="text-[0.75rem] font-space-grotesk uppercase tracking-[0.2em] font-bold text-primary hover:text-white transition-colors flex items-center gap-3 glass-panel px-6 py-3" href="projects.html">
-                    VIEW_ALL_LOGS <span class="material-symbols-outlined text-[1rem]">arrow_outward</span>
-</a>
-</div>
-<div class="divide-y divide-[#484847]/20">
-<div class="group py-12 flex flex-col md:flex-row justify-between items-center hover:bg-white/5 px-8 transition-all duration-300">
-<div class="flex items-center gap-8 md:w-1/2">
-<span class="font-space-grotesk text-primary/40 text-sm font-bold">001</span>
-<h4 class="text-2xl font-bold uppercase tracking-tight group-hover:text-primary transition-colors">CMU TartanHacks 2026 — 1st Place Visa Track</h4>
-</div>
-<div class="md:w-1/3 mt-4 md:mt-0 flex flex-col md:items-end">
-<p class="text-on-surface-variant text-sm md:text-right font-light">Built gamified financial dashboard with React, Expo, Node.js and TypeScript onboarding engine.</p>
-<span class="mt-4 text-[10px] font-space-grotesk tracking-widest text-primary font-bold">FEB 2026</span>
-</div>
-</div>
-<div class="group py-12 flex flex-col md:flex-row justify-between items-center hover:bg-white/5 px-8 transition-all duration-300">
-<div class="flex items-center gap-8 md:w-1/2">
-<span class="font-space-grotesk text-primary/40 text-sm font-bold">002</span>
-<h4 class="text-2xl font-bold uppercase tracking-tight group-hover:text-primary transition-colors">PeARL Lab Research Assistant</h4>
-</div>
-<div class="md:w-1/3 mt-4 md:mt-0 flex flex-col md:items-end">
-<p class="text-on-surface-variant text-sm md:text-right font-light">Optimized robotic arm pathfinding and streamlined ML data pipelines at UMass Lowell.</p>
-<span class="mt-4 text-[10px] font-space-grotesk tracking-widest text-primary font-bold">SUMMER 2023</span>
-</div>
-</div>
-<div class="group py-12 flex flex-col md:flex-row justify-between items-center hover:bg-white/5 px-8 transition-all duration-300">
-<div class="flex items-center gap-8 md:w-1/2">
-<span class="font-space-grotesk text-primary/40 text-sm font-bold">003</span>
-<h4 class="text-2xl font-bold uppercase tracking-tight group-hover:text-primary transition-colors">STEM Activity Coordinator</h4>
-</div>
-<div class="md:w-1/3 mt-4 md:mt-0 flex flex-col md:items-end">
-<p class="text-on-surface-variant text-sm md:text-right font-light">Facilitated STEM workshops for 30+ youth at Lawrence Boys and Girls Club, teaching circuits and robotics.</p>
-<span class="mt-4 text-[10px] font-space-grotesk tracking-widest text-primary font-bold">AUG 2023 — JUN 2024</span>
-</div>
 </div>
 </div>
 </section>
@@ -427,7 +363,7 @@
 </div>
 <div class="flex flex-wrap gap-8 justify-start md:justify-end items-center">
 <a class="text-[10px] font-inter tracking-[0.1em] uppercase font-medium text-white/40 hover:text-white transition-colors duration-200" href="https://github.com/ArjunChavan2" target="_blank">GITHUB</a>
-<a class="text-[10px] font-inter tracking-[0.1em] uppercase font-medium text-white/40 hover:text-white transition-colors duration-200" href="https://linkedin.com/in/arjun-chavan" target="_blank">LINKEDIN</a>
+<a class="text-[10px] font-inter tracking-[0.1em] uppercase font-medium text-white/40 hover:text-white transition-colors duration-200" href="https://www.linkedin.com/in/arjun-chavan-3389b024b/" target="_blank">LINKEDIN</a>
 <a class="text-[10px] font-inter tracking-[0.1em] uppercase font-medium text-white/40 hover:text-white transition-colors duration-200" href="mailto:akchavan@umich.edu">EMAIL</a>
 <div class="flex items-center gap-2">
 <span class="w-2 h-2 rounded-full bg-[#00FFC2]"></span>
@@ -436,80 +372,38 @@
 </div>
 </div>
 </footer>
-<script>
-        const startBtn = document.getElementById('start-game');
-        const scoreEl = document.getElementById('score');
-        const timerEl = document.getElementById('timer');
-        const container = document.getElementById('game-container');
-        const overlay = document.getElementById('game-overlay');
-        
-        let score = 0;
-        let timeLeft = 30;
-        let gameActive = false;
-        let gameInterval;
-        let bugInterval;
 
-        function spawnBug() {
-            if (!gameActive) return;
-            
-            const bug = document.createElement('div');
-            bug.className = 'absolute cursor-pointer text-primary transition-opacity duration-300 bug-animate z-20 hover:scale-125 transition-transform';
-            bug.style.left = Math.random() * 90 + '%';
-            bug.style.top = Math.random() * 80 + '%';
-            bug.innerHTML = '<span class="material-symbols-outlined text-4xl select-none">bug_report</span>';
-            
-            bug.addEventListener('click', () => {
-                score += 10;
-                scoreEl.textContent = score;
-                bug.remove();
-            });
-
-            container.appendChild(bug);
-            
-            // Bug disappears if not clicked
-            setTimeout(() => {
-                if (bug.parentNode) bug.remove();
-            }, 2000);
-        }
-
-        function startGame() {
-            if (gameActive) return;
-            
-            score = 0;
-            timeLeft = 30;
-            gameActive = true;
-            scoreEl.textContent = score;
-            timerEl.textContent = timeLeft;
-            overlay.classList.add('hidden');
-            startBtn.disabled = true;
-            startBtn.classList.add('opacity-50');
-
-            gameInterval = setInterval(() => {
-                timeLeft--;
-                timerEl.textContent = timeLeft;
-                if (timeLeft <= 0) endGame();
-            }, 1000);
-
-            bugInterval = setInterval(spawnBug, 600);
-        }
-
-        function endGame() {
-            gameActive = false;
-            clearInterval(gameInterval);
-            clearInterval(bugInterval);
-            startBtn.disabled = false;
-            startBtn.classList.remove('opacity-50');
-            startBtn.textContent = 'RESTART_SESSION';
-            overlay.classList.remove('hidden');
-            overlay.innerHTML = `<h4 class="text-2xl font-bold uppercase tracking-widest text-primary mb-2">DEBUG_COMPLETE</h4><p class="text-on-surface-variant uppercase text-xs tracking-widest">FINAL SCORE: ${score}</p>`;
-            
-            // Clear remaining bugs
-            const bugs = container.querySelectorAll('.absolute');
-            bugs.forEach(b => b.remove());
-        }
-
-        startBtn.addEventListener('click', startGame);
-    </script>
+<!-- Connect Modal -->
+<div id="connect-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center">
+<div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="document.getElementById('connect-modal').classList.add('hidden')"></div>
+<div class="relative glass-panel border border-[#484847]/30 p-10 md:p-14 max-w-md w-full mx-4 space-y-8">
+<button onclick="document.getElementById('connect-modal').classList.add('hidden')" class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div>
+<h3 class="text-2xl font-bold font-headline uppercase tracking-tight text-on-surface mb-2">Let's Connect</h3>
+<p class="text-sm text-on-surface-variant font-light">Reach out through any of the channels below.</p>
+</div>
+<div class="space-y-4">
+<a href="https://www.linkedin.com/in/arjun-chavan-3389b024b/" target="_blank" class="flex items-center gap-4 p-4 border border-[#484847]/30 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group">
+<span class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary border border-primary/20">in</span>
+<div>
+<div class="text-sm font-bold uppercase tracking-wide text-on-surface group-hover:text-primary transition-colors">LinkedIn</div>
+<div class="text-[11px] text-on-surface-variant">linkedin.com/in/arjun-chavan</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary ml-auto text-sm transition-colors">arrow_outward</span>
+</a>
+<a href="mailto:akchavan@umich.edu" class="flex items-center gap-4 p-4 border border-[#484847]/30 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group">
+<span class="w-10 h-10 flex items-center justify-center bg-primary/10 text-primary border border-primary/20 material-symbols-outlined text-lg">mail</span>
+<div>
+<div class="text-sm font-bold uppercase tracking-wide text-on-surface group-hover:text-primary transition-colors">Email</div>
+<div class="text-[11px] text-on-surface-variant">akchavan@umich.edu</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary ml-auto text-sm transition-colors">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
 
     <!-- Plexus Neural Network Animation -->
     <script>

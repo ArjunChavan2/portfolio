@@ -70,10 +70,10 @@
 <!-- TopNavBar -->
 <nav class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline">
 <div class="flex justify-between items-center max-w-[1440px] mx-auto px-8 md:px-16 py-6">
-<div class="text-xl font-bold tracking-tighter flex items-center gap-2 font-space-grotesk">
+<a href="index.html" class="text-xl font-bold tracking-tighter flex items-center gap-2 font-space-grotesk">
 <span class="w-2 h-2 bg-primary"></span>
-                PORTFOLIO.SYS
-            </div>
+                ARJUN CHAVAN
+            </a>
 <div class="hidden md:flex items-center space-x-12"><a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-space-grotesk" href="index.html">[ 01 ] Home</a>
 <a class="text-[0.7rem] uppercase tracking-[0.2em] font-primary text-primary border-b border-primary/40 pb-1 font-space-grotesk" href="projects.html">[ 02 ] Projects</a>
 <a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-space-grotesk" href="about.html">[ 03 ] About</a></div>
@@ -90,147 +90,191 @@
 <header class="mb-24">
 <div class="flex items-center gap-4 mb-6">
 <span class="w-12 h-[1px] bg-primary"></span>
-<span class="text-primary font-space-grotesk text-[0.7rem] uppercase tracking-[0.3em] font-bold">DIRECTORY: ARCHIVE_S24</span>
+<span class="text-primary font-space-grotesk text-[0.7rem] uppercase tracking-[0.3em] font-bold">PROJECTS & EXPERIENCE</span>
 </div>
 <h1 class="text-[4.5rem] leading-[0.95] font-black font-space-grotesk tracking-[-0.04em] text-white uppercase mb-8 max-w-4xl">
-                Technical<br/>Artifacts.
+                Experience<br/>Logs.
             </h1>
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
 <p class="text-white/40 font-inter text-sm leading-relaxed max-w-lg border-l border-primary/20 pl-6 uppercase tracking-wider">
-                    Systematic archival of interface research, structural branding, and digital experimentation conducted between chronological marks 20.0 and 24.0.
+                    From hackathons and internships to ML research and embedded systems — a record of building across the stack.
                 </p>
-<div class="text-primary font-space-grotesk text-xs tracking-tighter tabular-nums opacity-60">
-                    STATUS: ENCRYPTED // LOAD: 100%
-                </div>
 </div>
 </header>
 <!-- Filter Bar -->
-<div class="grid grid-cols-2 md:grid-cols-6 border-y border-white/10 mb-20 bg-white/5">
-<button class="py-6 border-r border-white/10 text-primary font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-black bg-primary/10">00_ALL_PROJECTS</button>
-<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">01_UI_UX</button>
-<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">02_IDENTITY</button>
-<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">03_RESEARCH</button>
-<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">04_EXPERIMENTAL</button>
-<button class="py-6 flex items-center justify-center gap-2 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">
-<span class="material-symbols-outlined text-[14px]">terminal</span>
-                SORT_CHRONO
-            </button>
+<div class="grid grid-cols-2 md:grid-cols-4 border-y border-white/10 mb-20 bg-white/5" id="filter-bar">
+<button class="filter-btn py-6 border-r border-white/10 text-primary font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-black bg-primary/10" data-filter="all">ALL</button>
+<button class="filter-btn py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors" data-filter="fullstack">FULL STACK</button>
+<button class="filter-btn py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors" data-filter="ai-ml">AI & ML</button>
+<button class="filter-btn py-6 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors" data-filter="hardware">HARDWARE</button>
 </div>
-<!-- Refined Descriptive Grid (Inspired by Reference Image 11) -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/10">
-<!-- Project 01 -->
-<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<!-- Project Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/10" id="project-grid">
+<!-- Project 01: TartanHacks -->
+<a href="https://github.com/codylejang/Scotty-Market" target="_blank" class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="fullstack">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">01</div>
 <div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Lumina OS Development</h3>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
-                        Interface optimization for minimalist digital environments. Implementing automated system recovery and low-latency interaction models.
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">CMU TartanHacks 2026 — 1st Place Visa Track</h3>
+<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">FEB 2026</span>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
+                        Gamified financial dashboard with AI-driven pet system. Built with React, Expo, Node.js and TypeScript onboarding engine.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">UI AGENT</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">SYSTEM ARCHITECTURE</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">REACT</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">NODE.JS</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">TYPESCRIPT</span>
 </div>
 </div>
-</div>
-<!-- Project 02 -->
-<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+</a>
+<!-- Project 02: Altheros Capital -->
+<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="fullstack">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">02</div>
 <div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Aura Editorial Identity</h3>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
-                        Structural branding strategy leveraging algorithmic grid systems to generate dynamic print and digital layouts.
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Altheros Capital — Full Stack Intern</h3>
+<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">INTERNSHIP</span>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
+                        Refined responsive landing pages and interfaces with JavaScript and CSS, ensuring high-fidelity Figma alignment. Participated in Scrum sprint planning and coordinated with PMs for timely delivery.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">BRAND STRATEGY</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">GENERATIVE DESIGN</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">REACT</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">JAVASCRIPT</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">FIGMA</span>
 </div>
 </div>
 </div>
-<!-- Project 03 -->
-<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<!-- Project 03: Assignment Calendar -->
+<a href="https://github.com/ArjunChavan2/assignment-calendar" target="_blank" class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="fullstack">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">03</div>
 <div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Nexus VR Research</h3>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
-                        Analysis of biometric pattern recognition in virtual spaces. Mapping user eye-tracking to predictive UI elements.
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">Assignment Calendar</h3>
+<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">PROJECT</span>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
+                        Built and delivered a technical presentation on an assignment calendar that consolidates deadlines from multiple course websites into a single unified view.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">AI RESEARCH</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">BIOMETRICS</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">FULL STACK</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">WEB SCRAPING</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">CALENDAR API</span>
 </div>
 </div>
-</div>
-<!-- Project 04 -->
-<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+</a>
+<!-- Project 04: Emotion Recognition -->
+<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="ai-ml">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">04</div>
 <div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Form &amp; Void Studies</h3>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
-                        Experimental spatial studies exploring the intersection of brutalist architecture and digital void space optimization.
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Emotion Recognition</h3>
+<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">2024</span>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
+                        Real-time emotion classifier using facial landmark detection and Deep Neural Network with TensorFlow and OpenCV.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">EXPERIMENTAL</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">SPATIAL COMPUTING</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">TENSORFLOW</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">OPENCV</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">PYTHON</span>
 </div>
 </div>
 </div>
-<!-- Project 05 -->
-<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<!-- Project 05: PeARL Lab -->
+<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="ai-ml">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">05</div>
 <div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Incident Response Engine</h3>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
-                        Automated prompt engineering workflow for real-time critical system failure documentation and communication.
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">PeARL Lab — ML Research</h3>
+<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">SUMMER 2023</span>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
+                        Optimized robotic arm pathfinding and object manipulation through ML models. Streamlined data collection pipelines using Python and deployed control scripts for pick-and-place operations.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">PROMPT ENGINEERING</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">OPS AUTOMATION</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">PYTHON</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">ML</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">ROBOTICS</span>
 </div>
 </div>
 </div>
-<!-- Project 06 -->
-<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<!-- Project 06: UMich ROV -->
+<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="hardware">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">06</div>
 <div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Pattern Briefing Agent</h3>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
-                        AI-driven analysis tool that scans repository history to identify recurring architectural friction points.
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">UMich ROV — Embedded Systems</h3>
+<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">PROJECT</span>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
+                        Prototyped a functional underwater ROV for aquatic exploration. Architected custom C++ control system with 3-axis propulsion and integrated physical controller.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">PATTERN ANALYSIS</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">KNOWLEDGE MGMT</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">C++</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">EMBEDDED</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">HARDWARE</span>
 </div>
 </div>
 </div>
 </div>
-<!-- Load More Section -->
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('text-primary', 'bg-primary/10', 'font-black');
+            b.classList.add('text-white/40', 'font-bold');
+        });
+        btn.classList.remove('text-white/40', 'font-bold');
+        btn.classList.add('text-primary', 'bg-primary/10', 'font-black');
+
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.project-card').forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+<!-- View Resume -->
 <div class="mt-32 border-t border-white/10 pt-20 flex flex-col items-center">
-<button class="group relative px-12 py-6 bg-primary text-background font-black font-space-grotesk uppercase tracking-[0.2em] text-sm hard-cut-color-flip transition-all overflow-hidden">
-<span class="relative z-10">RETRIEVE_LEGACY_DATA</span>
-<span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<button onclick="document.getElementById('resume-modal').classList.remove('hidden')" class="group relative px-12 py-6 bg-primary text-background font-black font-space-grotesk uppercase tracking-[0.2em] text-sm hover:bg-white transition-all overflow-hidden">
+<span class="relative z-10 flex items-center gap-3">VIEW RESUME <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">description</span></span>
 </button>
-<div class="mt-8 text-white/20 font-space-grotesk text-[9px] uppercase tracking-[0.4em]">2018 — 2020 DATASETS DETECTED</div>
 </div>
 </main>
+
+<!-- Resume Modal -->
+<div id="resume-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="document.getElementById('resume-modal').classList.add('hidden')"></div>
+<div class="relative bg-[#131313] border border-[#484847]/30 w-full max-w-3xl mx-4 h-[85vh] flex flex-col">
+<div class="flex items-center justify-between px-6 py-4 border-b border-[#484847]/30">
+<span class="text-[10px] font-space-grotesk uppercase tracking-[0.2em] text-[#00FFC2] font-bold">RESUME // ARJUN CHAVAN</span>
+<div class="flex items-center gap-4">
+<a href="resume.pdf" download class="text-[10px] font-space-grotesk uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span> DOWNLOAD
+</a>
+<button onclick="document.getElementById('resume-modal').classList.add('hidden')" class="text-white/40 hover:text-[#00FFC2] transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-hidden">
+<iframe src="resume.pdf" class="w-full h-full" style="border: none;"></iframe>
+</div>
+</div>
+</div>
 <!-- Footer -->
 <footer class="bg-[#0e0e0e] w-full border-t border-[#484847]/15 tonal-shift bg-[#131313]">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-16 w-full max-w-7xl mx-auto">
 <div class="flex flex-col justify-between">
 <div>
-<div class="text-[#00FFC2] font-space-grotesk text-sm font-black tracking-[0.1em] uppercase mb-4">TERMINAL_OPERATOR</div>
+<div class="text-[#00FFC2] font-space-grotesk text-sm font-black tracking-[0.1em] uppercase mb-4">ARJUN CHAVAN</div>
 <p class="font-inter text-[11px] text-white/40 uppercase leading-relaxed max-w-xs tracking-wider">
                         Sustaining the interface at the intersection of absolute utility and brutalist elegance.
                     </p>
 </div>
 <div class="mt-12 md:mt-0 font-inter text-[10px] tracking-[0.1em] uppercase font-medium text-white/40">
-                    © 2024 TERMINAL_OPERATOR. ALL RIGHTS RESERVED.
+                    © 2026 ARJUN CHAVAN. ALL RIGHTS RESERVED.
                 </div>
 </div>
 <div class="grid grid-cols-2 gap-12">
 <div class="flex flex-col gap-3">
 <span class="text-[#00FFC2] font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold mb-2">NETWORKS</span>
 <a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="https://github.com/ArjunChavan2" target="_blank">GITHUB</a>
-<a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="https://linkedin.com/in/arjun-chavan" target="_blank">LINKEDIN</a>
+<a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="https://www.linkedin.com/in/arjun-chavan-3389b024b/" target="_blank">LINKEDIN</a>
 <a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="mailto:akchavan@umich.edu">EMAIL</a>
 </div>
 <div class="flex flex-col gap-3">
