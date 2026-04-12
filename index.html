@@ -3,7 +3,7 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -29,7 +29,8 @@
             "fontFamily": {
                 "headline": ["Space Grotesk", "sans-serif"],
                 "body": ["Inter", "sans-serif"],
-                "label": ["Space Grotesk", "sans-serif"]
+                "label": ["Space Grotesk", "sans-serif"],
+                "serif": ["Cormorant Garamond", "Georgia", "serif"]
             }
           },
         },
@@ -61,6 +62,84 @@
         .bug-animate {
             animation: bug-crawl 4s infinite linear;
         }
+
+        /* Hero Plexus Section */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0, 255, 194, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 194, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        #plexus-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .ghost-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            border: 1px solid rgba(0, 255, 194, 0.35);
+            background: transparent;
+            color: #00FFC2;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .ghost-btn:hover {
+            background: rgba(0, 255, 194, 0.08);
+            border-color: rgba(0, 255, 194, 0.7);
+            box-shadow: 0 0 30px rgba(0, 255, 194, 0.1), inset 0 0 30px rgba(0, 255, 194, 0.03);
+        }
+        .ghost-btn-secondary {
+            border-color: rgba(245, 241, 232, 0.2);
+            color: #f5f1e8;
+        }
+        .ghost-btn-secondary:hover {
+            border-color: rgba(245, 241, 232, 0.5);
+            background: rgba(245, 241, 232, 0.05);
+            box-shadow: 0 0 30px rgba(245, 241, 232, 0.05);
+        }
+        .hero-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, #00FFC2, transparent);
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface selection:bg-primary selection:text-background grid-bg">
@@ -86,27 +165,41 @@
 </nav>
 <main class="max-w-[1440px] mx-auto pt-20">
 <!-- Hero Section -->
-<section class="px-8 md:px-16 py-32 md:py-48 flex flex-col items-start border-x border-[#484847]/10 min-h-screen justify-center">
-<div class="w-full max-w-5xl space-y-12">
+<section class="hero-section min-h-screen flex flex-col justify-center">
+<canvas id="plexus-canvas"></canvas>
+<div class="hero-content px-8 md:px-16 lg:px-24 py-32 md:py-48 w-full max-w-[1440px] mx-auto">
+<div class="w-full max-w-4xl space-y-10">
+<!-- Subtle label -->
 <div class="flex items-center gap-4">
-<span class="w-3 h-3 bg-primary animate-pulse"></span>
-<span class="text-primary text-[0.75rem] font-space-grotesk uppercase tracking-[0.3em] font-bold">
-                        SYSTEM_INITIALIZED // ARJUN CHAVAN
-                    </span>
+<div class="hero-divider"></div>
+<span class="text-[#00FFC2] text-[0.7rem] font-serif uppercase tracking-[0.35em] font-medium opacity-80">
+                            Portfolio — Arjun Chavan
+                        </span>
 </div>
-<h1 class="text-[4rem] md:text-[6.5rem] font-bold leading-[0.9] tracking-[-0.05em] uppercase">
-                    <span class="text-on-surface/40">Hi, I'm</span> <br/>
-<span class="text-primary">Arjun Chavan</span> <br/>
-CS & Engineering Student
+
+<!-- Main heading — elegant serif -->
+<h1 class="font-serif leading-[1.05] tracking-[-0.02em]">
+<span class="block text-[#f5f1e8] text-[2.5rem] md:text-[4rem] font-light italic opacity-60">Hello, I'm</span>
+<span class="block text-[#00FFC2] text-[4.5rem] md:text-[7.5rem] font-bold leading-[0.95] mt-2">Arjun Chavan</span>
+<span class="block text-[#f5f1e8] text-[2rem] md:text-[3.2rem] font-light mt-4 tracking-[0.01em]">Computer Science &amp; Engineering</span>
 </h1>
-<p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed font-light border-l-2 border-primary/20 pl-8">
-                    UNIVERSITY_OF_MICHIGAN: Computer Science student passionate about full-stack development, machine learning, and embedded systems. Building intelligent systems and crafting experiences that make an impact.
-                </p>
-<div class="pt-8">
-<button class="group flex items-center gap-6 py-4 px-8 glass-panel border border-primary/20 hover:border-primary transition-all duration-300">
-<span class="font-space-grotesk text-sm uppercase tracking-[0.2em] font-bold text-primary">EXE_ARCHIVE_EXPLORE</span>
-<span class="material-symbols-outlined text-primary group-hover:translate-y-1 transition-transform">arrow_downward</span>
-</button>
+
+<!-- Subtext -->
+<p class="text-[#a8a8a0] text-base md:text-lg max-w-lg leading-relaxed font-light font-serif" style="font-size: 1.15rem;">
+                        University of Michigan — building at the intersection of full-stack development, machine learning, and embedded systems.
+                    </p>
+
+<!-- Ghost buttons -->
+<div class="flex flex-wrap gap-5 pt-6">
+<a href="projects.html" class="ghost-btn">
+                            View Projects
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a href="about.html" class="ghost-btn ghost-btn-secondary">
+                            About Me
+                            <span class="material-symbols-outlined text-base">person</span>
+</a>
+</div>
 </div>
 </div>
 </section>
@@ -416,5 +509,150 @@ CS & Engineering Student
         }
 
         startBtn.addEventListener('click', startGame);
+    </script>
+
+    <!-- Plexus Neural Network Animation -->
+    <script>
+    (function() {
+        const canvas = document.getElementById('plexus-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width, height, particles, mouse, animationId;
+
+        const CONFIG = {
+            particleCount: 120,
+            maxDistance: 160,
+            particleRadius: 1.5,
+            speed: 0.3,
+            mouseRadius: 200,
+            lineOpacity: 0.15,
+            particleColor: { r: 0, g: 255, b: 194 },   // mint green
+            glowColor: 'rgba(0, 255, 194, 0.4)'
+        };
+
+        mouse = { x: -1000, y: -1000 };
+
+        function resize() {
+            const section = canvas.parentElement;
+            width = canvas.width = section.offsetWidth;
+            height = canvas.height = section.offsetHeight;
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < CONFIG.particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * CONFIG.speed,
+                    vy: (Math.random() - 0.5) * CONFIG.speed,
+                    radius: Math.random() * CONFIG.particleRadius + 0.5,
+                    opacity: Math.random() * 0.5 + 0.3
+                });
+            }
+        }
+
+        function drawParticle(p) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${CONFIG.particleColor.r}, ${CONFIG.particleColor.g}, ${CONFIG.particleColor.b}, ${p.opacity})`;
+            ctx.fill();
+
+            // subtle glow
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${CONFIG.particleColor.r}, ${CONFIG.particleColor.g}, ${CONFIG.particleColor.b}, ${p.opacity * 0.1})`;
+            ctx.fill();
+        }
+
+        function drawLines() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < CONFIG.maxDistance) {
+                        const opacity = (1 - dist / CONFIG.maxDistance) * CONFIG.lineOpacity;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(${CONFIG.particleColor.r}, ${CONFIG.particleColor.g}, ${CONFIG.particleColor.b}, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+
+                // Mouse interaction lines
+                const mdx = particles[i].x - mouse.x;
+                const mdy = particles[i].y - mouse.y;
+                const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mDist < CONFIG.mouseRadius) {
+                    const opacity = (1 - mDist / CONFIG.mouseRadius) * 0.3;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle = `rgba(${CONFIG.particleColor.r}, ${CONFIG.particleColor.g}, ${CONFIG.particleColor.b}, ${opacity})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        function update() {
+            for (const p of particles) {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                // Gentle mouse repulsion
+                const mdx = p.x - mouse.x;
+                const mdy = p.y - mouse.y;
+                const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mDist < CONFIG.mouseRadius && mDist > 0) {
+                    const force = (CONFIG.mouseRadius - mDist) / CONFIG.mouseRadius * 0.02;
+                    p.vx += (mdx / mDist) * force;
+                    p.vy += (mdy / mDist) * force;
+                }
+
+                // Dampen velocity
+                const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+                if (speed > CONFIG.speed * 2) {
+                    p.vx *= 0.98;
+                    p.vy *= 0.98;
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            update();
+            drawLines();
+            for (const p of particles) drawParticle(p);
+            animationId = requestAnimationFrame(animate);
+        }
+
+        canvas.parentElement.addEventListener('mousemove', function(e) {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        canvas.parentElement.addEventListener('mouseleave', function() {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        window.addEventListener('resize', function() {
+            resize();
+            createParticles();
+        });
+
+        resize();
+        createParticles();
+        animate();
+    })();
     </script>
 </body></html>
