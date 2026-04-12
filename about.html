@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary": "#00FFC2",
+                "background": "#0A0A0A",
+                "surface": "#121212",
+                "surface-variant": "#1A1A1A",
+                "on-surface": "#FFFFFF",
+                "on-surface-variant": "#A0A0A0",
+                "outline": "#333333",
+                "outline-variant": "#222222"
+              },
+              "borderRadius": {
+                "DEFAULT": "0px",
+                "lg": "0px",
+                "xl": "0px",
+                "full": "0px"
+              },
+              "fontFamily": {
+                "headline": ["Space Grotesk"],
+                "body": ["Space Grotesk"],
+                "label": ["Space Grotesk"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .perspective-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 10;
+            background: linear-gradient(0deg, rgba(0, 255, 194, 0) 0%, rgba(0, 255, 194, 0.05) 50%, rgba(0, 255, 194, 0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            bottom: 100%;
+            animation: scanline 10s linear infinite;
+        }
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100px; }
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased selection:bg-primary selection:text-black">
+<div class="fixed inset-0 grid-bg pointer-events-none opacity-50"></div>
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+<div class="scanline"></div>
+</div>
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline">
+<div class="flex justify-between items-center max-w-[1440px] mx-auto px-8 md:px-16 py-6">
+<div class="text-xl font-bold tracking-tighter flex items-center gap-2">
+<span class="w-2 h-2 bg-primary"></span>
+                CURATOR
+            </div>
+<div class="hidden md:flex items-center space-x-12"><a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300" href="#">[ 01 ] Home</a>
+<a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300" href="#">[ 02 ] Projects</a>
+<a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-primary border-b border-primary/40 pb-1" href="#">[ 03 ] About</a></div>
+<div class="flex items-center space-x-6">
+<a class="text-[0.7rem] uppercase tracking-[0.2em] font-bold text-primary hover:bg-primary hover:text-black px-4 py-2 border border-primary/20 transition-all duration-300" href="#">Contact</a>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="relative max-w-[1440px] mx-auto px-8 md:px-16 pt-24 pb-32">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-16 items-start mb-48">
+<div class="md:col-span-7 relative">
+<div class="absolute -left-12 top-0 perspective-text text-primary/10 font-bold text-6xl uppercase tracking-[0.3em] hidden md:block">
+                    OPERATOR_PROTOCOL
+                </div>
+<div class="bg-surface border border-outline relative group overflow-hidden">
+<img alt="Close-up professional portrait of a man with thoughtful expression in a minimalist studio setting with soft natural window lighting" class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCP56yJjRWPyuPwZhWZu29jvv6W7GiTf9tc24xC6Zxyfutyk7KH7bvdA_gmq5SIvsh55WjSLY-zBalR_-oxZDYvCIHgtobNrLvCtICkkVGn4N6UdLw7N0LUu59c2Wtn-jGfW-uCgtcU_MMlKU-LVWGcI7u2NtLUIfxEJ4xpUI2Oa6ff0tkLs8lffXfpeZzWBg1skT67Zr3AtwJccJ1lFX8LLezYz8AxdHahq3CRj2LMdlvc85sbiQ8bEd1-r2mVrbTGgWvUtt3nyU"/>
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none border-[20px] border-background mix-blend-multiply opacity-20"></div>
+</div>
+<div class="absolute -bottom-8 -right-8 bg-surface border border-primary/30 p-8 shadow-2xl hidden md:block max-w-xs">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-1.5 h-1.5 bg-primary animate-pulse"></span>
+<p class="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-primary">Status: Active</p>
+</div>
+<p class="text-[0.65rem] uppercase tracking-widest text-on-surface-variant mb-2">Terminal Node</p>
+<p class="text-lg text-on-surface font-light italic">Berlin Core // Global Operations.</p>
+</div>
+</div>
+<div class="md:col-span-5 pt-12">
+<span class="text-[0.75rem] uppercase tracking-[0.4em] font-bold text-primary mb-6 block">// THE_OPERATOR</span>
+<h1 class="text-[4rem] font-bold leading-[0.9] tracking-tighter text-on-surface mb-10">
+                    Architect of <span class="italic text-primary font-light">Digital Entropy.</span>
+</h1>
+<div class="space-y-6 max-w-md">
+<p class="text-lg leading-relaxed text-on-surface-variant">
+                        I bridge the gap between human intuition and digital precision. My work is a continuous exploration of how restraint and intentionality can transform a simple interface into a meaningful artifact.
+                    </p>
+<div class="pt-6 border-t border-outline flex items-center gap-4">
+<span class="text-[0.6rem] uppercase tracking-[0.2em] text-on-surface-variant">Protocol v4.2.0</span>
+<span class="w-full h-[1px] bg-outline"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed Bio Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-48 py-24 border-y border-outline">
+<div class="md:col-span-4 md:col-start-2">
+<h2 class="text-2xl font-bold tracking-tighter mb-12 flex items-center gap-6">
+<span class="text-primary text-sm font-mono">01_</span>
+                    THE_CONTEXT
+                </h2>
+</div>
+<div class="md:col-span-6 space-y-12">
+<p class="text-xl leading-relaxed text-on-surface-variant font-light">
+                    With over a decade of experience in creative direction and UI/UX design, I've spent my career distilling complex systems into elegant, usable journeys. I believe that the most powerful design is often the most invisible—the one that doesn't scream for attention but subtly guides the user through a narrative.
+                </p>
+<div class="bg-surface-variant border-l-4 border-primary p-12 relative">
+<div class="absolute top-4 right-4 text-primary opacity-20 text-4xl font-serif">"</div>
+<p class="text-xl font-medium italic text-on-surface mb-6">
+                        The goal isn't to build a website; it's to curate an environment where content is the protagonist and the interface is the gallery.
+                    </p>
+<p class="text-[0.65rem] uppercase tracking-[0.3em] text-primary font-bold">LOG_ENTRY // Philosophy_01</p>
+</div>
+<p class="text-xl leading-relaxed text-on-surface-variant font-light">
+                    My process is rooted in archival research and modern technical execution. Whether I'm building for a luxury fashion house or a high-growth tech startup, I apply the same level of discernment to every pixel, ensuring longevity over fleeting trends.
+                </p>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="mb-48">
+<div class="flex items-end justify-between mb-12 border-b border-primary/20 pb-4">
+<h2 class="text-4xl font-bold tracking-tighter uppercase">Technological_Stack</h2>
+<span class="text-[0.6rem] uppercase tracking-[0.3em] text-primary mb-2">Load: Optimal</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-outline border border-outline">
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">001</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">ITSM / ITIL</span>
+</div>
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">002</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">PROMPT ENGINEERING</span>
+</div>
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">003</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">AI AGENT DESIGN</span>
+</div>
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">004</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">GENERATIVE AI</span>
+</div>
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">005</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">SQL &amp; LOOKER</span>
+</div>
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">006</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">REACT / NEXT.JS</span>
+</div>
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">007</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">POWER BI</span>
+</div>
+<div class="bg-background group hover:bg-primary transition-all duration-300 p-8 flex flex-col justify-between aspect-square">
+<span class="text-[0.6rem] text-primary group-hover:text-black font-mono">008</span>
+<span class="text-[0.8rem] uppercase tracking-[0.15em] font-bold group-hover:text-black">ATLASSIAN / JIRA</span>
+</div>
+</div>
+<div class="mt-12 flex flex-wrap gap-x-8 gap-y-4 text-[0.6rem] uppercase tracking-[0.4em] text-on-surface-variant font-medium">
+<span class="flex items-center gap-2"><span class="w-1 h-1 bg-primary"></span>ANIME</span>
+<span class="flex items-center gap-2"><span class="w-1 h-1 bg-primary"></span>KDRAMAS</span>
+<span class="flex items-center gap-2"><span class="w-1 h-1 bg-primary"></span>MUSIC</span>
+<span class="flex items-center gap-2"><span class="w-1 h-1 bg-primary"></span>LONG WALKS</span>
+<span class="flex items-center gap-2"><span class="w-1 h-1 bg-primary"></span>COOKING</span>
+<span class="flex items-center gap-2"><span class="w-1 h-1 bg-primary"></span>SMELLING BOOKS</span>
+</div>
+</section>
+<!-- Recognition/Press Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-48 border-t border-outline pt-24">
+<div class="md:col-span-3">
+<h2 class="text-[0.65rem] font-bold uppercase tracking-[0.4em] text-primary">AWARDS_ARCHIVE</h2>
+</div>
+<div class="md:col-span-9">
+<div class="space-y-0">
+<div class="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-b border-outline hover:bg-primary/5 transition-colors px-4 -mx-4">
+<span class="text-3xl font-light tracking-tight group-hover:text-primary transition-colors">Site of the Day</span>
+<span class="text-[0.65rem] uppercase tracking-[0.3em] text-on-surface-variant font-mono">Awwwards // 2023</span>
+</div>
+<div class="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-b border-outline hover:bg-primary/5 transition-colors px-4 -mx-4">
+<span class="text-3xl font-light tracking-tight group-hover:text-primary transition-colors">Design Excellence</span>
+<span class="text-[0.65rem] uppercase tracking-[0.3em] text-on-surface-variant font-mono">FWA // 2022</span>
+</div>
+<div class="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-b border-outline hover:bg-primary/5 transition-colors px-4 -mx-4">
+<span class="text-3xl font-light tracking-tight group-hover:text-primary transition-colors">Feature Interview</span>
+<span class="text-[0.65rem] uppercase tracking-[0.3em] text-on-surface-variant font-mono">The Brand Identity // 2022</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Say Hello Section -->
+<section class="py-32 border border-primary/20 bg-surface/50 backdrop-blur-sm flex flex-col items-center text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<h2 class="text-6xl font-bold mb-12 tracking-tighter uppercase">Connect_Terminal</h2>
+<div class="max-w-2xl mb-16 px-8">
+<p class="text-3xl font-light italic text-primary leading-tight mb-4">
+                    "Set your heart ablaze. Grit your teeth and look straight ahead."
+                </p>
+<p class="text-[0.65rem] uppercase tracking-[0.4em] text-on-surface-variant">— Kyojuro Rengoku // Hashira_Mode</p>
+</div>
+<p class="text-lg text-on-surface-variant mb-12 max-w-lg font-light">
+                Let's connect — worst case, we exchange memes... best case, we build something amazing together.
+            </p>
+<div class="flex flex-col md:flex-row gap-6">
+<a class="px-12 py-5 bg-primary text-black text-[0.7rem] uppercase tracking-[0.3em] font-black hover:bg-white transition-all duration-300" href="#">Linkedin_Profile</a>
+<a class="px-12 py-5 border border-primary text-primary text-[0.7rem] uppercase tracking-[0.3em] font-bold hover:bg-primary/10 transition-all duration-300" href="mailto:hello@thecurator.com">Send_Message</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-black border-t border-outline w-full pt-32 pb-16 relative overflow-hidden">
+<div class="absolute bottom-0 right-0 p-8 opacity-5 pointer-events-none">
+<div class="text-[15rem] font-bold leading-none tracking-tighter">GRID</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-end max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
+<div class="w-full md:w-1/2 mb-16 md:mb-0">
+<div class="text-2xl font-bold text-on-surface mb-12 flex items-center gap-2">
+<span class="w-3 h-3 bg-primary"></span>
+                    CURATOR
+                </div>
+<div class="grid grid-cols-2 gap-12">
+<div class="flex flex-col space-y-4">
+<a class="text-xs uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors" href="#">[ LinkedIn ]</a>
+<a class="text-xs uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors" href="#">[ Archive ]</a>
+</div>
+<div class="flex flex-col space-y-4">
+<a class="text-xs uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors" href="#">[ Privacy ]</a>
+<a class="text-xs uppercase tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors" href="#">[ Contact ]</a>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 text-left md:text-right">
+<p class="text-[0.65rem] uppercase tracking-[0.3em] text-primary mb-4">// COLLABORATION_INQUIRY</p>
+<p class="text-4xl font-bold text-on-surface mb-12 tracking-tighter">hello@thecurator.com</p>
+<div class="flex flex-col md:items-end gap-2">
+<p class="text-[0.6rem] uppercase tracking-[0.2em] text-on-surface-variant opacity-40">System Time: 2024.11.24_UTC</p>
+<p class="text-[0.6rem] uppercase tracking-[0.2em] text-on-surface-variant opacity-40">© THE_DISCERNING_CURATOR // ALL_RIGHTS_RESERVED.</p>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

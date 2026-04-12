@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#00FFC2",
+                        "background": "#0E0E0E",
+                        "surface": "#1A1C1E",
+                        "surface-container": "#262626",
+                        "on-surface": "#FFFFFF",
+                        "on-surface-variant": "rgba(255, 255, 255, 0.6)",
+                        "outline": "#484847"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"],
+                        "space-grotesk": ["Space Grotesk"],
+                        "inter": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            cursor: crosshair;
+        }
+        .snap-transition {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hard-cut-color-flip:hover {
+            background-color: #00FFC2;
+            color: #0E0E0E;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 194, 0.02) 50%);
+            background-size: 100% 4px;
+        }
+        .grid-item-border {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .grid-item-hover:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-color: rgba(0, 255, 194, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface dark scanline">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline">
+<div class="flex justify-between items-center max-w-[1440px] mx-auto px-8 md:px-16 py-6">
+<div class="text-xl font-bold tracking-tighter flex items-center gap-2 font-space-grotesk">
+<span class="w-2 h-2 bg-primary"></span>
+                PORTFOLIO.SYS
+            </div>
+<div class="hidden md:flex items-center space-x-12"><a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-space-grotesk" href="#">[ 01 ] Home</a>
+<a class="text-[0.7rem] uppercase tracking-[0.2em] font-primary text-primary border-b border-primary/40 pb-1 font-space-grotesk" href="#">[ 02 ] Projects</a>
+<a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-space-grotesk" href="#">[ 03 ] About</a></div>
+<div class="flex items-center space-x-6">
+<a class="text-[0.7rem] uppercase tracking-[0.2em] font-bold text-primary hover:bg-primary hover:text-black px-4 py-2 border border-primary/20 transition-all duration-300 font-space-grotesk" href="#">Connect</a>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-8 md:px-12 pt-40 pb-32">
+<!-- Header Section -->
+<header class="mb-24">
+<div class="flex items-center gap-4 mb-6">
+<span class="w-12 h-[1px] bg-primary"></span>
+<span class="text-primary font-space-grotesk text-[0.7rem] uppercase tracking-[0.3em] font-bold">DIRECTORY: ARCHIVE_S24</span>
+</div>
+<h1 class="text-[4.5rem] leading-[0.95] font-black font-space-grotesk tracking-[-0.04em] text-white uppercase mb-8 max-w-4xl">
+                Technical<br/>Artifacts.
+            </h1>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<p class="text-white/40 font-inter text-sm leading-relaxed max-w-lg border-l border-primary/20 pl-6 uppercase tracking-wider">
+                    Systematic archival of interface research, structural branding, and digital experimentation conducted between chronological marks 20.0 and 24.0.
+                </p>
+<div class="text-primary font-space-grotesk text-xs tracking-tighter tabular-nums opacity-60">
+                    STATUS: ENCRYPTED // LOAD: 100%
+                </div>
+</div>
+</header>
+<!-- Filter Bar -->
+<div class="grid grid-cols-2 md:grid-cols-6 border-y border-white/10 mb-20 bg-white/5">
+<button class="py-6 border-r border-white/10 text-primary font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-black bg-primary/10">00_ALL_PROJECTS</button>
+<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">01_UI_UX</button>
+<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">02_IDENTITY</button>
+<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">03_RESEARCH</button>
+<button class="py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">04_EXPERIMENTAL</button>
+<button class="py-6 flex items-center justify-center gap-2 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+                SORT_CHRONO
+            </button>
+</div>
+<!-- Refined Descriptive Grid (Inspired by Reference Image 11) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/10">
+<!-- Project 01 -->
+<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">01</div>
+<div class="relative z-10">
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Lumina OS Development</h3>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
+                        Interface optimization for minimalist digital environments. Implementing automated system recovery and low-latency interaction models.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">UI AGENT</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">SYSTEM ARCHITECTURE</span>
+</div>
+</div>
+</div>
+<!-- Project 02 -->
+<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">02</div>
+<div class="relative z-10">
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Aura Editorial Identity</h3>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
+                        Structural branding strategy leveraging algorithmic grid systems to generate dynamic print and digital layouts.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">BRAND STRATEGY</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">GENERATIVE DESIGN</span>
+</div>
+</div>
+</div>
+<!-- Project 03 -->
+<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">03</div>
+<div class="relative z-10">
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Nexus VR Research</h3>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
+                        Analysis of biometric pattern recognition in virtual spaces. Mapping user eye-tracking to predictive UI elements.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">AI RESEARCH</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">BIOMETRICS</span>
+</div>
+</div>
+</div>
+<!-- Project 04 -->
+<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">04</div>
+<div class="relative z-10">
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Form &amp; Void Studies</h3>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
+                        Experimental spatial studies exploring the intersection of brutalist architecture and digital void space optimization.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">EXPERIMENTAL</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">SPATIAL COMPUTING</span>
+</div>
+</div>
+</div>
+<!-- Project 05 -->
+<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">05</div>
+<div class="relative z-10">
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Incident Response Engine</h3>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
+                        Automated prompt engineering workflow for real-time critical system failure documentation and communication.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">PROMPT ENGINEERING</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">OPS AUTOMATION</span>
+</div>
+</div>
+</div>
+<!-- Project 06 -->
+<div class="group bg-background p-10 grid-item-border grid-item-hover transition-all relative">
+<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">06</div>
+<div class="relative z-10">
+<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-4 tracking-tight">Pattern Briefing Agent</h3>
+<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm uppercase tracking-wide">
+                        AI-driven analysis tool that scans repository history to identify recurring architectural friction points.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">PATTERN ANALYSIS</span>
+<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">KNOWLEDGE MGMT</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More Section -->
+<div class="mt-32 border-t border-white/10 pt-20 flex flex-col items-center">
+<button class="group relative px-12 py-6 bg-primary text-background font-black font-space-grotesk uppercase tracking-[0.2em] text-sm hard-cut-color-flip transition-all overflow-hidden">
+<span class="relative z-10">RETRIEVE_LEGACY_DATA</span>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="mt-8 text-white/20 font-space-grotesk text-[9px] uppercase tracking-[0.4em]">2018 — 2020 DATASETS DETECTED</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0e0e0e] w-full border-t border-[#484847]/15 tonal-shift bg-[#131313]">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-16 w-full max-w-7xl mx-auto">
+<div class="flex flex-col justify-between">
+<div>
+<div class="text-[#00FFC2] font-space-grotesk text-sm font-black tracking-[0.1em] uppercase mb-4">TERMINAL_OPERATOR</div>
+<p class="font-inter text-[11px] text-white/40 uppercase leading-relaxed max-w-xs tracking-wider">
+                        Sustaining the interface at the intersection of absolute utility and brutalist elegance.
+                    </p>
+</div>
+<div class="mt-12 md:mt-0 font-inter text-[10px] tracking-[0.1em] uppercase font-medium text-white/40">
+                    © 2024 TERMINAL_OPERATOR. ALL RIGHTS RESERVED.
+                </div>
+</div>
+<div class="grid grid-cols-2 gap-12">
+<div class="flex flex-col gap-3">
+<span class="text-[#00FFC2] font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold mb-2">NETWORKS</span>
+<a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="#">GITHUB</a>
+<a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="#">LINKEDIN</a>
+<a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="#">READCV</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[#00FFC2] font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold mb-2">STATUS</span>
+<span class="text-[#00FFC2] font-inter text-[10px] tracking-[0.1em] uppercase font-medium">STATUS: ONLINE</span>
+<span class="text-white/20 font-inter text-[10px] tracking-[0.1em] uppercase font-medium">Uptime: 99.9%</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
