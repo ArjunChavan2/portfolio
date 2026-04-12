@@ -13,13 +13,15 @@
             theme: {
                 extend: {
                     "colors": {
-                        "primary": "#00FFC2",
-                        "background": "#0E0E0E",
-                        "surface": "#1A1C1E",
-                        "surface-container": "#262626",
+                        "primary": "#8B5CF6",
+                        "secondary": "#3B82F6",
+                        "accent": "#06B6D4",
+                        "background": "#0A0A12",
+                        "surface": "#12121E",
+                        "surface-container": "#1A1A2E",
                         "on-surface": "#FFFFFF",
-                        "on-surface-variant": "rgba(255, 255, 255, 0.6)",
-                        "outline": "#484847"
+                        "on-surface-variant": "rgba(255, 255, 255, 0.55)",
+                        "outline": "#2A2A4A"
                     },
                     "borderRadius": {
                         "DEFAULT": "0px",
@@ -42,40 +44,169 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
         }
-        body { 
-            font-family: 'Inter', sans-serif; 
+        body {
+            font-family: 'Inter', sans-serif;
             cursor: crosshair;
+            overflow-x: hidden;
         }
-        .snap-transition {
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* Lava Lamp Background */
+        .lava-container {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            filter: blur(80px);
+            opacity: 0.5;
         }
-        .hard-cut-color-flip:hover {
-            background-color: #00FFC2;
-            color: #0E0E0E;
+        .lava-blob {
+            position: absolute;
+            border-radius: 50%;
+            will-change: transform;
         }
-        .scanline {
-            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 194, 0.02) 50%);
-            background-size: 100% 4px;
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #7C3AED 0%, transparent 70%);
+            top: -10%;
+            left: 10%;
+            animation: float-1 18s ease-in-out infinite;
         }
-        .grid-item-border {
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #3B82F6 0%, transparent 70%);
+            top: 30%;
+            right: -5%;
+            animation: float-2 22s ease-in-out infinite;
         }
-        .grid-item-hover:hover {
-            background-color: rgba(255, 255, 255, 0.02);
-            border-color: rgba(0, 255, 194, 0.2);
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #8B5CF6 0%, transparent 70%);
+            bottom: 10%;
+            left: 20%;
+            animation: float-3 20s ease-in-out infinite;
+        }
+        .blob-4 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #06B6D4 0%, transparent 70%);
+            top: 60%;
+            left: 60%;
+            animation: float-4 25s ease-in-out infinite;
+        }
+        .blob-5 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #6366F1 0%, transparent 70%);
+            top: 10%;
+            right: 30%;
+            animation: float-5 16s ease-in-out infinite;
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(120px, 200px) scale(1.15); }
+            50% { transform: translate(-80px, 400px) scale(0.9); }
+            75% { transform: translate(60px, 150px) scale(1.1); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-150px, -100px) scale(1.2); }
+            50% { transform: translate(-200px, 150px) scale(0.85); }
+            75% { transform: translate(-50px, -200px) scale(1.05); }
+        }
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(200px, -150px) scale(1.1); }
+            50% { transform: translate(100px, -300px) scale(0.95); }
+            75% { transform: translate(-100px, -100px) scale(1.15); }
+        }
+        @keyframes float-4 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-180px, -200px) scale(1.2); }
+            50% { transform: translate(50px, -100px) scale(0.9); }
+            75% { transform: translate(-100px, 100px) scale(1.1); }
+        }
+        @keyframes float-5 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, 300px) scale(1.15); }
+            66% { transform: translate(-150px, 150px) scale(0.9); }
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(18, 18, 30, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .glass-card:hover {
+            background: rgba(26, 26, 46, 0.8);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.08);
+        }
+
+        /* Filter active state */
+        .filter-active {
+            color: #8B5CF6 !important;
+            background: rgba(139, 92, 246, 0.1) !important;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #8B5CF6, #3B82F6, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-line {
+            background: linear-gradient(to right, #8B5CF6, #3B82F6, transparent);
+        }
+
+        .tag-primary {
+            color: #8B5CF6;
+            border-color: rgba(139, 92, 246, 0.2);
+            background: rgba(139, 92, 246, 0.08);
+        }
+        .tag-secondary {
+            color: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .resume-btn {
+            background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+            transition: all 0.3s ease;
+        }
+        .resume-btn:hover {
+            background: linear-gradient(135deg, #7C3AED, #2563EB);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
     </style>
 </head>
-<body class="bg-background text-on-surface dark scanline">
+<body class="bg-background text-on-surface dark">
+
+<!-- Lava Lamp Background -->
+<div class="lava-container">
+    <div class="lava-blob blob-1"></div>
+    <div class="lava-blob blob-2"></div>
+    <div class="lava-blob blob-3"></div>
+    <div class="lava-blob blob-4"></div>
+    <div class="lava-blob blob-5"></div>
+</div>
+
 <!-- TopNavBar -->
-<nav class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline">
+<nav class="sticky top-0 w-full z-50 bg-background/70 backdrop-blur-xl border-b border-outline/50">
 <div class="flex justify-between items-center max-w-[1440px] mx-auto px-8 md:px-16 py-6">
 <a href="index.html" class="text-xl font-bold tracking-tighter flex items-center gap-2 font-space-grotesk">
-<span class="w-2 h-2 bg-primary"></span>
+<span class="w-2 h-2 bg-primary rounded-full"></span>
                 ARJUN CHAVAN
             </a>
 <div class="hidden md:flex items-center space-x-12"><a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-space-grotesk" href="index.html">[ 01 ] Home</a>
-<a class="text-[0.7rem] uppercase tracking-[0.2em] font-primary text-primary border-b border-primary/40 pb-1 font-space-grotesk" href="projects.html">[ 02 ] Projects</a>
+<a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-primary border-b border-primary/40 pb-1 font-space-grotesk" href="projects.html">[ 02 ] Projects</a>
 <a class="text-[0.7rem] uppercase tracking-[0.2em] font-medium text-on-surface-variant hover:text-primary transition-all duration-300 font-space-grotesk" href="about.html">[ 03 ] About</a></div>
 <div class="flex items-center space-x-6">
 <a class="text-[0.7rem] uppercase tracking-[0.2em] font-bold text-primary hover:bg-primary hover:text-black px-4 py-2 border border-primary/20 transition-all duration-300 font-space-grotesk" href="mailto:akchavan@umich.edu">Connect</a>
@@ -85,15 +216,16 @@
 </div>
 </div>
 </nav>
-<main class="max-w-7xl mx-auto px-8 md:px-12 pt-40 pb-32">
+
+<main class="relative z-10 max-w-7xl mx-auto px-8 md:px-12 pt-40 pb-32">
 <!-- Header Section -->
 <header class="mb-24">
 <div class="flex items-center gap-4 mb-6">
-<span class="w-12 h-[1px] bg-primary"></span>
+<span class="w-12 h-[1px] gradient-line"></span>
 <span class="text-primary font-space-grotesk text-[0.7rem] uppercase tracking-[0.3em] font-bold">PROJECTS & EXPERIENCE</span>
 </div>
-<h1 class="text-[4.5rem] leading-[0.95] font-black font-space-grotesk tracking-[-0.04em] text-white uppercase mb-8 max-w-4xl">
-                Experience<br/>Logs.
+<h1 class="text-[4.5rem] leading-[0.95] font-black font-space-grotesk tracking-[-0.04em] uppercase mb-8 max-w-4xl">
+                <span class="gradient-text">Experience</span><br/>Logs.
             </h1>
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
 <p class="text-white/40 font-inter text-sm leading-relaxed max-w-lg border-l border-primary/20 pl-6 uppercase tracking-wider">
@@ -101,17 +233,19 @@
                 </p>
 </div>
 </header>
+
 <!-- Filter Bar -->
-<div class="grid grid-cols-2 md:grid-cols-4 border-y border-white/10 mb-20 bg-white/5" id="filter-bar">
-<button class="filter-btn py-6 border-r border-white/10 text-primary font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-black bg-primary/10" data-filter="all">ALL</button>
+<div class="grid grid-cols-2 md:grid-cols-4 border-y border-white/10 mb-20 bg-white/5 backdrop-blur-sm" id="filter-bar">
+<button class="filter-btn py-6 border-r border-white/10 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-black filter-active" data-filter="all">ALL</button>
 <button class="filter-btn py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors" data-filter="fullstack">FULL STACK</button>
 <button class="filter-btn py-6 border-r border-white/10 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors" data-filter="ai-ml">AI & ML</button>
 <button class="filter-btn py-6 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors" data-filter="hardware">HARDWARE</button>
 </div>
+
 <!-- Project Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/10" id="project-grid">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="project-grid">
 <!-- Project 01: TartanHacks -->
-<a href="https://github.com/codylejang/Scotty-Market" target="_blank" class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="fullstack">
+<a href="https://github.com/codylejang/Scotty-Market" target="_blank" class="project-card glass-card group p-10 relative" data-category="fullstack">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">01</div>
 <div class="relative z-10">
 <h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">CMU TartanHacks 2026 — 1st Place Visa Track</h3>
@@ -120,14 +254,14 @@
                         Gamified financial dashboard with AI-driven pet system. Built with React, Expo, Node.js and TypeScript onboarding engine.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">REACT</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">NODE.JS</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">TYPESCRIPT</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">REACT</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">NODE.JS</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">TYPESCRIPT</span>
 </div>
 </div>
 </a>
 <!-- Project 02: Altheros Capital -->
-<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="fullstack">
+<div class="project-card glass-card group p-10 relative" data-category="fullstack">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">02</div>
 <div class="relative z-10">
 <h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Altheros Capital — Full Stack Intern</h3>
@@ -136,14 +270,14 @@
                         Refined responsive landing pages and interfaces with JavaScript and CSS, ensuring high-fidelity Figma alignment. Participated in Scrum sprint planning and coordinated with PMs for timely delivery.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">REACT</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">JAVASCRIPT</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">FIGMA</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">REACT</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">JAVASCRIPT</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">FIGMA</span>
 </div>
 </div>
 </div>
 <!-- Project 03: Assignment Calendar -->
-<a href="https://github.com/ArjunChavan2/assignment-calendar" target="_blank" class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="fullstack">
+<a href="https://github.com/ArjunChavan2/assignment-calendar" target="_blank" class="project-card glass-card group p-10 relative" data-category="fullstack">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">03</div>
 <div class="relative z-10">
 <h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">Assignment Calendar</h3>
@@ -152,14 +286,14 @@
                         Built and delivered a technical presentation on an assignment calendar that consolidates deadlines from multiple course websites into a single unified view.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">FULL STACK</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">WEB SCRAPING</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">CALENDAR API</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">FULL STACK</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">WEB SCRAPING</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">CALENDAR API</span>
 </div>
 </div>
 </a>
 <!-- Project 04: Emotion Recognition -->
-<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="ai-ml">
+<div class="project-card glass-card group p-10 relative" data-category="ai-ml">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">04</div>
 <div class="relative z-10">
 <h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Emotion Recognition</h3>
@@ -168,14 +302,14 @@
                         Real-time emotion classifier using facial landmark detection and Deep Neural Network with TensorFlow and OpenCV.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">TENSORFLOW</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">OPENCV</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">PYTHON</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">TENSORFLOW</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">OPENCV</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">PYTHON</span>
 </div>
 </div>
 </div>
 <!-- Project 05: PeARL Lab -->
-<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="ai-ml">
+<div class="project-card glass-card group p-10 relative" data-category="ai-ml">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">05</div>
 <div class="relative z-10">
 <h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">PeARL Lab — ML Research</h3>
@@ -184,14 +318,14 @@
                         Optimized robotic arm pathfinding and object manipulation through ML models. Streamlined data collection pipelines using Python and deployed control scripts for pick-and-place operations.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">PYTHON</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">ML</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">ROBOTICS</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">PYTHON</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">ML</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">ROBOTICS</span>
 </div>
 </div>
 </div>
 <!-- Project 06: UMich ROV -->
-<div class="project-card group bg-background p-10 grid-item-border grid-item-hover transition-all relative" data-category="hardware">
+<div class="project-card glass-card group p-10 relative" data-category="hardware">
 <div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">06</div>
 <div class="relative z-10">
 <h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">UMich ROV — Embedded Systems</h3>
@@ -200,22 +334,24 @@
                         Prototyped a functional underwater ROV for aquatic exploration. Architected custom C++ control system with 3-axis propulsion and integrated physical controller.
                     </p>
 <div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-primary font-space-grotesk uppercase tracking-widest">C++</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">EMBEDDED</span>
-<span class="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-white/40 font-space-grotesk uppercase tracking-widest">HARDWARE</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">C++</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">EMBEDDED</span>
+<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">HARDWARE</span>
 </div>
 </div>
 </div>
 </div>
+
 <script>
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => {
-            b.classList.remove('text-primary', 'bg-primary/10', 'font-black');
+            b.classList.remove('filter-active');
             b.classList.add('text-white/40', 'font-bold');
+            b.classList.remove('font-black');
         });
         btn.classList.remove('text-white/40', 'font-bold');
-        btn.classList.add('text-primary', 'bg-primary/10', 'font-black');
+        btn.classList.add('filter-active', 'font-black');
 
         const filter = btn.dataset.filter;
         document.querySelectorAll('.project-card').forEach(card => {
@@ -228,9 +364,10 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 </script>
+
 <!-- View Resume -->
 <div class="mt-32 border-t border-white/10 pt-20 flex flex-col items-center">
-<button onclick="document.getElementById('resume-modal').classList.remove('hidden')" class="group relative px-12 py-6 bg-primary text-background font-black font-space-grotesk uppercase tracking-[0.2em] text-sm hover:bg-white transition-all overflow-hidden">
+<button onclick="document.getElementById('resume-modal').classList.remove('hidden')" class="group relative px-12 py-6 resume-btn text-white font-black font-space-grotesk uppercase tracking-[0.2em] text-sm overflow-hidden">
 <span class="relative z-10 flex items-center gap-3">VIEW RESUME <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">description</span></span>
 </button>
 </div>
@@ -239,14 +376,14 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 <!-- Resume Modal -->
 <div id="resume-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center">
 <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="document.getElementById('resume-modal').classList.add('hidden')"></div>
-<div class="relative bg-[#131313] border border-[#484847]/30 w-full max-w-3xl mx-4 h-[85vh] flex flex-col">
-<div class="flex items-center justify-between px-6 py-4 border-b border-[#484847]/30">
-<span class="text-[10px] font-space-grotesk uppercase tracking-[0.2em] text-[#00FFC2] font-bold">RESUME // ARJUN CHAVAN</span>
+<div class="relative bg-[#12121E] border border-[#2A2A4A]/50 w-full max-w-3xl mx-4 h-[85vh] flex flex-col">
+<div class="flex items-center justify-between px-6 py-4 border-b border-[#2A2A4A]/50">
+<span class="text-[10px] font-space-grotesk uppercase tracking-[0.2em] text-primary font-bold">RESUME // ARJUN CHAVAN</span>
 <div class="flex items-center gap-4">
 <a href="resume.pdf" download class="text-[10px] font-space-grotesk uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors flex items-center gap-2">
 <span class="material-symbols-outlined text-sm">download</span> DOWNLOAD
 </a>
-<button onclick="document.getElementById('resume-modal').classList.add('hidden')" class="text-white/40 hover:text-[#00FFC2] transition-colors">
+<button onclick="document.getElementById('resume-modal').classList.add('hidden')" class="text-white/40 hover:text-primary transition-colors">
 <span class="material-symbols-outlined">close</span>
 </button>
 </div>
@@ -256,30 +393,31 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 </div>
 </div>
 </div>
+
 <!-- Footer -->
-<footer class="bg-[#0e0e0e] w-full border-t border-[#484847]/15 tonal-shift bg-[#131313]">
+<footer class="relative z-10 w-full border-t border-outline/30 bg-background/80 backdrop-blur-xl">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-16 w-full max-w-7xl mx-auto">
 <div class="flex flex-col justify-between">
 <div>
-<div class="text-[#00FFC2] font-space-grotesk text-sm font-black tracking-[0.1em] uppercase mb-4">ARJUN CHAVAN</div>
+<div class="text-primary font-space-grotesk text-sm font-black tracking-[0.1em] uppercase mb-4">ARJUN CHAVAN</div>
 <p class="font-inter text-[11px] text-white/40 uppercase leading-relaxed max-w-xs tracking-wider">
-                        Sustaining the interface at the intersection of absolute utility and brutalist elegance.
+                        Building at the intersection of software and hardware.
                     </p>
 </div>
 <div class="mt-12 md:mt-0 font-inter text-[10px] tracking-[0.1em] uppercase font-medium text-white/40">
-                    © 2026 ARJUN CHAVAN. ALL RIGHTS RESERVED.
+                    &copy; 2026 ARJUN CHAVAN. ALL RIGHTS RESERVED.
                 </div>
 </div>
 <div class="grid grid-cols-2 gap-12">
 <div class="flex flex-col gap-3">
-<span class="text-[#00FFC2] font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold mb-2">NETWORKS</span>
+<span class="text-primary font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold mb-2">NETWORKS</span>
 <a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="https://github.com/ArjunChavan2" target="_blank">GITHUB</a>
 <a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="https://www.linkedin.com/in/arjun-chavan-3389b024b/" target="_blank">LINKEDIN</a>
 <a class="text-white/40 font-inter text-[10px] tracking-[0.1em] uppercase font-medium hover:text-white transition-colors duration-200" href="mailto:akchavan@umich.edu">EMAIL</a>
 </div>
 <div class="flex flex-col gap-3">
-<span class="text-[#00FFC2] font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold mb-2">STATUS</span>
-<span class="text-[#00FFC2] font-inter text-[10px] tracking-[0.1em] uppercase font-medium">STATUS: ONLINE</span>
+<span class="text-primary font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold mb-2">STATUS</span>
+<span class="text-primary font-inter text-[10px] tracking-[0.1em] uppercase font-medium">STATUS: ONLINE</span>
 <span class="text-white/20 font-inter text-[10px] tracking-[0.1em] uppercase font-medium">Uptime: 99.9%</span>
 </div>
 </div>
