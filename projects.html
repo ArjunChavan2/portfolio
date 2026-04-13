@@ -56,83 +56,116 @@
             inset: 0;
             z-index: 0;
             overflow: hidden;
-            filter: blur(80px);
-            opacity: 0.5;
+            filter: blur(100px);
+            opacity: 0.7;
         }
         .lava-blob {
             position: absolute;
             border-radius: 50%;
-            will-change: transform;
+            will-change: transform, border-radius;
         }
         .blob-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #7C3AED 0%, transparent 70%);
-            top: -10%;
-            left: 10%;
-            animation: float-1 18s ease-in-out infinite;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.8) 0%, rgba(124, 58, 237, 0.2) 40%, transparent 70%);
+            top: -15%;
+            left: 5%;
+            animation: float-1 8s ease-in-out infinite;
         }
         .blob-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #3B82F6 0%, transparent 70%);
-            top: 30%;
-            right: -5%;
-            animation: float-2 22s ease-in-out infinite;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, rgba(59, 130, 246, 0.15) 45%, transparent 70%);
+            top: 25%;
+            right: -10%;
+            animation: float-2 10s ease-in-out infinite;
         }
         .blob-3 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, #8B5CF6 0%, transparent 70%);
-            bottom: 10%;
-            left: 20%;
-            animation: float-3 20s ease-in-out infinite;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.75) 0%, rgba(139, 92, 246, 0.2) 40%, transparent 70%);
+            bottom: -5%;
+            left: 15%;
+            animation: float-3 9s ease-in-out infinite;
         }
         .blob-4 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #06B6D4 0%, transparent 70%);
-            top: 60%;
-            left: 60%;
-            animation: float-4 25s ease-in-out infinite;
-        }
-        .blob-5 {
             width: 450px;
             height: 450px;
-            background: radial-gradient(circle, #6366F1 0%, transparent 70%);
-            top: 10%;
-            right: 30%;
-            animation: float-5 16s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, rgba(6, 182, 212, 0.15) 40%, transparent 70%);
+            top: 55%;
+            left: 55%;
+            animation: float-4 11s ease-in-out infinite;
+        }
+        .blob-5 {
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.7) 0%, rgba(99, 102, 241, 0.2) 40%, transparent 70%);
+            top: 5%;
+            right: 20%;
+            animation: float-5 7s ease-in-out infinite;
+        }
+        .blob-6 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.65) 0%, rgba(168, 85, 247, 0.15) 45%, transparent 70%);
+            top: 40%;
+            left: -5%;
+            animation: float-6 9s ease-in-out infinite;
+        }
+        .blob-7 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.6) 0%, rgba(37, 99, 235, 0.15) 40%, transparent 70%);
+            bottom: 15%;
+            right: 5%;
+            animation: float-7 8s ease-in-out infinite;
         }
 
         @keyframes float-1 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(120px, 200px) scale(1.15); }
-            50% { transform: translate(-80px, 400px) scale(0.9); }
-            75% { transform: translate(60px, 150px) scale(1.1); }
+            0%, 100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+            20% { transform: translate(200px, 300px) scale(1.2); border-radius: 40% 60% 55% 45%; }
+            40% { transform: translate(-100px, 500px) scale(0.85); border-radius: 55% 45% 50% 50%; }
+            60% { transform: translate(150px, 200px) scale(1.15); border-radius: 45% 55% 60% 40%; }
+            80% { transform: translate(-50px, 100px) scale(0.95); border-radius: 60% 40% 45% 55%; }
         }
         @keyframes float-2 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(-150px, -100px) scale(1.2); }
-            50% { transform: translate(-200px, 150px) scale(0.85); }
-            75% { transform: translate(-50px, -200px) scale(1.05); }
+            0%, 100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+            20% { transform: translate(-250px, -150px) scale(1.25); border-radius: 60% 40% 50% 50%; }
+            40% { transform: translate(-350px, 200px) scale(0.8); border-radius: 45% 55% 40% 60%; }
+            60% { transform: translate(-100px, -300px) scale(1.1); border-radius: 55% 45% 60% 40%; }
+            80% { transform: translate(-200px, 50px) scale(1.05); border-radius: 40% 60% 45% 55%; }
         }
         @keyframes float-3 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(200px, -150px) scale(1.1); }
-            50% { transform: translate(100px, -300px) scale(0.95); }
-            75% { transform: translate(-100px, -100px) scale(1.15); }
+            0%, 100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+            20% { transform: translate(300px, -200px) scale(1.15); border-radius: 55% 45% 50% 50%; }
+            40% { transform: translate(150px, -450px) scale(0.9); border-radius: 40% 60% 55% 45%; }
+            60% { transform: translate(-150px, -150px) scale(1.2); border-radius: 60% 40% 45% 55%; }
+            80% { transform: translate(50px, -300px) scale(0.95); border-radius: 45% 55% 60% 40%; }
         }
         @keyframes float-4 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(-180px, -200px) scale(1.2); }
-            50% { transform: translate(50px, -100px) scale(0.9); }
-            75% { transform: translate(-100px, 100px) scale(1.1); }
+            0%, 100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+            25% { transform: translate(-280px, -300px) scale(1.3); border-radius: 55% 45% 40% 60%; }
+            50% { transform: translate(100px, -150px) scale(0.85); border-radius: 40% 60% 55% 45%; }
+            75% { transform: translate(-150px, 150px) scale(1.15); border-radius: 60% 40% 50% 50%; }
         }
         @keyframes float-5 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(100px, 300px) scale(1.15); }
-            66% { transform: translate(-150px, 150px) scale(0.9); }
+            0%, 100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+            25% { transform: translate(150px, 400px) scale(1.2); border-radius: 45% 55% 60% 40%; }
+            50% { transform: translate(-200px, 200px) scale(0.85); border-radius: 60% 40% 45% 55%; }
+            75% { transform: translate(50px, 300px) scale(1.1); border-radius: 40% 60% 50% 50%; }
+        }
+        @keyframes float-6 {
+            0%, 100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+            20% { transform: translate(200px, -200px) scale(1.2); border-radius: 55% 45% 50% 50%; }
+            40% { transform: translate(350px, 100px) scale(0.9); border-radius: 40% 60% 55% 45%; }
+            60% { transform: translate(100px, -350px) scale(1.15); border-radius: 60% 40% 45% 55%; }
+            80% { transform: translate(250px, -100px) scale(1.05); border-radius: 45% 55% 60% 40%; }
+        }
+        @keyframes float-7 {
+            0%, 100% { transform: translate(0, 0) scale(1); border-radius: 50%; }
+            25% { transform: translate(-200px, -250px) scale(1.15); border-radius: 45% 55% 50% 50%; }
+            50% { transform: translate(100px, -400px) scale(0.9); border-radius: 55% 45% 60% 40%; }
+            75% { transform: translate(-100px, -150px) scale(1.2); border-radius: 40% 60% 45% 55%; }
         }
 
         /* Glass card */
@@ -185,6 +218,107 @@
             background: linear-gradient(135deg, #7C3AED, #2563EB);
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+        }
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(139, 92, 246, 0.4) 5%,
+                rgba(59, 130, 246, 0.3) 50%,
+                rgba(139, 92, 246, 0.4) 95%,
+                transparent
+            );
+        }
+        /* Glowing progress fill — animated by JS */
+        .timeline-progress {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            width: 2px;
+            height: 0%;
+            background: linear-gradient(to bottom, #8B5CF6, #3B82F6);
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+            transition: height 0.15s linear;
+            z-index: 1;
+        }
+        /* Year marker */
+        .timeline-year {
+            position: relative;
+            margin-bottom: 12px;
+        }
+        .timeline-year::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0A0A12;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        .timeline-year.is-active::before {
+            border-color: #8B5CF6;
+            background: #8B5CF6;
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+        }
+        /* Event node dot */
+        .timeline-event {
+            position: relative;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 24px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.3);
+            border: 1.5px solid rgba(139, 92, 246, 0.2);
+            z-index: 2;
+            transition: all 0.4s ease;
+        }
+        .timeline-event.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-event.is-visible::before {
+            background: rgba(139, 92, 246, 0.6);
+            border-color: #8B5CF6;
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Desktop: larger left padding */
+        @media (min-width: 768px) {
+            .timeline { padding-left: 60px; }
+            .timeline::before { left: 11px; }
+            .timeline-progress { left: 11px; }
+            .timeline-year::before { left: -60px; width: 22px; height: 22px; }
+            .timeline-event::before { left: -53px; width: 10px; height: 10px; }
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface dark">
@@ -196,6 +330,8 @@
     <div class="lava-blob blob-3"></div>
     <div class="lava-blob blob-4"></div>
     <div class="lava-blob blob-5"></div>
+    <div class="lava-blob blob-6"></div>
+    <div class="lava-blob blob-7"></div>
 </div>
 
 <!-- TopNavBar -->
@@ -242,107 +378,130 @@
 <button class="filter-btn py-6 text-white/40 font-space-grotesk text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-white/5 hover:text-white transition-colors" data-filter="hardware">HARDWARE</button>
 </div>
 
-<!-- Project Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="project-grid">
-<!-- Project 01: TartanHacks -->
-<a href="https://github.com/codylejang/Scotty-Market" target="_blank" class="project-card glass-card group p-10 relative" data-category="fullstack">
-<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">01</div>
-<div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">CMU TartanHacks 2026 — 1st Place Visa Track</h3>
-<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">FEB 2026</span>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
-                        Gamified financial dashboard with AI-driven pet system. Built with React, Expo, Node.js and TypeScript onboarding engine.
-                    </p>
-<div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">REACT</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">NODE.JS</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">TYPESCRIPT</span>
+<!-- Timeline -->
+<div class="timeline" id="timeline">
+<div class="timeline-progress" id="timeline-progress"></div>
+
+<!-- ===== 2026 ===== -->
+<div class="timeline-year" data-year="2026">
+    <h2 class="text-3xl md:text-4xl font-black font-space-grotesk tracking-tighter gradient-text mb-2">2026</h2>
 </div>
-</div>
+
+<a href="https://github.com/codylejang/Scotty-Market" target="_blank" class="timeline-event project-card block group" data-category="fullstack">
+    <div class="glass-card p-8 md:p-10 relative overflow-hidden">
+        <div class="absolute top-6 right-8 text-[3.5rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">01</div>
+        <span class="text-[10px] font-space-grotesk tracking-widest text-primary/60 font-bold mb-3 block">FEB 2026</span>
+        <h3 class="text-lg md:text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">CMU TartanHacks 2026 — 1st Place Visa Track</h3>
+        <p class="text-white/40 font-inter text-sm leading-relaxed mb-6 max-w-lg">
+            Gamified financial dashboard with AI-driven pet system. Built with React, Expo, Node.js and TypeScript onboarding engine.
+        </p>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">REACT</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">NODE.JS</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">TYPESCRIPT</span>
+        </div>
+    </div>
 </a>
-<!-- Project 02: Altheros Capital -->
-<div class="project-card glass-card group p-10 relative" data-category="fullstack">
-<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">02</div>
-<div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Altheros Capital — Full Stack Intern</h3>
-<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">INTERNSHIP</span>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
-                        Refined responsive landing pages and interfaces with JavaScript and CSS, ensuring high-fidelity Figma alignment. Participated in Scrum sprint planning and coordinated with PMs for timely delivery.
-                    </p>
-<div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">REACT</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">JAVASCRIPT</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">FIGMA</span>
+
+<div class="timeline-event project-card" data-category="fullstack">
+    <div class="glass-card p-8 md:p-10 relative overflow-hidden group">
+        <div class="absolute top-6 right-8 text-[3.5rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">02</div>
+        <span class="text-[10px] font-space-grotesk tracking-widest text-primary/60 font-bold mb-3 block">INTERNSHIP</span>
+        <h3 class="text-lg md:text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Altheros Capital — Full Stack Intern</h3>
+        <p class="text-white/40 font-inter text-sm leading-relaxed mb-6 max-w-lg">
+            Refined responsive landing pages and interfaces with JavaScript and CSS, ensuring high-fidelity Figma alignment. Participated in Scrum sprint planning and coordinated with PMs for timely delivery.
+        </p>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">REACT</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">JAVASCRIPT</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">FIGMA</span>
+        </div>
+    </div>
 </div>
+
+<!-- ===== 2025 ===== -->
+<div class="timeline-year" data-year="2025">
+    <h2 class="text-3xl md:text-4xl font-black font-space-grotesk tracking-tighter gradient-text mb-2 mt-8">2025</h2>
 </div>
-</div>
-<!-- Project 03: Assignment Calendar -->
-<a href="https://github.com/ArjunChavan2/assignment-calendar" target="_blank" class="project-card glass-card group p-10 relative" data-category="fullstack">
-<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">03</div>
-<div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">Assignment Calendar</h3>
-<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">PROJECT</span>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
-                        Built and delivered a technical presentation on an assignment calendar that consolidates deadlines from multiple course websites into a single unified view.
-                    </p>
-<div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">FULL STACK</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">WEB SCRAPING</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">CALENDAR API</span>
-</div>
-</div>
+
+<a href="https://github.com/ArjunChavan2/assignment-calendar" target="_blank" class="timeline-event project-card block group" data-category="fullstack">
+    <div class="glass-card p-8 md:p-10 relative overflow-hidden">
+        <div class="absolute top-6 right-8 text-[3.5rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">03</div>
+        <span class="text-[10px] font-space-grotesk tracking-widest text-primary/60 font-bold mb-3 block">PROJECT</span>
+        <h3 class="text-lg md:text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight group-hover:text-primary transition-colors">Assignment Calendar</h3>
+        <p class="text-white/40 font-inter text-sm leading-relaxed mb-6 max-w-lg">
+            Built and delivered a technical presentation on an assignment calendar that consolidates deadlines from multiple course websites into a single unified view.
+        </p>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">FULL STACK</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">WEB SCRAPING</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">CALENDAR API</span>
+        </div>
+    </div>
 </a>
-<!-- Project 04: Emotion Recognition -->
-<div class="project-card glass-card group p-10 relative" data-category="ai-ml">
-<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">04</div>
-<div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Emotion Recognition</h3>
-<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">2024</span>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
-                        Real-time emotion classifier using facial landmark detection and Deep Neural Network with TensorFlow and OpenCV.
-                    </p>
-<div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">TENSORFLOW</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">OPENCV</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">PYTHON</span>
+
+<div class="timeline-event project-card" data-category="hardware">
+    <div class="glass-card p-8 md:p-10 relative overflow-hidden group">
+        <div class="absolute top-6 right-8 text-[3.5rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">04</div>
+        <span class="text-[10px] font-space-grotesk tracking-widest text-primary/60 font-bold mb-3 block">TEAM PROJECT</span>
+        <h3 class="text-lg md:text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">UMich ROV — Embedded Systems</h3>
+        <p class="text-white/40 font-inter text-sm leading-relaxed mb-6 max-w-lg">
+            Prototyped a functional underwater ROV for aquatic exploration. Architected custom C++ control system with 3-axis propulsion and integrated physical controller.
+        </p>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">C++</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">EMBEDDED</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">HARDWARE</span>
+        </div>
+    </div>
 </div>
+
+<!-- ===== 2024 ===== -->
+<div class="timeline-year" data-year="2024">
+    <h2 class="text-3xl md:text-4xl font-black font-space-grotesk tracking-tighter gradient-text mb-2 mt-8">2024</h2>
 </div>
+
+<div class="timeline-event project-card" data-category="ai-ml">
+    <div class="glass-card p-8 md:p-10 relative overflow-hidden group">
+        <div class="absolute top-6 right-8 text-[3.5rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">05</div>
+        <span class="text-[10px] font-space-grotesk tracking-widest text-primary/60 font-bold mb-3 block">2024</span>
+        <h3 class="text-lg md:text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">Emotion Recognition</h3>
+        <p class="text-white/40 font-inter text-sm leading-relaxed mb-6 max-w-lg">
+            Real-time emotion classifier using facial landmark detection and Deep Neural Network with TensorFlow and OpenCV.
+        </p>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">TENSORFLOW</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">OPENCV</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">PYTHON</span>
+        </div>
+    </div>
 </div>
-<!-- Project 05: PeARL Lab -->
-<div class="project-card glass-card group p-10 relative" data-category="ai-ml">
-<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">05</div>
-<div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">PeARL Lab — ML Research</h3>
-<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">SUMMER 2023</span>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
-                        Optimized robotic arm pathfinding and object manipulation through ML models. Streamlined data collection pipelines using Python and deployed control scripts for pick-and-place operations.
-                    </p>
-<div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">PYTHON</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">ML</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">ROBOTICS</span>
+
+<!-- ===== 2023 ===== -->
+<div class="timeline-year" data-year="2023">
+    <h2 class="text-3xl md:text-4xl font-black font-space-grotesk tracking-tighter gradient-text mb-2 mt-8">2023</h2>
 </div>
+
+<div class="timeline-event project-card" data-category="ai-ml">
+    <div class="glass-card p-8 md:p-10 relative overflow-hidden group">
+        <div class="absolute top-6 right-8 text-[3.5rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">06</div>
+        <span class="text-[10px] font-space-grotesk tracking-widest text-primary/60 font-bold mb-3 block">SUMMER 2023</span>
+        <h3 class="text-lg md:text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">PeARL Lab — ML Research</h3>
+        <p class="text-white/40 font-inter text-sm leading-relaxed mb-6 max-w-lg">
+            Optimized robotic arm pathfinding and object manipulation through ML models. Streamlined data collection pipelines using Python and deployed control scripts for pick-and-place operations.
+        </p>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">PYTHON</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">ML</span>
+            <span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">ROBOTICS</span>
+        </div>
+    </div>
 </div>
-</div>
-<!-- Project 06: UMich ROV -->
-<div class="project-card glass-card group p-10 relative" data-category="hardware">
-<div class="absolute top-8 right-10 text-[4rem] font-black font-space-grotesk text-white/5 group-hover:text-primary/10 transition-colors">06</div>
-<div class="relative z-10">
-<h3 class="text-xl font-bold font-space-grotesk uppercase text-white mb-2 tracking-tight">UMich ROV — Embedded Systems</h3>
-<span class="text-[10px] font-space-grotesk tracking-widest text-primary font-bold mb-4 block">PROJECT</span>
-<p class="text-white/40 font-inter text-sm leading-relaxed mb-8 max-w-sm">
-                        Prototyped a functional underwater ROV for aquatic exploration. Architected custom C++ control system with 3-axis propulsion and integrated physical controller.
-                    </p>
-<div class="flex flex-wrap gap-2">
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-primary border">C++</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">EMBEDDED</span>
-<span class="px-3 py-1 text-[9px] font-bold font-space-grotesk uppercase tracking-widest tag-secondary border">HARDWARE</span>
-</div>
-</div>
-</div>
+
 </div>
 
 <script>
+// ===== FILTER TABS =====
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => {
@@ -354,6 +513,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.add('filter-active', 'font-black');
 
         const filter = btn.dataset.filter;
+        // Show/hide event cards
         document.querySelectorAll('.project-card').forEach(card => {
             if (filter === 'all' || card.dataset.category === filter) {
                 card.style.display = '';
@@ -361,8 +521,67 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
                 card.style.display = 'none';
             }
         });
+        // Show/hide year markers — hide if all events in that year are hidden
+        document.querySelectorAll('.timeline-year').forEach(yearEl => {
+            let next = yearEl.nextElementSibling;
+            let hasVisible = false;
+            while (next && !next.classList.contains('timeline-year')) {
+                if (next.classList.contains('project-card') && next.style.display !== 'none') {
+                    hasVisible = true;
+                }
+                next = next.nextElementSibling;
+            }
+            yearEl.style.display = hasVisible ? '' : 'none';
+        });
     });
 });
+
+// ===== SCROLL REVEAL + TIMELINE PROGRESS =====
+(function() {
+    const timeline = document.getElementById('timeline');
+    const progressBar = document.getElementById('timeline-progress');
+    const events = document.querySelectorAll('.timeline-event');
+    const years = document.querySelectorAll('.timeline-year');
+
+    // IntersectionObserver for event cards
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    events.forEach(ev => observer.observe(ev));
+
+    // Scroll handler for progress bar + year markers
+    function updateTimeline() {
+        const timelineRect = timeline.getBoundingClientRect();
+        const timelineTop = timelineRect.top + window.scrollY;
+        const timelineHeight = timelineRect.height;
+        const scrollPos = window.scrollY + window.innerHeight * 0.4;
+
+        // Progress bar fill
+        const progress = Math.max(0, Math.min(1, (scrollPos - timelineTop) / timelineHeight));
+        progressBar.style.height = (progress * 100) + '%';
+
+        // Activate year markers when scrolled past
+        years.forEach(year => {
+            const yearRect = year.getBoundingClientRect();
+            if (yearRect.top < window.innerHeight * 0.5) {
+                year.classList.add('is-active');
+            } else {
+                year.classList.remove('is-active');
+            }
+        });
+
+        requestAnimationFrame(updateTimeline);
+    }
+    updateTimeline();
+})();
 </script>
 
 <!-- View Resume -->
