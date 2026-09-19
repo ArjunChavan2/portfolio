@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arjun Chavan &mdash; resume skill map</title>
+<style>
+  :root { color-scheme: light; --fg:#1a1a18; --muted:#6b6b66; --line:#d9d7d0; --panel:#faf9f6; --accent:#b8562f; --bg:#ffffff; --chip:#ece9e2; }
+  html[data-theme="dark"] { color-scheme: dark; --fg:#eeece6; --muted:#9a9790; --line:#3a372f; --panel:#211f19; --accent:#e2895a; --bg:#141310; --chip:#2b2820; }
+  * { box-sizing: border-box; }
+  body { background:var(--bg); margin:0; padding:18px; font:14px/1.5 ui-sans-serif,-apple-system,"Segoe UI",sans-serif; color:var(--fg); }
+  .wrap { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(320px,1fr); gap:18px; align-items:start; }
+  @media (max-width:860px){ .wrap{ grid-template-columns:1fr; } }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+  .card.fs { position:fixed; inset:16px; z-index:1000; overflow:auto; box-shadow:0 10px 40px rgba(0,0,0,.35); }
+  .cardhead { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  h2 { font-size:15px; margin:0 0 2px; letter-spacing:-.01em; }
+  .sub { color:var(--muted); font-size:12.5px; margin-bottom:10px; }
+  svg { width:100%; height:auto; display:block; cursor:grab; }
+  svg:active { cursor:grabbing; }
+  .toolbar { display:flex; gap:6px; flex-shrink:0; }
+  .toolbar button { width:30px; height:30px; padding:0; display:inline-flex; align-items:center; justify-content:center; font-size:14px; }
+  .bar { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; }
+  button { font:inherit; font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--fg); cursor:pointer; }
+  button:hover { border-color:var(--muted); }
+  button.clear { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  .budget { font-size:12.5px; color:var(--muted); margin:8px 0 12px; }
+  .meter { height:6px; background:var(--chip); border-radius:999px; overflow:hidden; margin-top:5px; }
+  .meter > div { height:100%; background:var(--accent); transition:width .2s; }
+  .meter.over > div { background:#c0392b; }
+  .ev { border-top:1px solid var(--line); padding:9px 0; }
+  .ev:first-of-type { border-top:none; }
+  .ev .hd { font-size:11.5px; color:var(--muted); display:flex; justify-content:space-between; gap:8px; }
+  .ev .bt { margin:3px 0 0; }
+  .tag { display:inline-block; font-size:10px; padding:1px 6px; border-radius:999px; background:var(--chip); color:var(--muted); margin-left:5px; vertical-align:1px; }
+  .tag.bench { background:#f3e4dc; color:#8a4526; }
+  html[data-theme="dark"] .tag.bench { background:#3a2a1c; color:#e0a880; }
+  .hits { font-size:11px; color:var(--accent); margin-top:2px; }
+  .empty { color:var(--muted); font-size:13px; padding:18px 0; }
+  .legend { display:flex; gap:10px; flex-wrap:wrap; font-size:11px; color:var(--muted); margin-top:8px; }
+  .legend span { display:flex; align-items:center; gap:4px; cursor:pointer; }
+  .dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .growthwrap { margin-top:14px; border-top:1px solid var(--line); padding-top:10px; }
+  .growthwrap h3 { font-size:11px; margin:0 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; font-weight:650; }
+  .candwrap { margin-top:16px; border-top:2px solid var(--line); padding-top:12px; }
+  .candwrap h3 { font-size:13px; margin:0 0 2px; }
+  .cand { border:1px dashed #c9a68f; background:#fffaf6; border-radius:8px; padding:8px 10px; margin-top:8px; }
+  html[data-theme="dark"] .cand { background:#241c14; border-color:#6b4a30; }
+  .cand .nm { font-weight:650; font-size:13px; }
+  .cand .mt { font-size:11.5px; color:var(--muted); margin-top:1px; }
+  .cand .q { font-size:11.5px; color:#8a4526; margin-top:4px; }
+  html[data-theme="dark"] .cand .q { color:#e0a880; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" id="graphCard">
+    <div class="cardhead">
+      <div>
+        <h2>Skill map</h2>
+        <div class="sub">Click a skill to see what proves it. Click several to tailor. Click a family to focus it. Scroll to zoom, drag to pan.</div>
+      </div>
+      <div class="toolbar">
+        <button id="themeBtn" title="Toggle dark mode">&#127769;</button>
+        <button id="fsBtn" title="Fullscreen">&#9974;</button>
+      </div>
+    </div>
+    <div id="graph"><svg viewBox="-60 20 840 690" xmlns="http://www.w3.org/2000/svg" font-family="ui-sans-serif, -apple-system, Segoe UI, sans-serif"><style>
+  .edge { stroke: var(--line,#d9d7d0); fill: none; }
+  .edge.focus-dim { opacity: .12; }
+  .atom { cursor: pointer; }
+  .atom text { font-size: 9.5px; fill: var(--fg,#1a1a18); pointer-events: none; }
+  .fam { cursor: pointer; }
+  .fam text { font-size: 11px; font-weight: 650; pointer-events: none; }
+  .fam.focused circle { stroke: var(--fg,#1a1a18); stroke-width: 2; }
+  .core-circle { fill: var(--panel,#faf9f6); stroke: var(--fg,#1a1a18); }
+  .core text { font-size: 13px; font-weight: 700; fill: var(--fg,#1a1a18); pointer-events: none; }
+  .mut { fill: var(--muted,#6b6b66); }
+  .atom.on circle { stroke: var(--fg,#1a1a18); stroke-width: 2; }
+  .atom.dim { opacity: .28; }
+  .atom.focus-dim, .fam.focus-dim { opacity: .18; }</style><g id="vp"><line class="edge" data-fam="0" x1="360" y1="360" x2="432.3" y2="228.6" stroke-width="1.5"/><line class="edge" data-fam="1" x1="360" y1="360" x2="502.7" y2="313.6" stroke-width="1.5"/><line class="edge" data-fam="2" x1="360" y1="360" x2="495.7" y2="423.9" stroke-width="1.5"/><line class="edge" data-fam="3" x1="360" y1="360" x2="406.4" y2="502.7" stroke-width="1.5"/><line class="edge" data-fam="4" x1="360" y1="360" x2="296.1" y2="495.7" stroke-width="1.5"/><line class="edge" data-fam="5" x1="360" y1="360" x2="220.5" y2="415.2" stroke-width="1.5"/><line class="edge" data-fam="6" x1="360" y1="360" x2="217.3" y2="313.6" stroke-width="1.5"/><line class="edge" data-fam="7" x1="360" y1="360" x2="257.3" y2="250.7" stroke-width="1.5"/><line class="edge" data-fam="8" x1="360" y1="360" x2="313.6" y2="217.3" stroke-width="1.5"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="376.8" y2="92.5" stroke-width="1"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="419.2" y2="49.6" stroke-width="1"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="442.8" y2="105.1" stroke-width="1"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="494.5" y2="74.1" stroke-width="1"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="503.6" y2="133.7" stroke-width="1"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="561.4" y2="116.5" stroke-width="1"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="555.4" y2="176.5" stroke-width="1"/><line class="edge" data-fam="0" x1="432.3" y1="228.6" x2="615.6" y2="174.3" stroke-width="1"/><line class="edge" data-fam="1" x1="502.7" y1="313.6" x2="594.9" y2="230.9" stroke-width="1"/><line class="edge" data-fam="1" x1="502.7" y1="313.6" x2="653.8" y2="243.7" stroke-width="1"/><line class="edge" data-fam="1" x1="502.7" y1="313.6" x2="619.6" y2="293.4" stroke-width="1"/><line class="edge" data-fam="1" x1="502.7" y1="313.6" x2="673.5" y2="320.4" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="628.0" y2="360.0" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="673.5" y2="399.6" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="619.6" y2="426.6" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="653.8" y2="476.3" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="594.9" y2="489.1" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="615.6" y2="545.7" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="555.4" y2="543.5" stroke-width="1"/><line class="edge" data-fam="2" x1="495.7" y1="423.9" x2="561.4" y2="603.5" stroke-width="1"/><line class="edge" data-fam="3" x1="406.4" y1="502.7" x2="503.6" y2="586.3" stroke-width="1"/><line class="edge" data-fam="3" x1="406.4" y1="502.7" x2="494.5" y2="645.9" stroke-width="1"/><line class="edge" data-fam="3" x1="406.4" y1="502.7" x2="442.8" y2="614.9" stroke-width="1"/><line class="edge" data-fam="3" x1="406.4" y1="502.7" x2="419.2" y2="670.4" stroke-width="1"/><line class="edge" data-fam="3" x1="406.4" y1="502.7" x2="376.8" y2="627.5" stroke-width="1"/><line class="edge" data-fam="4" x1="296.1" y1="495.7" x2="343.2" y2="627.5" stroke-width="1"/><line class="edge" data-fam="4" x1="296.1" y1="495.7" x2="300.8" y2="670.4" stroke-width="1"/><line class="edge" data-fam="4" x1="296.1" y1="495.7" x2="277.2" y2="614.9" stroke-width="1"/><line class="edge" data-fam="4" x1="296.1" y1="495.7" x2="225.5" y2="645.9" stroke-width="1"/><line class="edge" data-fam="4" x1="296.1" y1="495.7" x2="216.4" y2="586.3" stroke-width="1"/><line class="edge" data-fam="4" x1="296.1" y1="495.7" x2="158.6" y2="603.5" stroke-width="1"/><line class="edge" data-fam="4" x1="296.1" y1="495.7" x2="164.6" y2="543.5" stroke-width="1"/><line class="edge" data-fam="5" x1="220.5" y1="415.2" x2="143.2" y2="517.5" stroke-width="1"/><line class="edge" data-fam="5" x1="220.5" y1="415.2" x2="83.1" y2="512.2" stroke-width="1"/><line class="edge" data-fam="5" x1="220.5" y1="415.2" x2="110.8" y2="458.7" stroke-width="1"/><line class="edge" data-fam="5" x1="220.5" y1="415.2" x2="53.9" y2="438.6" stroke-width="1"/><line class="edge" data-fam="5" x1="220.5" y1="415.2" x2="94.1" y2="393.6" stroke-width="1"/><line class="edge" data-fam="6" x1="217.3" y1="313.6" x2="92.0" y2="360.0" stroke-width="1"/><line class="edge" data-fam="6" x1="217.3" y1="313.6" x2="46.5" y2="320.4" stroke-width="1"/><line class="edge" data-fam="6" x1="217.3" y1="313.6" x2="100.4" y2="293.4" stroke-width="1"/><line class="edge" data-fam="6" x1="217.3" y1="313.6" x2="66.2" y2="243.7" stroke-width="1"/><line class="edge" data-fam="6" x1="217.3" y1="313.6" x2="125.1" y2="230.9" stroke-width="1"/><line class="edge" data-fam="6" x1="217.3" y1="313.6" x2="104.4" y2="174.3" stroke-width="1"/><line class="edge" data-fam="7" x1="257.3" y1="250.7" x2="164.6" y2="176.5" stroke-width="1"/><line class="edge" data-fam="7" x1="257.3" y1="250.7" x2="158.6" y2="116.5" stroke-width="1"/><line class="edge" data-fam="8" x1="313.6" y1="217.3" x2="216.4" y2="133.7" stroke-width="1"/><line class="edge" data-fam="8" x1="313.6" y1="217.3" x2="225.5" y2="74.1" stroke-width="1"/><line class="edge" data-fam="8" x1="313.6" y1="217.3" x2="277.2" y2="105.1" stroke-width="1"/><line class="edge" data-fam="8" x1="313.6" y1="217.3" x2="300.8" y2="49.6" stroke-width="1"/><line class="edge" data-fam="8" x1="313.6" y1="217.3" x2="343.2" y2="92.5" stroke-width="1"/><g class="core"><circle class="core-circle" cx="360" cy="360" r="38" stroke-width="2"/><text x="360" y="358" text-anchor="middle">Arjun</text><text class="mut" x="360" y="373" text-anchor="middle" font-size="9" font-weight="400">50 skills</text></g><g class="fam" data-fam="0"><circle cx="432.3" cy="228.6" r="7" fill="#b8562f"/><text x="443.3" y="232.6" text-anchor="start" fill="#b8562f">Languages</text></g><g class="fam" data-fam="1"><circle cx="502.7" cy="313.6" r="7" fill="#3f6f5f"/><text x="513.7" y="317.6" text-anchor="start" fill="#3f6f5f">Frontend</text></g><g class="fam" data-fam="2"><circle cx="495.7" cy="423.9" r="7" fill="#5a5a8c"/><text x="506.7" y="427.9" text-anchor="start" fill="#5a5a8c">Backend and Infra</text></g><g class="fam" data-fam="3"><circle cx="406.4" cy="502.7" r="7" fill="#8a6d3b"/><text x="417.4" y="506.7" text-anchor="start" fill="#8a6d3b">ML and AI</text></g><g class="fam" data-fam="4"><circle cx="296.1" cy="495.7" r="7" fill="#2f6b8a"/><text x="285.1" y="499.7" text-anchor="end" fill="#2f6b8a">Embedded and Hardware</text></g><g class="fam" data-fam="5"><circle cx="220.5" cy="415.2" r="7" fill="#8c4b6b"/><text x="209.5" y="419.2" text-anchor="end" fill="#8c4b6b">Robotics and Control</text></g><g class="fam" data-fam="6"><circle cx="217.3" cy="313.6" r="7" fill="#4a7a3a"/><text x="206.3" y="317.6" text-anchor="end" fill="#4a7a3a">Leadership</text></g><g class="fam" data-fam="7"><circle cx="257.3" cy="250.7" r="7" fill="#7a5230"/><text x="246.3" y="254.7" text-anchor="end" fill="#7a5230">Communication</text></g><g class="fam" data-fam="8"><circle cx="313.6" cy="217.3" r="7" fill="#5f5f5f"/><text x="302.6" y="221.3" text-anchor="end" fill="#5f5f5f">Domains</text></g><g class="atom" data-name="Python" data-fam="0"><circle cx="376.8" cy="92.5" r="9.4" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="385.8" y="95.9" text-anchor="start">Python</text></g><g class="atom" data-name="C" data-fam="0"><circle cx="419.2" cy="49.6" r="5.8" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="428.2" y="53.0" text-anchor="start">C</text></g><g class="atom" data-name="C++" data-fam="0"><circle cx="442.8" cy="105.1" r="5.8" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="451.8" y="108.5" text-anchor="start">C++</text></g><g class="atom" data-name="JavaScript" data-fam="0"><circle cx="494.5" cy="74.1" r="5.8" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="503.5" y="77.5" text-anchor="start">JavaScript</text></g><g class="atom" data-name="TypeScript" data-fam="0"><circle cx="503.6" cy="133.7" r="4.9" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="512.6" y="137.1" text-anchor="start">TypeScript</text></g><g class="atom" data-name="Verilog" data-fam="0"><circle cx="561.4" cy="116.5" r="6.7" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="570.4" y="119.9" text-anchor="start">Verilog</text></g><g class="atom" data-name="Assembly" data-fam="0"><circle cx="555.4" cy="176.5" r="4.9" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="564.4" y="179.9" text-anchor="start">Assembly</text></g><g class="atom" data-name="CSS" data-fam="0"><circle cx="615.6" cy="174.3" r="4.9" fill="#b8562f" fill-opacity=".55" stroke="#b8562f"/><text x="624.6" y="177.7" text-anchor="start">CSS</text></g><g class="atom" data-name="React" data-fam="1"><circle cx="594.9" cy="230.9" r="8.5" fill="#3f6f5f" fill-opacity=".55" stroke="#3f6f5f"/><text x="603.9" y="234.3" text-anchor="start">React</text></g><g class="atom" data-name="Vite" data-fam="1"><circle cx="653.8" cy="243.7" r="4.9" fill="#3f6f5f" fill-opacity=".55" stroke="#3f6f5f"/><text x="662.8" y="247.1" text-anchor="start">Vite</text></g><g class="atom" data-name="UI Development" data-fam="1"><circle cx="619.6" cy="293.4" r="8.5" fill="#3f6f5f" fill-opacity=".55" stroke="#3f6f5f"/><text x="628.6" y="296.8" text-anchor="start">UI Development</text></g><g class="atom" data-name="Figma" data-fam="1"><circle cx="673.5" cy="320.4" r="4.9" fill="#3f6f5f" fill-opacity=".55" stroke="#3f6f5f"/><text x="682.5" y="323.8" text-anchor="start">Figma</text></g><g class="atom" data-name="Node.js" data-fam="2"><circle cx="628.0" cy="360.0" r="4.9" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="637.0" y="363.4" text-anchor="start">Node.js</text></g><g class="atom" data-name="REST APIs" data-fam="2"><circle cx="673.5" cy="399.6" r="5.8" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="682.5" y="403.0" text-anchor="start">REST APIs</text></g><g class="atom" data-name="CI/CD" data-fam="2"><circle cx="619.6" cy="426.6" r="5.8" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="628.6" y="430.0" text-anchor="start">CI/CD</text></g><g class="atom" data-name="Build Tooling" data-fam="2"><circle cx="653.8" cy="476.3" r="5.8" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="662.8" y="479.7" text-anchor="start">Build Tooling</text></g><g class="atom" data-name="Deployment" data-fam="2"><circle cx="594.9" cy="489.1" r="5.8" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="603.9" y="492.5" text-anchor="start">Deployment</text></g><g class="atom" data-name="Systems Programming" data-fam="2"><circle cx="615.6" cy="545.7" r="4.9" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="624.6" y="549.1" text-anchor="start">Systems Programming</text></g><g class="atom" data-name="Networking" data-fam="2"><circle cx="555.4" cy="543.5" r="4.9" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="564.4" y="546.9" text-anchor="start">Networking</text></g><g class="atom" data-name="Data Structures" data-fam="2"><circle cx="561.4" cy="603.5" r="5.8" fill="#5a5a8c" fill-opacity=".55" stroke="#5a5a8c"/><text x="570.4" y="606.9" text-anchor="start">Data Structures</text></g><g class="atom" data-name="Model Training" data-fam="3"><circle cx="503.6" cy="586.3" r="6.7" fill="#8a6d3b" fill-opacity=".55" stroke="#8a6d3b"/><text x="512.6" y="589.7" text-anchor="start">Model Training</text></g><g class="atom" data-name="Computer Vision" data-fam="3"><circle cx="494.5" cy="645.9" r="7.6" fill="#8a6d3b" fill-opacity=".55" stroke="#8a6d3b"/><text x="503.5" y="649.3" text-anchor="start">Computer Vision</text></g><g class="atom" data-name="OpenCV" data-fam="3"><circle cx="442.8" cy="614.9" r="5.8" fill="#8a6d3b" fill-opacity=".55" stroke="#8a6d3b"/><text x="451.8" y="618.3" text-anchor="start">OpenCV</text></g><g class="atom" data-name="TensorFlow" data-fam="3"><circle cx="419.2" cy="670.4" r="4.9" fill="#8a6d3b" fill-opacity=".55" stroke="#8a6d3b"/><text x="428.2" y="673.8" text-anchor="start">TensorFlow</text></g><g class="atom" data-name="Data Pipelines" data-fam="3"><circle cx="376.8" cy="627.5" r="4.9" fill="#8a6d3b" fill-opacity=".55" stroke="#8a6d3b"/><text x="385.8" y="630.9" text-anchor="start">Data Pipelines</text></g><g class="atom" data-name="FPGA" data-fam="4"><circle cx="343.2" cy="627.5" r="7.6" fill="#2f6b8a" fill-opacity=".55" stroke="#2f6b8a"/><text x="334.2" y="630.9" text-anchor="end">FPGA</text></g><g class="atom" data-name="RTL Design" data-fam="4"><circle cx="300.8" cy="670.4" r="6.7" fill="#2f6b8a" fill-opacity=".55" stroke="#2f6b8a"/><text x="291.8" y="673.8" text-anchor="end">RTL Design</text></g><g class="atom" data-name="ARM Cortex-M" data-fam="4"><circle cx="277.2" cy="614.9" r="6.7" fill="#2f6b8a" fill-opacity=".55" stroke="#2f6b8a"/><text x="268.2" y="618.3" text-anchor="end">ARM Cortex-M</text></g><g class="atom" data-name="Memory-Mapped I/O" data-fam="4"><circle cx="225.5" cy="645.9" r="7.6" fill="#2f6b8a" fill-opacity=".55" stroke="#2f6b8a"/><text x="216.5" y="649.3" text-anchor="end">Memory-Mapped I/O</text></g><g class="atom" data-name="Arduino" data-fam="4"><circle cx="216.4" cy="586.3" r="5.8" fill="#2f6b8a" fill-opacity=".55" stroke="#2f6b8a"/><text x="207.4" y="589.7" text-anchor="end">Arduino</text></g><g class="atom" data-name="State Machines" data-fam="4"><circle cx="158.6" cy="603.5" r="5.8" fill="#2f6b8a" fill-opacity=".55" stroke="#2f6b8a"/><text x="149.6" y="606.9" text-anchor="end">State Machines</text></g><g class="atom" data-name="Logic Analysis" data-fam="4"><circle cx="164.6" cy="543.5" r="4.9" fill="#2f6b8a" fill-opacity=".55" stroke="#2f6b8a"/><text x="155.6" y="546.9" text-anchor="end">Logic Analysis</text></g><g class="atom" data-name="Autonomous Navigation" data-fam="5"><circle cx="143.2" cy="517.5" r="5.8" fill="#8c4b6b" fill-opacity=".55" stroke="#8c4b6b"/><text x="134.2" y="520.9" text-anchor="end">Autonomous Navigation</text></g><g class="atom" data-name="PID Control" data-fam="5"><circle cx="83.1" cy="512.2" r="4.9" fill="#8c4b6b" fill-opacity=".55" stroke="#8c4b6b"/><text x="74.1" y="515.6" text-anchor="end">PID Control</text></g><g class="atom" data-name="Motion Control" data-fam="5"><circle cx="110.8" cy="458.7" r="8.5" fill="#8c4b6b" fill-opacity=".55" stroke="#8c4b6b"/><text x="101.8" y="462.1" text-anchor="end">Motion Control</text></g><g class="atom" data-name="Pathfinding" data-fam="5"><circle cx="53.9" cy="438.6" r="6.7" fill="#8c4b6b" fill-opacity=".55" stroke="#8c4b6b"/><text x="44.9" y="442.0" text-anchor="end">Pathfinding</text></g><g class="atom" data-name="Sensor Processing" data-fam="5"><circle cx="94.1" cy="393.6" r="4.9" fill="#8c4b6b" fill-opacity=".55" stroke="#8c4b6b"/><text x="85.1" y="397.0" text-anchor="end">Sensor Processing</text></g><g class="atom" data-name="Team Leadership" data-fam="6"><circle cx="92.0" cy="360.0" r="8.5" fill="#4a7a3a" fill-opacity=".55" stroke="#4a7a3a"/><text x="83.0" y="363.4" text-anchor="end">Team Leadership</text></g><g class="atom" data-name="Code Review" data-fam="6"><circle cx="46.5" cy="320.4" r="5.8" fill="#4a7a3a" fill-opacity=".55" stroke="#4a7a3a"/><text x="37.5" y="323.8" text-anchor="end">Code Review</text></g><g class="atom" data-name="Sprint Planning" data-fam="6"><circle cx="100.4" cy="293.4" r="6.7" fill="#4a7a3a" fill-opacity=".55" stroke="#4a7a3a"/><text x="91.4" y="296.8" text-anchor="end">Sprint Planning</text></g><g class="atom" data-name="Project Scoping" data-fam="6"><circle cx="66.2" cy="243.7" r="7.6" fill="#4a7a3a" fill-opacity=".55" stroke="#4a7a3a"/><text x="57.2" y="247.1" text-anchor="end">Project Scoping</text></g><g class="atom" data-name="Agile" data-fam="6"><circle cx="125.1" cy="230.9" r="6.7" fill="#4a7a3a" fill-opacity=".55" stroke="#4a7a3a"/><text x="116.1" y="234.3" text-anchor="end">Agile</text></g><g class="atom" data-name="Mentoring" data-fam="6"><circle cx="104.4" cy="174.3" r="5.8" fill="#4a7a3a" fill-opacity=".55" stroke="#4a7a3a"/><text x="95.4" y="177.7" text-anchor="end">Mentoring</text></g><g class="atom" data-name="Stakeholder Communication" data-fam="7"><circle cx="164.6" cy="176.5" r="9.4" fill="#7a5230" fill-opacity=".55" stroke="#7a5230"/><text x="155.6" y="179.9" text-anchor="end">Stakeholder Communication</text></g><g class="atom" data-name="Technical Demos" data-fam="7"><circle cx="158.6" cy="116.5" r="6.7" fill="#7a5230" fill-opacity=".55" stroke="#7a5230"/><text x="149.6" y="119.9" text-anchor="end">Technical Demos</text></g><g class="atom" data-name="Healthcare" data-fam="8"><circle cx="216.4" cy="133.7" r="5.8" fill="#5f5f5f" fill-opacity=".55" stroke="#5f5f5f"/><text x="207.4" y="137.1" text-anchor="end">Healthcare</text></g><g class="atom" data-name="Fintech" data-fam="8"><circle cx="225.5" cy="74.1" r="6.7" fill="#5f5f5f" fill-opacity=".55" stroke="#5f5f5f"/><text x="216.5" y="77.5" text-anchor="end">Fintech</text></g><g class="atom" data-name="Research" data-fam="8"><circle cx="277.2" cy="105.1" r="6.7" fill="#5f5f5f" fill-opacity=".55" stroke="#5f5f5f"/><text x="268.2" y="108.5" text-anchor="end">Research</text></g><g class="atom" data-name="Marine Robotics" data-fam="8"><circle cx="300.8" cy="49.6" r="4.9" fill="#5f5f5f" fill-opacity=".55" stroke="#5f5f5f"/><text x="291.8" y="53.0" text-anchor="end">Marine Robotics</text></g><g class="atom" data-name="Education" data-fam="8"><circle cx="343.2" cy="92.5" r="4.9" fill="#5f5f5f" fill-opacity=".55" stroke="#5f5f5f"/><text x="334.2" y="95.9" text-anchor="end">Education</text></g></g></svg></div>
+    <div class="legend"><span data-fam="0"><i class="dot" style="background:#b8562f"></i>Languages</span><span data-fam="1"><i class="dot" style="background:#3f6f5f"></i>Frontend</span><span data-fam="2"><i class="dot" style="background:#5a5a8c"></i>Backend and Infra</span><span data-fam="3"><i class="dot" style="background:#8a6d3b"></i>ML and AI</span><span data-fam="4"><i class="dot" style="background:#2f6b8a"></i>Embedded and Hardware</span><span data-fam="5"><i class="dot" style="background:#8c4b6b"></i>Robotics and Control</span><span data-fam="6"><i class="dot" style="background:#4a7a3a"></i>Leadership</span><span data-fam="7"><i class="dot" style="background:#7a5230"></i>Communication</span><span data-fam="8"><i class="dot" style="background:#5f5f5f"></i>Domains</span></div>
+    <div class="growthwrap">
+      <h3>Growth</h3>
+      <div id="growth"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2 id="panelTitle">Evidence</h2>
+    <div class="sub" id="panelSub">Nothing selected &mdash; showing the whole pool.</div>
+    <div class="bar" id="presets"></div>
+    <div class="budget" id="budget"></div>
+    <div id="list"></div>
+    <div id="cand"></div>
+  </div>
+</div>
+<script>
+(function () {
+  const D = {"entries":[{"id":0,"title":"Tech Lead","date":"May 2026 – Present","kind":"Experience","bullets":[{"t":"Co-led a 10-engineer fullstack team on Midwest Health, a healthcare patient-scheduling platform for an Altheros Capital portfolio company, planning sprints across the stack","s":["Team Leadership","Sprint Planning","Agile","Healthcare"],"benched":false},{"t":"Reviewed pull requests and held merge authority for the team, gating all changes before production deployment","s":["Code Review","Team Leadership","Deployment"],"benched":false},{"t":"Presented monthly product demos to a 60-person audience including an Altheros Capital partner","s":["Stakeholder Communication","Technical Demos"],"benched":false},{"t":"Scoped a two-week MVP timeline and two-developer staffing plan for Nerd Perfect Media, recommendation adopted","s":["Project Scoping","Team Leadership"],"benched":false},{"t":"Led a schema audit, facilitating cross-team discussion to align frontend and backend on a shared data format","s":["Project Scoping","Stakeholder Communication","REST APIs"],"benched":false},{"t":"Conducted code reviews for all frontend team pull requests, authoring targeted patches and resolving merge conflicts to maintain clean branch history","s":["Code Review","Team Leadership"],"benched":true},{"t":"Decomposed an appointments-page rebuild into five workstreams, unblocking weekend development","s":["Project Scoping","Sprint Planning"],"benched":true}]},{"id":1,"title":"Full Stack Developer Intern","date":"Feb 2026 – Aug 2026","kind":"Experience","bullets":[{"t":"Shipped landing pages and UI components in React, JavaScript, and CSS for the Midwest Health and Nerd Perfect Media apps, matching Figma specs","s":["React","JavaScript","CSS","UI Development","Figma","Healthcare"],"benched":false},{"t":"Collaborated in Agile and Scrum sprint planning, translating user stories into actionable UI tasks","s":["Agile","Sprint Planning","UI Development"],"benched":false},{"t":"Migrated build tooling from deprecated react-scripts to Vite, restoring CI pipeline stability","s":["Vite","Build Tooling","CI/CD","React"],"benched":false},{"t":"Authored the team deployment runbook covering release packaging, secure upload, and rollback procedures","s":["Deployment","CI/CD"],"benched":false},{"t":"Partnered with project managers and tech leads to define project scope and hold sprint milestones on schedule","s":["Project Scoping","Agile","Stakeholder Communication"],"benched":true},{"t":"Refactored sidebar navigation into a persistent React component across all application tabs, resolving a defect that confined it to the dashboard view","s":["React","UI Development","JavaScript"],"benched":true}]},{"id":2,"title":"Machine Learning Research Assistant","date":"May 2023 – Aug 2023","kind":"Experience","bullets":[{"t":"Prototyped machine learning models for robotic arm pathfinding and manipulation, improving task success rates","s":["Model Training","Pathfinding","Research","Motion Control"],"benched":false},{"t":"Automated data collection pipelines in Python, reducing preparation time for the research team","s":["Python","Data Pipelines","Research"],"benched":false},{"t":"Deployed control scripts that increased the success rate of robotic pick-and-place operations","s":["Python","Motion Control","Research"],"benched":false}]},{"id":3,"title":"Machine Learning Engineer","date":"July 2023 – Aug 2023","kind":"Experience","bullets":[{"t":"Implemented autonomous navigation using OpenCV to track pool lane lines in real time","s":["OpenCV","Computer Vision","Autonomous Navigation","Python"],"benched":false},{"t":"Processed AprilTag detection data to compute relative 3D position and heading between robotic units","s":["Computer Vision","Sensor Processing","OpenCV"],"benched":false},{"t":"Tuned PID controllers to stabilize robot orientation, producing smoother and more consistent trajectory tracking","s":["PID Control","Motion Control"],"benched":false}]},{"id":4,"title":"Frontend Advisor","date":"Aug 2026 – Sept 2026","kind":"Experience","bullets":[{"t":"Advised a separate engineering team on frontend architecture and implementation decisions for the Altheros Capital corporate website","s":["React","UI Development","Mentoring","Stakeholder Communication"],"benched":true}]},{"id":5,"title":"STEM Activity Coordinator","date":"","kind":"Experience","bullets":[{"t":"Organized and led hands-on STEM workshops introducing students to engineering and programming fundamentals","s":["Mentoring","Education","Team Leadership"],"benched":true}]},{"id":6,"title":"A* Path Planner and Robotics Runtime","date":"Sept 2026","kind":"Project","bullets":[{"t":"Recreated ROS publish and subscribe semantics without ROS libraries, serving clients over a TCP and JSON gateway","s":["Python","Systems Programming","Networking"],"benched":false},{"t":"Planned optimal 4-connected paths with A* over occupancy grids, backed by a hand-written binary min-heap","s":["Python","Pathfinding","Data Structures","Autonomous Navigation"],"benched":false},{"t":"Scored 100% on a black-box autograder validating paths against unseen staff-authored grading maps","s":["Python","Pathfinding"],"benched":false},{"t":"Packaged the runtime behind a reproducible offline Makefile build launching every component in a single foreground process","s":["Python","Build Tooling"],"benched":true},{"t":"Handled arbitrary grid origins and resolutions, returning cell-center world coordinates and failing cleanly on unreachable goals","s":["Python","Data Structures"],"benched":true}]},{"id":7,"title":"Memory-Mapped FPGA Peripheral Interface","date":"Sept 2026","kind":"Project","bullets":[{"t":"Interfaced an XMC4700 ARM Cortex-M4 with a Tang Nano FPGA over a 16-bit memory-mapped parallel bus","s":["ARM Cortex-M","FPGA","Memory-Mapped I/O","C"],"benched":false},{"t":"Programmed Verilog address decoding with D-latch write registers and tristate read drivers for LED and button ports","s":["Verilog","RTL Design","FPGA","Memory-Mapped I/O"],"benched":false},{"t":"Designed a C state machine that debounced button input, stepping LED cycle time between 375ms and 6s per press","s":["C","State Machines","ARM Cortex-M"],"benched":false},{"t":"Verified bus transaction timing on a logic analyzer, confirming setup and hold margins on the chip-select and read-write strobes","s":["Logic Analysis","Memory-Mapped I/O"],"benched":true},{"t":"Controlled the same peripheral interface from ARM Assembly in a prior lab, hand-managing register loads and stores against the memory map","s":["Assembly","ARM Cortex-M","Memory-Mapped I/O"],"benched":true}]},{"id":8,"title":"Gamified Financial Dashboard","date":"Feb 2026","kind":"Project","bullets":[{"t":"Created a gamified personal finance dashboard with an AI-driven virtual pet system and real-time quest overlays","s":["React","UI Development","Fintech"],"benched":false},{"t":"Developed a TypeScript onboarding engine parsing the Capital One REST API to surface AI-curated financial insights","s":["TypeScript","REST APIs","Node.js","Fintech"],"benched":false},{"t":"Secured 1st Place in the Visa Track, presenting a scalable fintech solution to industry executives","s":["Stakeholder Communication","Technical Demos","Fintech"],"benched":false}]},{"id":9,"title":"Underwater Inspection ROV","date":"Jan 2025 – Apr 2025","kind":"Project","bullets":[{"t":"Built the C++ Arduino control system for a 4-thruster inspection ROV, mapping surge, heave, and yaw to five buttons","s":["C++","Arduino","Motion Control","Marine Robotics"],"benched":false},{"t":"Added a latching cruise control that locked forward thrust for long transits, improving measured forward speed by 1.5x","s":["C++","Arduino","Motion Control","State Machines"],"benched":false},{"t":"Briefed engineering stakeholders on hardware and software integration through a live technical demo","s":["Technical Demos","Stakeholder Communication"],"benched":false}]},{"id":10,"title":"Facial Emotion Recognition","date":"Apr 2024","kind":"Project","bullets":[{"t":"Trained a real-time emotion classifier using facial landmark detection and a deep neural network","s":["TensorFlow","Computer Vision","Model Training","Python"],"benched":false},{"t":"Achieved 60% validated prediction accuracy, outperforming baseline emotion classifiers on the test set","s":["Model Training","Computer Vision"],"benched":false}]},{"id":11,"title":"Four-Function Calculator","date":"Dec 2025","kind":"Project","bullets":[{"t":"Implemented a four-function arithmetic unit in Verilog using Booth multiplication and repeated-subtraction division","s":["Verilog","RTL Design","FPGA"],"benched":true},{"t":"Debugged overflow flag handling and testbench timing across a Verilog testbench suite","s":["Verilog","RTL Design","FPGA"],"benched":true}]}],"candidates":[],"history":[{"date":"2026-09-19","skills":50,"entries":12,"candidates":0}]};
+  const ENTRIES = D.entries;
+  const BUDGET = 37; // lines available for entry headers + bullets on one page
+  const VB = {"x":-60,"y":20,"w":840,"h":690};
+  const sel = new Set();
+  let focus = null; // family index (string) currently isolated, or null
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  // ---- theme (persisted per-viewer via localStorage; degrades silently) ----
+  const themeBtn = document.getElementById('themeBtn');
+  function setTheme(dark) {
+    document.documentElement.dataset.theme = dark ? 'dark' : '';
+    themeBtn.innerHTML = dark ? '&#9728;&#65039;' : '&#127769;';
+    try { localStorage.setItem('skillmap-theme', dark ? 'dark' : 'light'); } catch (e) {}
+  }
+  let startDark = false;
+  try { startDark = localStorage.getItem('skillmap-theme') === 'dark'; } catch (e) {}
+  setTheme(startDark);
+  themeBtn.addEventListener('click', () => setTheme(document.documentElement.dataset.theme !== 'dark'));
+
+  // ---- fullscreen (CSS overlay, not the Fullscreen API — this runs inside
+  // an embedded view that may not grant fullscreen permission to its frame) --
+  const graphCard = document.getElementById('graphCard'), fsBtn = document.getElementById('fsBtn');
+  function setFs(on) {
+    graphCard.classList.toggle('fs', on);
+    fsBtn.innerHTML = on ? '&#10005;' : '&#9974;';
+    fsBtn.title = on ? 'Exit fullscreen' : 'Fullscreen';
+  }
+  fsBtn.addEventListener('click', () => setFs(!graphCard.classList.contains('fs')));
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') setFs(false); });
+
+  const PRESETS = {
+    'Embedded / FPGA': ['Verilog','RTL Design','FPGA','ARM Cortex-M','Memory-Mapped I/O','C','C++','State Machines','Arduino','Logic Analysis','Assembly'],
+    'Robotics': ['Autonomous Navigation','PID Control','Motion Control','Pathfinding','Sensor Processing','C++','Computer Vision','Arduino'],
+    'ML / CV': ['Model Training','Computer Vision','OpenCV','TensorFlow','Data Pipelines','Python','Research'],
+    'Frontend': ['React','Vite','UI Development','Figma','JavaScript','TypeScript','CSS','Build Tooling'],
+    'Full stack': ['React','Node.js','REST APIs','TypeScript','CI/CD','Deployment','UI Development','Build Tooling'],
+    'Leadership': ['Team Leadership','Code Review','Sprint Planning','Project Scoping','Agile','Stakeholder Communication','Technical Demos','Mentoring'],
+  };
+  document.getElementById('presets').innerHTML =
+    Object.keys(PRESETS).map(p => '<button data-p="'+esc(p)+'">'+esc(p)+'</button>').join('')
+    + '<button class="clear" data-p="__clear">Clear</button>';
+
+  document.getElementById('presets').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    sel.clear();
+    if (b.dataset.p !== '__clear') PRESETS[b.dataset.p].forEach(x => sel.add(x));
+    render();
+  });
+
+  document.getElementById('graph').addEventListener('click', e => {
+    const atomEl = e.target.closest('.atom');
+    if (atomEl) { const n = atomEl.dataset.name; sel.has(n) ? sel.delete(n) : sel.add(n); render(); return; }
+    const famEl = e.target.closest('.fam');
+    if (famEl) { toggleFocus(famEl.dataset.fam); return; }
+    if (e.target.closest('.core')) { toggleFocus(null); }
+  });
+  document.querySelectorAll('.legend span').forEach(sp => {
+    sp.addEventListener('click', () => toggleFocus(sp.dataset.fam));
+  });
+
+  function toggleFocus(fi) {
+    // clicking the core, or the family already focused, clears focus;
+    // clicking a different family switches focus to it.
+    focus = (fi === null || focus === fi) ? null : fi;
+    applyFocus();
+  }
+  function applyFocus() {
+    document.querySelectorAll('#graph [data-fam]').forEach(el => {
+      const match = focus === null || el.dataset.fam === focus;
+      el.classList.toggle('focus-dim', !match);
+    });
+    document.querySelectorAll('.fam').forEach(el => el.classList.toggle('focused', el.dataset.fam === focus && focus !== null));
+  }
+
+  (function () {
+    const s = document.querySelector('#graph svg'), vp = document.getElementById('vp');
+    let k = 1, tx = 0, ty = 0, drag = null;
+    const apply = () => vp.setAttribute('transform', 'translate('+tx+','+ty+') scale('+k+')');
+    s.addEventListener('wheel', e => {
+      e.preventDefault();
+      const nk = Math.min(3, Math.max(.5, k * (e.deltaY < 0 ? 1.1 : 1/1.1)));
+      const r = s.getBoundingClientRect();
+      const mx = (e.clientX-r.left)*(VB.w/r.width)+VB.x, my = (e.clientY-r.top)*(VB.h/r.height)+VB.y;
+      tx = mx - (mx-tx)*(nk/k); ty = my - (my-ty)*(nk/k); k = nk; apply();
+    }, { passive: false });
+    s.addEventListener('mousedown', e => { drag = { x:e.clientX, y:e.clientY, tx, ty }; });
+    window.addEventListener('mousemove', e => {
+      if (!drag) return;
+      const r = s.getBoundingClientRect();
+      tx = drag.tx + (e.clientX-drag.x)*(VB.w/r.width);
+      ty = drag.ty + (e.clientY-drag.y)*(VB.h/r.height);
+      apply();
+    });
+    window.addEventListener('mouseup', () => { drag = null; });
+  })();
+
+  function renderHistory() {
+    const H = D.history || [];
+    const box = document.getElementById('growth');
+    if (H.length < 2) {
+      box.innerHTML = '<div class="sub">Tracking started ' + (H[0] ? esc(H[0].date) : 'today')
+        + ' &mdash; check back after your next update to see this fill in.</div>';
+      return;
+    }
+    const w = 100, h = 30, pad = 3;
+    const max = Math.max(...H.map(p => p.skills), 1), min = Math.min(...H.map(p => p.skills));
+    const xs = H.map((_, i) => pad + i * (w - 2*pad) / (H.length - 1));
+    const ys = H.map(p => h - pad - (max === min ? 0 : (p.skills - min) / (max - min) * (h - 2*pad)));
+    const pts = xs.map((x, i) => x.toFixed(1) + ',' + ys[i].toFixed(1)).join(' ');
+    const first = H[0], last = H[H.length - 1], delta = last.skills - first.skills;
+    box.innerHTML =
+      '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" style="width:100%;height:30px;display:block;">'
+      + '<polyline points="'+pts+'" fill="none" stroke="var(--accent)" stroke-width="1.5"/>'
+      + xs.map((x,i) => '<circle cx="'+x.toFixed(1)+'" cy="'+ys[i].toFixed(1)+'" r="1.6" fill="var(--accent)"><title>'
+          + esc(H[i].date) + ': ' + H[i].skills + ' skills, ' + H[i].entries + ' entries</title></circle>').join('')
+      + '</svg>'
+      + '<div class="sub">' + esc(first.date) + ' &rarr; ' + esc(last.date) + ': ' + first.skills + ' &rarr; ' + last.skills + ' skills'
+      + (delta ? ' (' + (delta > 0 ? '+' : '') + delta + ')' : '') + '</div>';
+  }
+
+  function render() {
+    document.querySelectorAll('.atom').forEach(t => {
+      const on = sel.has(t.dataset.name);
+      t.classList.toggle('on', on);
+      t.classList.toggle('dim', sel.size > 0 && !on);
+    });
+
+    const rows = [];
+    ENTRIES.forEach(en => en.bullets.forEach(b => {
+      const hit = sel.size ? b.s.filter(x => sel.has(x)) : [];
+      if (sel.size && !hit.length) return;
+      rows.push({ en, b, hit, score: hit.length });
+    }));
+    rows.sort((a, z) => z.score - a.score);
+
+    const shown = new Set(rows.map(r => r.en.id));
+    const lines = rows.length + shown.size;
+    const over = lines > BUDGET;
+
+    document.getElementById('panelTitle').textContent = sel.size ? 'Tailored selection' : 'Evidence';
+    document.getElementById('panelSub').innerHTML = sel.size
+      ? esc([...sel].join(' · '))
+      : 'Nothing selected &mdash; showing the whole pool.';
+    document.getElementById('budget').innerHTML =
+      '<div>' + rows.length + ' bullets across ' + shown.size + ' entries &middot; <strong>&asymp;'
+      + lines + ' lines</strong> of ' + BUDGET
+      + (over ? ' &mdash; over one page, trim ' + (lines - BUDGET) : ' &mdash; fits one page')
+      + '</div><div class="meter' + (over ? ' over' : '') + '"><div style="width:'
+      + Math.min(100, lines / BUDGET * 100).toFixed(0) + '%"></div></div>';
+
+    document.getElementById('list').innerHTML = rows.length
+      ? rows.map(r =>
+          '<div class="ev"><div class="hd"><span>' + esc(r.en.title)
+          + (r.b.benched ? '<span class="tag bench">benched</span>' : '')
+          + '</span><span>' + esc(r.en.date || '') + '</span></div>'
+          + '<p class="bt">' + esc(r.b.t) + '</p>'
+          + (r.hit.length ? '<div class="hits">proves: ' + esc(r.hit.join(', ')) + '</div>' : '')
+          + '</div>').join('')
+      : '<div class="empty">No bullet in the pool proves those skills. That gap is the useful signal.</div>';
+
+    const C = D.candidates || [];
+    document.getElementById('cand').innerHTML = (sel.size || !C.length) ? '' :
+      '<div class="candwrap"><h3>Candidates from your repos</h3>'
+      + '<div class="sub">Found by the last scan, not yet in the pool. Facts only.</div>'
+      + C.map(c =>
+          '<div class="cand"><div class="nm">' + esc(c.name) + '</div>'
+          + '<div class="mt">' + esc(c.langs || 'no source detected')
+          + (c.tech ? ' &middot; ' + esc(c.tech) : '')
+          + (c.commits ? ' &middot; ' + c.commits + ' commits' : '')
+          + (c.last ? ' &middot; last ' + esc(c.last) : '') + '</div>'
+          + (c.readme ? '<div class="mt">' + esc(c.readme.slice(0,160)) + '</div>' : '')
+          + c.gaps.map(q => '<div class="q">? ' + esc(q) + '</div>').join('')
+          + '</div>').join('')
+      + '</div>';
+  }
+
+  renderHistory();
+  render();
+})();
+</script>
+</body>
+</html>

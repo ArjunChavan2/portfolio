@@ -88,9 +88,9 @@
       "category": "ai-ml",
       "summary": "Recreated ROS publish and subscribe messaging over a TCP and JSON gateway, and planned optimal paths with A* search backed by a hand-written binary min-heap. Scored 100% on a black-box autograder against unseen staff-authored grading maps.",
       "tags": [
-        "Python",
-        "Pathfinding",
-        "Networking"
+        "Systems Programming",
+        "Networking",
+        "Data Structures"
       ]
     },
     {
@@ -104,9 +104,9 @@
       "category": "fullstack",
       "summary": "Co-lead a 10-engineer full-stack team building Midwest Health, a healthcare patient-scheduling platform. Plan sprints, hold merge authority on pull requests, and present monthly demos to a 60-person audience including an Altheros Capital partner.",
       "tags": [
-        "Full Stack",
+        "Healthcare",
         "Code Review",
-        "Agile"
+        "Deployment"
       ],
       "home": true,
       "home_order": 1
@@ -122,9 +122,9 @@
       "category": "fullstack",
       "summary": "Gamified personal finance dashboard with an AI-driven virtual pet and real-time quest overlays. Wrote a TypeScript onboarding engine on the Capital One REST API to surface AI-curated financial insights.",
       "tags": [
-        "React",
-        "Expo",
-        "TypeScript"
+        "TypeScript",
+        "Node.js",
+        "REST APIs"
       ],
       "link": {
         "url": "https://github.com/codylejang/Scotty-Market",
@@ -144,9 +144,9 @@
       "category": "fullstack",
       "summary": "Built React landing pages and UI components for Midwest Health and Nerd Perfect Media from Figma specs. Migrated build tooling from react-scripts to Vite to restore CI stability and wrote the team's deployment runbook.",
       "tags": [
-        "React",
-        "Vite",
-        "Figma"
+        "CSS",
+        "Figma",
+        "Vite"
       ]
     },
     {
@@ -160,9 +160,9 @@
       "category": "hardware",
       "summary": "Built the C++ Arduino control system for a 4-thruster inspection ROV, mapping surge, heave, and yaw to five buttons and a toggle. Added a latching cruise control that improved measured forward speed 1.5x in lab testing.",
       "tags": [
+        "Marine Robotics",
         "C++",
-        "Arduino",
-        "Embedded"
+        "Arduino"
       ],
       "video": "rov-modal",
       "home": true,
@@ -199,8 +199,8 @@
       "summary": "Real-time emotion classifier built on facial landmark detection and a deep neural network, reaching 60% validated accuracy on the test set.",
       "tags": [
         "TensorFlow",
-        "OpenCV",
-        "Python"
+        "Model Training",
+        "Computer Vision"
       ]
     },
     {
@@ -214,9 +214,9 @@
       "category": "ai-ml",
       "summary": "Implemented autonomous navigation that tracks pool lane lines in real time with OpenCV. Computed relative 3D position and heading between robots from AprilTag detections and tuned PID controllers for steadier trajectory tracking.",
       "tags": [
-        "OpenCV",
-        "AprilTag",
-        "PID Control"
+        "Sensor Processing",
+        "PID Control",
+        "OpenCV"
       ]
     },
     {
@@ -230,9 +230,9 @@
       "category": "ai-ml",
       "summary": "Built machine learning models to optimize robotic arm pathfinding and manipulation at UMass Lowell. Automated Python data collection pipelines and deployed control scripts that raised pick-and-place success rates.",
       "tags": [
-        "Python",
-        "ML",
-        "Robotics"
+        "Data Pipelines",
+        "Model Training",
+        "Pathfinding"
       ],
       "home": true,
       "home_order": 4
