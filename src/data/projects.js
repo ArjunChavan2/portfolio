@@ -68,12 +68,7 @@ const DETAILS = {
     summary:
       'A healthcare web app built at MHacks 2026 that audits itemized medical bills against the insurer\'s explanation of benefits, '
       + 'flagging duplicate charges, amounts above the EOB balance, and charges with no record.',
-    media: {
-      type: 'video',
-      src: asset('media/billless-demo.mp4'),
-      poster: asset('media/billless-poster.jpg'),
-      caption: 'MHacks 2026 demo video.',
-    },
+    highlight: { value: '3 checks', label: 'Duplicates, over-balance, and unrecorded charges' },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/MHACKS_2026' }],
   },
   'Four-Function Calculator': {
