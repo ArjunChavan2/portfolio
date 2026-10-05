@@ -1,0 +1,309 @@
+{
+  "name": "Arjun Chavan",
+  "links": [
+    "akchavan@umich.edu",
+    "linkedin.com/in/arjun-chavan",
+    "github.com/ArjunChavan2",
+    "leetcode.com/u/arjunicus"
+  ],
+  "education": {
+    "school": "University of Michigan",
+    "location": "Ann Arbor, MI",
+    "date": "Expected Dec 2027",
+    "degree": "Bachelor of Engineering in Computer Science",
+    "courseworkLabel": "Relevant Coursework: ",
+    "coursework": "Data Structures and Algorithms, Computer Vision, Computer Architecture, Applied Linear Algebra, Discrete Mathematics; Machine Learning, Embedded Systems, and Autonomous Robotics (In Progress)"
+  },
+  "skills": [
+    {
+      "label": "Languages",
+      "items": [
+        "Python",
+        "C",
+        "C++",
+        "Java",
+        "SQL",
+        "JavaScript",
+        "TypeScript",
+        "HTML",
+        "CSS",
+        "Bash",
+        "LaTeX",
+        "Verilog",
+        "Assembly",
+        "R"
+      ]
+    },
+    {
+      "label": "Frameworks and Tools",
+      "items": [
+        "React",
+        "Vite",
+        "Node.js",
+        "REST APIs",
+        "Git",
+        "GitHub",
+        "Linux",
+        "Unix",
+        "VS Code",
+        "Figma",
+        "Agile",
+        "Scrum"
+      ]
+    },
+    {
+      "label": "AI and ML",
+      "items": [
+        "OpenCV",
+        "PyTorch",
+        "TensorFlow",
+        "Prompt Engineering"
+      ]
+    },
+    {
+      "label": "Hardware",
+      "items": [
+        "Circuit Design",
+        "Arduino",
+        "Raspberry Pi",
+        "FPGAs",
+        "Logic Analyzers",
+        "Magnetic Induction",
+        "Soldering"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Tech Lead",
+      "org": "Altheros Capital, Ann Arbor, MI",
+      "date": "May 2026 – Present",
+      "bullets": [
+        "Co-led a 10-engineer fullstack team on Midwest Health, a healthcare patient-scheduling platform for an Altheros Capital portfolio company, planning sprints",
+        "Reviewed pull requests and held merge authority for the team, gating all changes before production deployment",
+        "Presented monthly product demos to a 60-person audience including an Altheros Capital partner",
+        "Scoped a two-week MVP timeline and two-developer staffing plan for Nerd Perfect Media, recommendation adopted",
+        "Led a schema audit, facilitating cross-team discussion to align frontend and backend on a shared data format"
+      ],
+      "skills": [
+        "Team Leadership",
+        "Sprint Planning",
+        "Agile",
+        "Healthcare",
+        "Code Review",
+        "Deployment",
+        "Stakeholder Communication",
+        "Technical Demos",
+        "Project Scoping",
+        "REST APIs"
+      ]
+    },
+    {
+      "title": "Full Stack Developer Intern",
+      "org": "Altheros Capital, Ann Arbor, MI",
+      "date": "Feb 2026 – Aug 2026",
+      "bullets": [
+        "Shipped React landing pages and UI components for Midwest Health and Nerd Perfect Media from Figma designs",
+        "Collaborated in Agile and Scrum sprint planning, translating user stories into actionable UI tasks",
+        "Migrated build tooling from deprecated react-scripts to Vite, restoring CI pipeline stability",
+        "Authored the team deployment runbook covering release packaging, secure upload, and rollback procedures"
+      ],
+      "skills": [
+        "React",
+        "JavaScript",
+        "CSS",
+        "UI Development",
+        "Figma",
+        "Healthcare",
+        "Agile",
+        "Sprint Planning",
+        "Vite",
+        "Build Tooling",
+        "CI/CD",
+        "Deployment"
+      ]
+    },
+    {
+      "title": "Machine Learning Research Assistant",
+      "org": "UMass Lowell (PeARL Lab), Lowell, MA",
+      "date": "May 2023 – Aug 2023",
+      "bullets": [
+        "Prototyped machine learning models for robotic arm pathfinding and manipulation, improving task success rates",
+        "Automated data collection pipelines in Python, reducing preparation time for the research team",
+        "Deployed control scripts that increased the success rate of robotic pick-and-place operations"
+      ],
+      "skills": [
+        "Model Training",
+        "Pathfinding",
+        "Research",
+        "Motion Control",
+        "Python",
+        "Data Pipelines"
+      ]
+    },
+    {
+      "title": "Machine Learning Engineer",
+      "org": "MIT Lincoln Laboratory (Beaver Works), Cambridge, MA",
+      "date": "July 2023 – Aug 2023",
+      "bullets": [
+        "Implemented autonomous navigation using OpenCV to track pool lane lines in real time",
+        "Processed AprilTag detection data to compute relative 3D position and heading between robotic units",
+        "Tuned PID controllers to stabilize robot orientation, producing smoother and more consistent trajectory tracking"
+      ],
+      "skills": [
+        "OpenCV",
+        "Computer Vision",
+        "Autonomous Navigation",
+        "Python",
+        "Sensor Processing",
+        "PID Control",
+        "Motion Control"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "A* Path Planner and Robotics Runtime",
+      "org": "Python, TCP, JSON, EECS 367",
+      "date": "Sept 2026",
+      "bullets": [
+        "Recreated ROS publish and subscribe semantics without ROS libraries, serving clients over a TCP and JSON gateway",
+        "Planned optimal 4-connected paths with A* over occupancy grids, backed by a hand-written binary min-heap",
+        "Scored 100% on a black-box autograder validating paths against unseen staff-authored grading maps"
+      ],
+      "skills": [
+        "Python",
+        "Systems Programming",
+        "Networking",
+        "Pathfinding",
+        "Data Structures",
+        "Autonomous Navigation"
+      ]
+    },
+    {
+      "title": "Memory-Mapped FPGA Peripheral Interface",
+      "org": "Verilog, C, XMC4700, Tang Nano FPGA, EECS 373",
+      "date": "Sept 2026",
+      "bullets": [
+        "Interfaced an XMC4700 ARM Cortex-M4 with a Tang Nano FPGA over a 16-bit memory-mapped parallel bus",
+        "Programmed Verilog address decoding with D-latch write registers and tristate read drivers for LED and button ports",
+        "Designed a C state machine that debounced button input, stepping LED cycle time between 375ms and 6s per press"
+      ],
+      "skills": [
+        "ARM Cortex-M",
+        "FPGA",
+        "Memory-Mapped I/O",
+        "C",
+        "Verilog",
+        "RTL Design",
+        "State Machines"
+      ]
+    },
+    {
+      "title": "ICU Mortality Prediction",
+      "org": "Python, scikit-learn, EECS 445",
+      "date": "Oct 2026",
+      "bullets": [
+        "Expanded 40 max-only ICU features into 253 trend and measurement-count features across 10,000 patients",
+        "Tuned logistic regression across 20 settings with stratified 5-fold cross-validation, reaching 0.858 AUROC",
+        "Raised out-of-fold F1 from 0.517 to 0.551 by tuning the decision threshold on out-of-fold scores"
+      ],
+      "skills": [
+        "Python",
+        "Feature Engineering",
+        "Healthcare",
+        "scikit-learn",
+        "Model Training",
+        "Cross-Validation",
+        "Model Evaluation"
+      ]
+    },
+    {
+      "title": "BillLess, AI Medical Bill Auditor",
+      "org": "Next.js, TypeScript, Gemini, Neon, MHacks 2026",
+      "date": "Oct 2026",
+      "bullets": [
+        "Built a healthcare web app on Next.js and TypeScript auditing itemized medical bills against insurer EOBs",
+        "Wrote deterministic rules flagging duplicate charges, amounts above the EOB balance, and charges with no record",
+        "Integrated Gemini extraction, an ElevenLabs voice agent, and Photon iMessage approvals, storing cases in Neon"
+      ],
+      "skills": [
+        "TypeScript",
+        "React",
+        "Healthcare",
+        "Data Validation",
+        "LLM Integration",
+        "PostgreSQL",
+        "Voice AI"
+      ]
+    },
+    {
+      "title": "Gamified Financial Dashboard",
+      "org": "React, Expo, Node.js, TypeScript, CMU TartanHacks",
+      "date": "Feb 2026",
+      "bullets": [
+        "Created a gamified personal finance dashboard with an AI-driven virtual pet system and real-time quest overlays",
+        "Developed a TypeScript onboarding engine parsing the Capital One REST API to surface AI-curated financial insights",
+        "Secured 1st Place in the Visa Track, presenting a scalable fintech solution to industry executives"
+      ],
+      "skills": [
+        "React",
+        "UI Development",
+        "Fintech",
+        "TypeScript",
+        "REST APIs",
+        "Node.js",
+        "Stakeholder Communication",
+        "Technical Demos"
+      ]
+    },
+    {
+      "title": "Underwater Inspection ROV",
+      "org": "C++, Arduino, 4-Person Team Design Project",
+      "date": "Jan 2025 – Apr 2025",
+      "bullets": [
+        "Built the C++ Arduino control system for a 4-thruster inspection ROV, mapping surge, heave, and yaw to five buttons",
+        "Added a latching cruise control that locked forward thrust for long transits, improving measured forward speed by 1.5x",
+        "Briefed engineering stakeholders on hardware and software integration through a live technical demo"
+      ],
+      "skills": [
+        "C++",
+        "Arduino",
+        "Motion Control",
+        "Marine Robotics",
+        "State Machines",
+        "Technical Demos",
+        "Stakeholder Communication"
+      ]
+    },
+    {
+      "title": "Facial Emotion Recognition",
+      "org": "Python, TensorFlow, OpenCV",
+      "date": "Apr 2024",
+      "bullets": [
+        "Trained a real-time emotion classifier using facial landmark detection and a deep neural network",
+        "Achieved 60% validated prediction accuracy, outperforming baseline emotion classifiers on the test set"
+      ],
+      "skills": [
+        "TensorFlow",
+        "Computer Vision",
+        "Model Training",
+        "Python"
+      ]
+    },
+    {
+      "title": "Four-Function Calculator",
+      "org": "Verilog, FPGA",
+      "date": "Dec 2025",
+      "bullets": [
+        "Implemented a four-function arithmetic unit in Verilog using Booth multiplication and repeated-subtraction division",
+        "Debugged overflow flag handling and testbench timing across a Verilog testbench suite"
+      ],
+      "skills": [
+        "Verilog",
+        "RTL Design",
+        "FPGA"
+      ]
+    }
+  ]
+}
