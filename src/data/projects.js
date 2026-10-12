@@ -87,7 +87,7 @@ const DETAILS = {
       'Appeal: for a denial, the insurer\'s criteria are matched to records from every provider and the appeal cites each one, or a doctor request is drafted when evidence is missing.',
     ],
     tech: [
-      { name: 'Next.js + TypeScript', use: 'App Router web app, deployed on Vercel at billless.tech' },
+      { name: 'Next.js + TypeScript', use: 'App Router web app, deployed on Vercel' },
       { name: 'FinchNode API', use: 'Patient records from multiple providers, used as evidence' },
       { name: 'Grok + Gemini', use: 'Read bills, EOBs, and denial letters; draft letters around coded findings' },
       { name: 'Neon Postgres + Drizzle', use: 'Cases, documents, findings, approvals, and call history' },
