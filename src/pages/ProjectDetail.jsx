@@ -12,7 +12,8 @@ function Media({ media, title }) {
   if (media.type === 'video') {
     return (
       <figure className="media">
-        <video controls preload="metadata" poster={media.poster} playsInline>
+        {/* key: a changed <source> src doesn't reload a reused <video>, so remount per project */}
+        <video key={media.src} controls preload="metadata" poster={media.poster} playsInline>
           <source src={media.src} type="video/mp4" />
           Your browser can't play this video. <a href={media.src}>Download it instead.</a>
         </video>
