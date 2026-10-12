@@ -25,7 +25,7 @@ export default function Layout() {
             ))}
           </nav>
           <a className="btn btn-secondary btn-sm header-cta" href={RESUME_PDF} target="_blank" rel="noreferrer">
-            Résumé
+            Resume
           </a>
         </div>
       </header>

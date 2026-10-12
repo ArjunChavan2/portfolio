@@ -10,7 +10,7 @@ export default function Experience() {
           <p className="kicker">Experience</p>
           <h1>Experience and education</h1>
           <p className="lede">
-            The full one-page version is available as a <a href={RESUME_PDF} target="_blank" rel="noreferrer">PDF résumé</a>.
+            The full one-page version is available as a <a href={RESUME_PDF} target="_blank" rel="noreferrer">PDF resume</a>.
           </p>
         </header>
 
