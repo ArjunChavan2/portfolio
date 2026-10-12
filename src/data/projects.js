@@ -70,17 +70,19 @@ const DETAILS = {
     slug: 'billless',
     category: 'Full stack',
     summary:
-      'A patient-side agent built at MHacks 2026 that works a medical bill as a case: it pulls records from every provider, audits the '
-      + 'itemized bill against the insurer\'s explanation of benefits with rules that cite every line, asks the patient for approval over '
-      + 'iMessage, calls the billing office with a voice agent the patient controls, and drafts denial appeals backed by those records.',
+      'A patient-side agent built at MHacks 2026 that handles a medical bill from start to finish. If the patient has no explanation of '
+      + 'benefits, it first drafts a letter asking the insurer for one. Then it audits the bill against records from every provider with '
+      + 'rules that cite every line, asks the patient for approval over iMessage, disputes the charges by letter or by a phone call the '
+      + 'patient controls, verifies the corrected bill, and appeals denials with evidence.',
     highlight: { value: '3 checks', label: 'Duplicates, over-balance, and unrecorded charges' },
-    media: { type: 'video', src: asset('media/billless.mp4'), poster: asset('media/billless-poster.jpg'), caption: 'One case end to end on the project\'s synthetic demo patient: cited findings, iMessage approval, a patient-controlled call, and a denial appeal.' },
+    media: { type: 'video', src: asset('media/billless.mp4'), poster: asset('media/billless-poster.jpg'), caption: 'One case start to finish on the project\'s synthetic demo patient: EOB request, cited findings, iMessage approval, a patient-controlled call, and a denial appeal.' },
     howItWorks: [
+      'Get documents: if the patient has no EOB, BillLess drafts a letter asking the insurer for it; if they only have a balance statement, it asks the provider for the itemized bill.',
+      'Read: Grok or Gemini reads the bill and EOB, and the patient confirms every field before anything is checked.',
       'Records: FinchNode pulls the patient\'s records from every provider they have seen (two clinics in the demo).',
-      'Read: Grok or Gemini reads the itemized bill and EOB, and the patient confirms every field before anything is checked.',
       'Audit: TypeScript rules flag duplicate charges, amounts above the EOB balance, and charges with no matching record, each citing its bill line, EOB line, or record. The AI never writes a finding.',
       'Approve: Billy, the agent, texts the patient over iMessage with choices and answers "why was this flagged?" from the citations. Nothing is sent without approval.',
-      'Call: an ElevenLabs voice agent calls billing over Twilio. Offers appear as choices on the patient\'s screen, no answer means no, and the agent never commits to a payment.',
+      'Dispute: a cited dispute letter or email to the billing office, or a call from an ElevenLabs voice agent over Twilio. On a call, offers appear as choices on the patient\'s screen, no answer means no, and the agent never commits to a payment.',
       'Verify: savings count only with a revised statement or written proof; questioned, offered, and confirmed amounts are tracked separately.',
       'Appeal: for a denial, the insurer\'s criteria are matched to records from every provider and the appeal cites each one, or a doctor request is drafted when evidence is missing.',
     ],
