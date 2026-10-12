@@ -210,6 +210,14 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 .highlights { margin: 0; padding-left: 20px; color: var(--text-2); list-style: disc; }
 .highlights li { margin-bottom: 10px; padding-left: 4px; }
 .highlights li::marker { color: var(--accent); }
+.steps { margin: 0; padding-left: 22px; color: var(--text-2); }
+.steps li { margin-bottom: 12px; padding-left: 4px; }
+.steps li::marker { color: var(--accent); font-weight: 600; }
+.steps strong { color: var(--text); }
+.tech { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 0; }
+.tech div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.tech dt { font-size: 15px; font-weight: 600; color: var(--text); }
+.tech dd { margin: 4px 0 0; font-size: 14px; color: var(--text-2); }
 .next-project { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-weight: 600; }
 
 .media { margin: 40px auto 0; max-width: 1000px; }
