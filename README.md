@@ -14,18 +14,18 @@ npm run lint
 
 ## Content
 
-Résumé content is not edited here. It comes from `~/ResumeDaily/content.js`:
+Resume content is not edited here. It comes from `~/ResumeDaily/content.js`:
 
 ```bash
 npm run sync-resume    # regenerate src/data/resume.json, then commit it
 ```
 
 - Experience, skills, and education use the resume's default profile.
-- Projects include everything in `content.js`, benched ones too: a portfolio has room the one-page résumé doesn't.
+- Projects include everything in `content.js`, benched ones too: a portfolio has room the one-page resume doesn't.
 
 Project pages (`/projects/:slug`) combine each synced entry with the portfolio-only detail in
 `src/data/projects.js`: slug, category, summary, headline stat, links, and media. Site-only projects that
-aren't on the résumé (like Assignment Calendar) live in `SITE_ONLY` in the same file.
+aren't on the resume (like Assignment Calendar) live in `SITE_ONLY` in the same file.
 
 - **Video:** put the file in `public/media/` and set `media: { type: 'video', src: asset('media/…'), poster }`.
   Keep videos to a few MB (`ffmpeg -i in.mp4 -vf scale=-2:720 -crf 27 -movflags +faststart out.mp4`).
@@ -42,5 +42,5 @@ Replace `public/resume.pdf` when a new PDF is cut.
 - GitHub Pages has no SPA fallback, so `scripts/spa-routes.mjs` writes an `index.html` for every route
   (deep links return 200), a `404.html`, and redirects from the old `about.html` and `projects.html`.
   A new top-level page needs adding to its `routes` list.
-- `public/skillmap.html` is the standalone résumé skill map, served as-is at `/portfolio/skillmap.html`.
+- `public/skillmap.html` is the standalone resume skill map, served as-is at `/portfolio/skillmap.html`.
 - The contact form has no backend; it opens the visitor's email client with the message prefilled.

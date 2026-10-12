@@ -26,7 +26,7 @@ export default function Home() {
             </p>
             <div className="hero-actions">
               <Link to="/projects" className="btn btn-primary">View projects</Link>
-              <a href={RESUME_PDF} className="btn btn-secondary" target="_blank" rel="noreferrer">Download résumé</a>
+              <a href={RESUME_PDF} className="btn btn-secondary" target="_blank" rel="noreferrer">Download resume</a>
             </div>
             <ul className="hero-links">
               <li><a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
