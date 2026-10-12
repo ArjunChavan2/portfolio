@@ -12,7 +12,8 @@ function Media({ media, title }) {
   if (media.type === 'video') {
     return (
       <figure className="media">
-        <video controls preload="metadata" poster={media.poster} playsInline>
+        {/* key: a changed <source> src doesn't reload a reused <video>, so remount per project */}
+        <video key={media.src} controls preload="metadata" poster={media.poster} playsInline>
           <source src={media.src} type="video/mp4" />
           Your browser can't play this video. <a href={media.src}>Download it instead.</a>
         </video>
@@ -77,6 +78,25 @@ export default function ProjectDetail() {
       </div>
 
       <div className="container narrow">
+        {project.howItWorks.length > 0 && (
+          <section className="project-section">
+            <h2>How it works</h2>
+            <ol className="steps">
+              {project.howItWorks.map((s) => {
+                const [label, ...rest] = s.split(': ');
+                return <li key={s}>{rest.length ? <><strong>{label}:</strong> {rest.join(': ')}</> : s}</li>;
+              })}
+            </ol>
+          </section>
+        )}
+        {project.tech.length > 0 && (
+          <section className="project-section">
+            <h2>Built with</h2>
+            <dl className="tech">
+              {project.tech.map((t) => <div key={t.name}><dt>{t.name}</dt><dd>{t.use}</dd></div>)}
+            </dl>
+          </section>
+        )}
         <section className="project-section">
           <h2>What I did</h2>
           <ul className="highlights">
