@@ -94,10 +94,7 @@ const DETAILS = {
       { name: 'Twilio', use: 'Phone line for the voice agent' },
       { name: 'Vitest', use: 'Tests for the deterministic audit rules' },
     ],
-    links: [
-      { label: 'Live site', href: 'https://billless.tech' },
-      { label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/MHACKS_2026' },
-    ],
+    links: [{ label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/MHACKS_2026' }],
   },
   'Four-Function Calculator': {
     slug: 'four-function-calculator',
