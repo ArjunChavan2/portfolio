@@ -33,6 +33,7 @@ const DETAILS = {
       + 'and insights generated from Capital One account data. Won 1st Place in the Visa Track.',
     badge: '1st Place · Visa Track',
     highlight: { value: '1st Place', label: 'Visa Track, CMU TartanHacks' },
+    media: { type: 'video', src: asset('media/financial-dashboard.mp4'), poster: asset('media/financial-dashboard-poster.jpg'), caption: 'A quest completes and Scotty\'s happiness climbs, recreated from the app\'s own screens and sprites.' },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/codylejang/Scotty-Market' }],
     featured: true,
   },
@@ -43,6 +44,7 @@ const DETAILS = {
       'A logistic regression model predicting in-hospital mortality from ICU records for 10,000 patients, with feature engineering '
       + 'over time-series vitals and threshold tuning for the imbalanced outcome.',
     highlight: { value: '0.858', label: 'AUROC, stratified 5-fold cross-validation' },
+    media: { type: 'video', src: asset('media/icu-mortality-prediction.mp4'), poster: asset('media/icu-mortality-prediction-poster.jpg'), caption: 'From 40 raw features to 253 engineered ones, with the ROC plot from the project.' },
     links: [],
   },
   'Memory-Mapped FPGA Peripheral Interface': {
@@ -52,6 +54,7 @@ const DETAILS = {
       'An ARM Cortex-M4 microcontroller driving LEDs and reading buttons on a Tang Nano FPGA through a 16-bit memory-mapped parallel bus, '
       + 'with address decoding written in Verilog and the control logic in C.',
     highlight: { value: '16-bit', label: 'Memory-mapped parallel bus, ARM to FPGA' },
+    media: { type: 'video', src: asset('media/fpga-peripheral-interface.mp4'), poster: asset('media/fpga-peripheral-interface-poster.jpg'), caption: 'The bus, the C that reads the buttons through it, and the LEDs it drives.' },
     links: [],
   },
   'Facial Emotion Recognition': {
@@ -60,6 +63,7 @@ const DETAILS = {
     summary:
       'A real-time emotion classifier that locates facial landmarks with OpenCV and classifies expressions with a deep neural network in TensorFlow.',
     highlight: { value: 'Real-time', label: 'Emotion classification from facial landmarks' },
+    media: { type: 'video', src: asset('media/facial-emotion-recognition.mp4'), poster: asset('media/facial-emotion-recognition-poster.jpg'), caption: 'An illustrated landmark face; the 60% validated accuracy is the project\'s result.' },
     links: [],
   },
   'BillLess, AI Medical Bill Auditor': {
@@ -69,6 +73,7 @@ const DETAILS = {
       'A healthcare web app built at MHacks 2026 that audits itemized medical bills against the insurer\'s explanation of benefits, '
       + 'flagging duplicate charges, amounts above the EOB balance, and charges with no record.',
     highlight: { value: '3 checks', label: 'Duplicates, over-balance, and unrecorded charges' },
+    media: { type: 'video', src: asset('media/billless.mp4'), poster: asset('media/billless-poster.jpg'), caption: 'BillLess catching a duplicate lab charge on the project\'s synthetic sample bill.' },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/MHACKS_2026' }],
   },
   'Four-Function Calculator': {
@@ -77,6 +82,7 @@ const DETAILS = {
     summary:
       'A four-function arithmetic unit in Verilog for an FPGA, using Booth multiplication and repeated-subtraction division, verified against a testbench suite.',
     highlight: { value: 'Booth', label: 'Multiplication in Verilog RTL' },
+    media: { type: 'video', src: asset('media/four-function-calculator.mp4'), poster: asset('media/four-function-calculator-poster.jpg'), caption: 'A worked Booth multiplication and the controller\'s state names from the Verilog.' },
     links: [],
   },
   'Assignment Calendar': {
