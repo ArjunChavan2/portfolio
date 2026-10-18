@@ -15,6 +15,31 @@ const DETAILS = {
     links: [{ label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/A-Star-Path-Planning' }],
     featured: true,
   },
+  'Forward Kinematics for URDF Robots': {
+    slug: 'forward-kinematics',
+    category: 'Robotics',
+    summary:
+      'Forward kinematics for any URDF robot, with the parser and the transform math written from scratch. It runs as pub/sub nodes '
+      + 'on the same TCP and JSON gateway as the A* runtime, publishing every link pose at 10 Hz, and a browser viewer draws the robot '
+      + 'live from that stream.',
+    highlight: { value: '10 Hz', label: 'Link transforms published over TCP and JSON' },
+    howItWorks: [
+      'Parse: the URDF reader takes apart links, joints, origins, and axes, and rejects a malformed robot description instead of publishing a wrong robot.',
+      'Solve: the transform module composes rotations and translations, and the solver walks the joint tree to place every link in the robot frame.',
+      'Serve: a parameter server holds the robot description, one node turns joint states into transforms at 10 Hz, and another combines those with the global pose into world coordinates.',
+      'Gateway: a single asyncio process serves every topic and service over a rosbridge-style TCP and JSON protocol, reused from the A* project.',
+      'Watch: a browser viewer draws each link from the world transforms with a slider per joint, and steps a demo dual-arm robot through saved choreographies.',
+      'Choreograph: a MediaPipe tool reads a dance video and solves it into keyframes against the arm geometry of the robot, with the waist taken from shoulders against hips.',
+      'Test: unit tests per module plus wire-level integration tests that talk to the running gateway over a raw socket.',
+    ],
+    tech: [
+      { name: 'Python + asyncio', use: 'URDF parser, transform math, and the node processes' },
+      { name: 'TCP + JSON gateway', use: 'Pub/sub topics and services, rosbridge-style' },
+      { name: 'MediaPipe', use: 'Pose tracking for the video-to-choreography tool' },
+      { name: 'pytest', use: 'Per-module unit tests and wire-level integration tests' },
+    ],
+    links: [],
+  },
   'Underwater Inspection ROV': {
     slug: 'underwater-rov',
     category: 'Embedded',

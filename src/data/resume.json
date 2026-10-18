@@ -200,6 +200,26 @@
       ]
     },
     {
+      "title": "Forward Kinematics for URDF Robots",
+      "org": "Python, TCP, JSON, EECS 367",
+      "date": "Oct 2026",
+      "bullets": [
+        "Wrote a URDF parser and forward-kinematics solver from scratch, composing joint transforms into link poses",
+        "Published link transforms at 10 Hz over a TCP and JSON pub/sub gateway, rejecting malformed robot descriptions safely",
+        "Verified with 116 unit and wire-level tests, and converted dance video into choreography for a dual-arm demo robot"
+      ],
+      "skills": [
+        "Python",
+        "Kinematics",
+        "Robotics",
+        "Linear Algebra",
+        "Systems Programming",
+        "Networking",
+        "Testing",
+        "Computer Vision"
+      ]
+    },
+    {
       "title": "ICU Mortality Prediction",
       "org": "Python, scikit-learn, EECS 445",
       "date": "Oct 2026",
