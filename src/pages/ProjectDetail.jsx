@@ -5,6 +5,7 @@ import NotFound from './NotFound';
 
 const DEMOS = {
   astar: lazy(() => import('../demos/AStarDemo')),
+  fk: lazy(() => import('../demos/FkDemo')),
 };
 
 function Media({ media, title }) {
@@ -27,10 +28,7 @@ function Media({ media, title }) {
       <section className="media" aria-label={`${title} interactive demo`}>
         <div className="media-head">
           <h2>Try it</h2>
-          <p>
-            A browser reimplementation of the planner. Change the map, then compare how many cells A* expands
-            against uninformed Dijkstra search for the same shortest path.
-          </p>
+          {media.blurb && <p>{media.blurb}</p>}
         </div>
         <Suspense fallback={<div className="demo-loading">Loading demo…</div>}>
           <Demo />
