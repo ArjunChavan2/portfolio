@@ -1,16 +1,16 @@
 # Arjun Chavan — Portfolio
 
-Personal portfolio at **https://arjunchavan2.github.io/portfolio-prod/**. Vite + React, deployed to GitHub Pages
+Personal portfolio at **https://arjunchavan2.github.io/portfolio/**. Vite + React, deployed to GitHub Pages
 by `.github/workflows/deploy.yml` on every push to `main`.
 
 ## Environments
 
-Two repos, same code, each on its own GitHub Pages site:
+Two repos, same code, each on its own GitHub Pages site (this repo is prod):
 
 | Repo | Site | Role |
 |---|---|---|
 | `portfolio-dev` | https://arjunchavan2.github.io/portfolio-dev/ | Try changes here first (marked `noindex`) |
-| `portfolio-prod` | https://arjunchavan2.github.io/portfolio-prod/ | The real site |
+| `portfolio` | https://arjunchavan2.github.io/portfolio/ | Prod: the real site |
 
 The workflow sets the base path from the repo name, so nothing is edited per repo. Ship by pushing the
 reviewed commits from dev to a review branch on prod and merging it there.

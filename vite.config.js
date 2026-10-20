@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// The same code ships to two GitHub Pages sites, portfolio-prod and portfolio-dev,
+// The same code ships to two GitHub Pages sites, portfolio (prod) and portfolio-dev,
 // so the base path comes from the deploy workflow (VITE_BASE=/<repo name>/).
 // Local dev serves from '/'. Non-prod builds (VITE_NOINDEX=true) get a noindex tag.
 const base = process.env.VITE_BASE || '/'
