@@ -1,0 +1,149 @@
+/* Experience page. Everything is scoped under .page-experience. */
+
+.page-experience .xp-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: 72px 0 56px;
+}
+.page-experience .xp-hero h1 {
+  font-size: clamp(36px, 5.2vw, 56px); font-weight: 700; letter-spacing: -0.025em;
+  line-height: 1.08; margin: 0 0 20px; max-width: 16ch;
+}
+.page-experience .xp-hero .lede { margin: 0; max-width: 60ch; }
+
+.page-experience .xp-section { padding: 56px 0 72px; }
+.page-experience .xp-section.section-subtle { padding: 72px 0; }
+.page-experience .xp-last { padding-top: 88px; padding-bottom: 88px; }
+.page-experience .section-head { margin-bottom: 28px; }
+
+/* Roles: the Home .roles list, expanded. date | rail | body */
+.page-experience .xp-timeline {
+  list-style: none; margin: 0; padding: 0;
+  border-top: 1px solid var(--border-strong);
+}
+.page-experience .xp-role {
+  display: grid; grid-template-columns: 200px 24px minmax(0, 1fr); column-gap: 24px;
+  padding: 36px 0 40px; border-bottom: 1px solid var(--border);
+}
+.page-experience .xp-when { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding-top: 3px; }
+.page-experience .xp-when .date { font-size: 15px; font-weight: 500; color: var(--text-2); white-space: normal; }
+.page-experience .role-now {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 14px; font-weight: 600; color: var(--accent);
+}
+.page-experience .role-now::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+/* Quiet rail: a hairline that runs through every role, a small dot per role. */
+.page-experience .xp-rail { position: relative; }
+.page-experience .xp-rail::before {
+  content: ''; position: absolute; left: 50%; width: 1px; transform: translateX(-50%);
+  top: -37px; bottom: -41px; background: var(--border-strong);
+}
+.page-experience .xp-role:first-child .xp-rail::before { top: 12px; }
+.page-experience .xp-role:last-child .xp-rail::before { bottom: auto; height: 0; }
+.page-experience .xp-dot {
+  position: absolute; left: 50%; top: 8px; transform: translateX(-50%);
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--border-strong);
+}
+.page-experience .is-current .xp-dot {
+  background: var(--accent); border-color: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.page-experience .xp-body h3 {
+  font-size: clamp(20px, 2.2vw, 24px); font-weight: 650; letter-spacing: -0.02em; margin: 0 0 4px;
+}
+.page-experience .xp-org {
+  display: flex; flex-wrap: wrap; gap: 2px 14px; margin: 0 0 18px; font-size: 16px; color: var(--text-2);
+}
+.page-experience .xp-org span:first-child { font-weight: 500; }
+.page-experience .xp-place { color: var(--muted); }
+
+.page-experience .xp-bullets {
+  list-style: none; margin: 0; padding: 0; max-width: 68ch; color: var(--text-2);
+}
+.page-experience .xp-bullets li { position: relative; padding-left: 20px; margin-bottom: 10px; }
+.page-experience .xp-bullets li::before {
+  content: ''; position: absolute; left: 2px; top: 0.78em;
+  width: 8px; height: 1px; background: var(--muted);
+}
+.page-experience .xp-used {
+  margin: 18px 0 0; max-width: 68ch; font-size: 14px; line-height: 1.6; color: var(--muted);
+}
+.page-experience .xp-used-label { font-weight: 600; color: var(--text-2); margin-right: 8px; }
+
+/* Education */
+.page-experience .xp-edu {
+  display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 72px;
+  padding: 28px 0; border-block: 1px solid var(--border-strong);
+}
+.page-experience .xp-edu h3 { font-size: clamp(20px, 2.2vw, 24px); font-weight: 650; letter-spacing: -0.02em; margin: 0 0 4px; }
+.page-experience .xp-edu .xp-org { margin: 0; }
+
+.page-experience .xp-courses { margin-top: 40px; }
+.page-experience .xp-sub { font-size: 18px; font-weight: 650; letter-spacing: -0.01em; margin: 0 0 4px; }
+.page-experience .xp-courses dl { margin: 0; }
+.page-experience .xp-course-group {
+  display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 72px;
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+}
+.page-experience .xp-course-group dt { font-size: 15px; font-weight: 500; color: var(--muted); padding-top: 2px; }
+.page-experience .xp-course-group dd { margin: 0; }
+.page-experience .xp-course-group ul {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 6px 32px;
+  font-size: 16px; color: var(--text);
+}
+
+/* Skills: ruled rows like Home's focus list, items as a readable list, not chips */
+.page-experience .section-head .xp-key { margin: 0; font-size: 14px; color: var(--muted); }
+.page-experience .xp-key strong { color: var(--text); font-weight: 650; }
+.page-experience .xp-skills { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border-strong); }
+.page-experience .xp-skill-row {
+  display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 72px; align-items: baseline;
+  padding: 24px 0; border-bottom: 1px solid var(--border);
+}
+.page-experience .xp-skill-row h3 { font-size: 18px; font-weight: 650; letter-spacing: -0.01em; margin: 0; }
+.page-experience .xp-skill-items {
+  list-style: none; margin: 0; padding: 0; max-width: 68ch;
+  display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 16px; color: var(--muted);
+}
+.page-experience .xp-skill-items li.is-used { color: var(--text); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .page-experience .xp-role { grid-template-columns: 150px 20px minmax(0, 1fr); column-gap: 18px; }
+  .page-experience .xp-edu,
+  .page-experience .xp-course-group,
+  .page-experience .xp-skill-row { grid-template-columns: 150px minmax(0, 1fr); column-gap: 56px; }
+}
+
+@media (max-width: 720px) {
+  .page-experience .xp-hero { padding: 40px 0 32px; }
+  .page-experience .xp-section,
+  .page-experience .xp-section.section-subtle { padding: 48px 0; }
+  .page-experience .xp-last { padding: 56px 0; }
+
+  /* Rail moves to the left edge; date sits above the title. */
+  .page-experience .xp-role {
+    grid-template-columns: 16px minmax(0, 1fr); column-gap: 16px;
+    padding: 28px 0 32px;
+  }
+  .page-experience .xp-rail { grid-column: 1; grid-row: 1 / span 2; }
+  .page-experience .xp-rail::before { top: -29px; bottom: -33px; }
+  .page-experience .xp-role:first-child .xp-rail::before { top: 12px; }
+  .page-experience .xp-role .xp-when {
+    grid-column: 2; grid-row: 1; flex-direction: row; flex-wrap: wrap; align-items: baseline;
+    gap: 4px 14px; padding: 0; margin-bottom: 6px;
+  }
+  .page-experience .xp-role .xp-when .date { font-size: 14px; }
+  .page-experience .xp-body { grid-column: 2; grid-row: 2; }
+  .page-experience .xp-dot { top: 7px; }
+
+  .page-experience .xp-edu,
+  .page-experience .xp-course-group,
+  .page-experience .xp-skill-row { grid-template-columns: 1fr; row-gap: 6px; }
+  .page-experience .xp-edu { padding: 22px 0; }
+  .page-experience .xp-edu .xp-when { padding: 0; margin-bottom: 2px; }
+  .page-experience .xp-skill-row { padding: 20px 0; row-gap: 10px; }
+  .page-experience .xp-course-group { row-gap: 8px; }
+}
