@@ -1,6 +1,6 @@
 import resume from './data/resume.json';
 
-// Public files live under the Vite base (/portfolio/ on GitHub Pages).
+// Public files live under the Vite base (/<repo name>/ on GitHub Pages).
 export const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
 
 export const RESUME_PDF = asset('resume.pdf');

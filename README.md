@@ -3,11 +3,23 @@
 Personal portfolio at **https://arjunchavan2.github.io/portfolio/**. Vite + React, deployed to GitHub Pages
 by `.github/workflows/deploy.yml` on every push to `main`.
 
+## Environments
+
+Two repos, same code, each on its own GitHub Pages site (this repo is prod):
+
+| Repo | Site | Role |
+|---|---|---|
+| `portfolio-dev` | https://arjunchavan2.github.io/portfolio-dev/ | Try changes here first (marked `noindex`) |
+| `portfolio` | https://arjunchavan2.github.io/portfolio/ | Prod: the real site |
+
+The workflow sets the base path from the repo name, so nothing is edited per repo. Ship by pushing the
+reviewed commits from dev to a review branch on prod and merging it there.
+
 ## Develop
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/portfolio/
+npm run dev        # http://localhost:5173/
 npm run build      # vite build + scripts/spa-routes.mjs
 npm run lint
 ```
@@ -37,10 +49,10 @@ Replace `public/resume.pdf` when a new PDF is cut.
 
 ## Hosting notes
 
-- The site lives under `/portfolio/`, set as `base` in `vite.config.js`. Use `asset()` from `src/site.js`
-  for anything in `public/`.
+- The site lives under `/<repo name>/` on Pages. `base` in `vite.config.js` comes from `VITE_BASE`, which the
+  deploy workflow sets (locally it is `/`). Use `asset()` from `src/site.js` for anything in `public/`.
 - GitHub Pages has no SPA fallback, so `scripts/spa-routes.mjs` writes an `index.html` for every route
   (deep links return 200), a `404.html`, and redirects from the old `about.html` and `projects.html`.
   A new top-level page needs adding to its `routes` list.
-- `public/skillmap.html` is the standalone resume skill map, served as-is at `/portfolio/skillmap.html`.
+- `public/skillmap.html` is the standalone resume skill map, served as-is at `<base>skillmap.html`.
 - The contact form has no backend; it opens the visitor's email client with the message prefilled.

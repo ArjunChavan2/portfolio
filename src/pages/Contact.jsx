@@ -1,26 +1,65 @@
+import '../styles/contact.css';
 import ContactForm from '../components/ContactForm';
+import BlurText from '../components/BlurText';
+import AuroraBackground from '../components/AuroraBackground';
 import { contact } from '../site';
+
+const bare = (url) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+const METHODS = [
+  { label: 'Email', value: contact.email, href: `mailto:${contact.email}`, note: 'Best for interviews and scheduling' },
+  { label: 'LinkedIn', value: bare(contact.linkedin), href: contact.linkedin, note: 'Connect or send a message', external: true },
+  { label: 'GitHub', value: bare(contact.github), href: contact.github, note: 'Code for the projects on this site', external: true },
+];
 
 export default function Contact() {
   return (
-    <section className="section page-top">
-      <div className="container contact-grid">
-        <header className="page-head">
-          <p className="kicker">Contact</p>
-          <h1>Let's talk</h1>
+    <div className="page-contact">
+      <section className="contact-hero">
+        <AuroraBackground />
+        <div className="container">
+          <h1><BlurText text="Let's talk about your team." /></h1>
           <p className="lede">
-            I'm looking for software engineering internships and new-grad roles. Send a note here or reach me directly.
+            I'm looking for software engineering internships and new-grad roles.
+            Write to me directly, or use the form to start an email.
           </p>
-          <ul className="contact-list">
-            <li><span>Email</span><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
-            <li><span>LinkedIn</span><a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace('https://', '')}</a></li>
-            <li><span>GitHub</span><a href={contact.github} target="_blank" rel="noreferrer">{contact.github.replace('https://', '')}</a></li>
-          </ul>
-        </header>
-        <div className="panel">
-          <ContactForm />
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="contact-body">
+        <div className="container contact-layout">
+          <div className="contact-direct">
+            <h2>Reach me directly</h2>
+            <ul className="contact-methods">
+              {METHODS.map((m) => (
+                <li key={m.label}>
+                  <a
+                    className="contact-method"
+                    href={m.href}
+                    {...(m.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                  >
+                    <span className="contact-method-label">{m.label}</span>
+                    <span className="contact-method-main">
+                      <span className="contact-method-value">{m.value}</span>
+                      <span className="contact-method-note">{m.note}</span>
+                    </span>
+                    <span className="contact-method-arrow" aria-hidden="true">{m.external ? '↗' : '→'}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="contact-compose">
+            <h2>Or start an email here</h2>
+            <p className="contact-compose-intro">
+              Nothing is sent from this site. The button opens your email app with your message
+              addressed to me, so you can review it and press send.
+            </p>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

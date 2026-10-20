@@ -26,6 +26,11 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+        env:
+          # One workflow for both repos: base path follows the repo name, and
+          # anything ending in -dev is kept out of search results.
+          VITE_BASE: /${{ github.event.repository.name }}/
+          VITE_NOINDEX: ${{ endsWith(github.event.repository.name, '-dev') }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

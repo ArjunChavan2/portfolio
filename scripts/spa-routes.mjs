@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-const base = '/portfolio/';
+// Same base as vite.config.js: the deploy workflow sets VITE_BASE per repo.
+const base = process.env.VITE_BASE || '/';
 const shell = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 
 // Project slugs: explicit ones from projects.js, plus the slugified title for
@@ -35,7 +36,10 @@ const redirect = (to) => `<!doctype html>
 <meta http-equiv="refresh" content="0; url=${to}">
 <a href="${to}">Continue to ${to}</a>
 `;
-const legacy = { 'about.html': `${base}experience`, 'projects.html': `${base}projects` };
+// Targets end in a slash on purpose: Pages serves projects.html for the extensionless
+// /projects, so a stub pointing there would redirect to itself. /projects/ resolves to
+// projects/index.html (the real page).
+const legacy = { 'about.html': `${base}experience/`, 'projects.html': `${base}projects/` };
 for (const [file, to] of Object.entries(legacy)) fs.writeFileSync(path.join(dist, file), redirect(to));
 
 console.log(`spa-routes: ${routes.length} routes, 404.html, ${Object.keys(legacy).length} legacy redirects`);
