@@ -103,8 +103,9 @@ export default function Projects() {
             <h2 id="pp-connect-title">How my work connects</h2>
           </div>
           <p className="pp-connect-lede">
-            Every project and role, linked by the skills they share and the area they sit in. Pick a start and an end,
-            or click any name, and A* searches this map the same way the path planner searches a maze.
+            Pick any two things, say a skill and a role, and A* finds the most relevant connection between them: the
+            fewest steps, favoring links backed by more lines on my resume and by more recent work. Each step shows the
+            line that supports it.
           </p>
           <WorkPath onShowProjects={showPath} />
         </div>
