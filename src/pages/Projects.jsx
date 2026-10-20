@@ -1,10 +1,11 @@
 import '../styles/projects.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import ProjectThumb from '../components/ProjectThumb';
 import BlurText from '../components/BlurText';
 import AuroraBackground from '../components/AuroraBackground';
+import WorkPath from '../components/WorkPath';
 
 const mediaLabel = (p) => (p.media?.type === 'demo' ? 'Interactive demo' : p.media?.type === 'video' ? 'Video' : null);
 
@@ -64,9 +65,21 @@ function ProjectRow({ project }) {
 
 export default function Projects() {
   const categories = ['All', ...new Set(projects.map((p) => p.category))];
-  const count = (c) => (c === 'All' ? projects.length : projects.filter((p) => p.category === c).length);
+  const count = (c) => (c === 'All' ? projects.length : c === 'On your path' ? (pathSlugs || []).length : projects.filter((p) => p.category === c).length);
   const [filter, setFilter] = useState('All');
-  const shown = filter === 'All' ? projects : projects.filter((p) => p.category === filter);
+  const [pathSlugs, setPathSlugs] = useState(null);
+  const listTitle = useRef(null);
+  const PATH = 'On your path';
+  const shown = filter === 'All'
+    ? projects
+    : filter === PATH
+      ? projects.filter((p) => pathSlugs?.includes(p.slug))
+      : projects.filter((p) => p.category === filter);
+  const showPath = (slugs) => {
+    setPathSlugs(slugs);
+    setFilter(PATH);
+    listTitle.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  };
   const lead = pickLead(shown);
   const rest = shown.filter((p) => p !== lead);
 
@@ -84,10 +97,23 @@ export default function Projects() {
         </div>
       </section>
 
+      <section className="pp-connect" aria-labelledby="pp-connect-title">
+        <div className="container">
+          <div className="section-head pp-head">
+            <h2 id="pp-connect-title">How my work connects</h2>
+          </div>
+          <p className="pp-connect-lede">
+            Every project and role, linked by the skills they share and the area they sit in. Pick a start and an end,
+            or click any dot, and A* searches this graph the same way the path planner searches a maze.
+          </p>
+          <WorkPath onShowProjects={showPath} />
+        </div>
+      </section>
+
       <section className="pp-body" aria-labelledby="pp-list-title">
         <div className="container">
           <div className="pp-filter" role="group" aria-label="Filter projects by category">
-            {categories.map((c) => (
+            {[...categories, ...(pathSlugs ? [PATH] : [])].map((c) => (
               <button
                 key={c}
                 type="button"
@@ -102,7 +128,7 @@ export default function Projects() {
           </div>
 
           <div className="section-head pp-head">
-            <h2 id="pp-list-title">{filter === 'All' ? 'All projects' : filter}</h2>
+            <h2 id="pp-list-title" ref={listTitle}>{filter === 'All' ? 'All projects' : filter === PATH ? 'Projects on your path' : filter}</h2>
             <p className="pp-count" aria-live="polite">
               {shown.length === projects.length
                 ? `${shown.length} projects, newest first`

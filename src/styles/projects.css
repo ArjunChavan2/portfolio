@@ -100,3 +100,8 @@
 @media (prefers-reduced-motion: reduce) {
   .page-projects .pp-chip, .page-projects .pp-row { transition: none; }
 }
+
+/* "How my work connects" section above the list. */
+.page-projects .pp-connect { padding: 24px 0 0; }
+.page-projects .pp-connect-lede { max-width: 62ch; color: var(--text-2); font-size: 17px; margin: -8px 0 28px; }
+.page-projects .pp-head h2 { scroll-margin-top: 88px; }
