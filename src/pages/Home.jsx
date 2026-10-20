@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import resume from '../data/resume.json';
 import { projects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
+import BlurText from '../components/BlurText';
+import AuroraBackground from '../components/AuroraBackground';
 import { HEADSHOT, RESUME_PDF, contact, currentRole, currentOrg } from '../site';
 
 const FOCUS = [
@@ -15,10 +17,11 @@ export default function Home() {
   return (
     <>
       <section className="hero">
+        <AuroraBackground />
         <div className="container hero-grid">
           <div className="hero-copy">
             <p className="kicker">Computer Science · {resume.education.school}</p>
-            <h1>Software engineer building products and the systems behind them.</h1>
+            <h1><BlurText text="Software engineer building products and the systems behind them." /></h1>
             <p className="lede">
               I'm {resume.name.split(' ')[0]}, a computer science student graduating {resume.education.date.replace('Expected ', '')}.
               I'm currently {currentRole.title} at {currentOrg}, co-leading the team building a healthcare scheduling platform.

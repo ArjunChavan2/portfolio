@@ -130,7 +130,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 .page-head h1 { font-size: clamp(34px, 5vw, 46px); margin: 0 0 16px; }
 
 /* Hero */
-.hero { padding: 80px 0 88px; }
+.hero { position: relative; isolation: isolate; overflow: hidden; padding: 80px 0 88px; }
 .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: center; }
 .hero h1 { font-size: clamp(36px, 5.2vw, 56px); font-weight: 700; letter-spacing: -0.025em; margin: 0 0 24px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0 28px; }
@@ -324,4 +324,44 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+}
+
+/* Hero motion (BlurText + AuroraBackground) */
+:root { --aurora-1: #3b82f6; --aurora-2: #8b5cf6; --aurora-3: #06b6d4; --aurora-opacity: 0.22; }
+@media (prefers-color-scheme: dark) {
+  :root { --aurora-1: #3b6dff; --aurora-2: #7c4dff; --aurora-3: #0ea5b7; --aurora-opacity: 0.28; }
+}
+
+.blur-word {
+  display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(14px);
+  transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s ease;
+  will-change: opacity, filter, transform;
+}
+.blur-text.is-in .blur-word { opacity: 1; filter: blur(0); transform: none; }
+
+.aurora {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+.aurora-blob {
+  position: absolute; width: 46vw; max-width: 640px; aspect-ratio: 1; border-radius: 50%;
+  filter: blur(80px); opacity: var(--aurora-opacity); will-change: transform;
+  animation: aurora-drift 22s ease-in-out infinite alternate;
+}
+.aurora-a { background: var(--aurora-1); top: -22%; left: -8%; }
+.aurora-b { background: var(--aurora-2); top: -30%; right: -10%; animation-duration: 28s; animation-delay: -6s; }
+.aurora-c { background: var(--aurora-3); bottom: -40%; left: 32%; animation-duration: 32s; animation-delay: -12s; }
+@keyframes aurora-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(6vw, 4vh, 0) scale(1.18); }
+}
+
+@media (max-width: 720px) {
+  .aurora-blob { filter: blur(56px); }
+  .aurora-c { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blur-word { opacity: 1; filter: none; transform: none; transition: none; }
+  .aurora-blob { animation: none; }
 }
