@@ -36,7 +36,10 @@ const redirect = (to) => `<!doctype html>
 <meta http-equiv="refresh" content="0; url=${to}">
 <a href="${to}">Continue to ${to}</a>
 `;
-const legacy = { 'about.html': `${base}experience`, 'projects.html': `${base}projects` };
+// Targets end in a slash on purpose: Pages serves projects.html for the extensionless
+// /projects, so a stub pointing there would redirect to itself. /projects/ resolves to
+// projects/index.html (the real page).
+const legacy = { 'about.html': `${base}experience/`, 'projects.html': `${base}projects/` };
 for (const [file, to] of Object.entries(legacy)) fs.writeFileSync(path.join(dist, file), redirect(to));
 
 console.log(`spa-routes: ${routes.length} routes, 404.html, ${Object.keys(legacy).length} legacy redirects`);
