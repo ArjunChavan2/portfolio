@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-const base = '/portfolio/';
+// Same base as vite.config.js: the deploy workflow sets VITE_BASE per repo.
+const base = process.env.VITE_BASE || '/';
 const shell = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 
 // Project slugs: explicit ones from projects.js, plus the slugified title for
