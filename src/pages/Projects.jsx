@@ -104,7 +104,7 @@ export default function Projects() {
           </div>
           <p className="pp-connect-lede">
             Every project and role, linked by the skills they share and the area they sit in. Pick a start and an end,
-            or click any dot, and A* searches this graph the same way the path planner searches a maze.
+            or click any name, and A* searches this map the same way the path planner searches a maze.
           </p>
           <WorkPath onShowProjects={showPath} />
         </div>

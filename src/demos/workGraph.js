@@ -1,18 +1,28 @@
 // A graph of everything on the site: every project and every role is a node,
-// so is every skill that two or more of them share, and so is each category
-// (Robotics, Full stack, Experience, ...). Items connect to their skills and to
-// their category, so a path reads "role -> skill -> project -> category -> ...".
+// so is every skill that two or more of them share, and so is each project
+// category (Robotics, Full stack, ...). Items connect to their skills, projects
+// also connect to their category, so a path reads "role -> skill -> project".
 // Category hops cost a little more than skill hops, so paths prefer a real
 // shared skill and fall back on the category when there is none.
-// Layout is deterministic (no randomness), so the picture is the same on every visit.
+//
+// Layout is four ordered columns, left to right: roles, shared skills,
+// projects (grouped by category), categories. Every edge joins neighbouring
+// columns, and each column is ordered to keep lines from crossing. Layout is
+// deterministic, so the picture is the same on every visit.
 import resume from '../data/resume.json';
 import { projects } from '../data/projects';
 
-export const VIEW = { w: 1000, h: 580, cx: 500, cy: 292 };
-const RING = { rx: 330, ry: 236 }; // items sit on this ellipse
-const INNER = { rx: 262, ry: 176 }; // shared skills stay inside this one
 export const HUB_COST = 1.5;
-const HUB_INSET = 64; // category hubs sit just inside their group of items
+export const COLUMNS = [
+  { kind: 'role', x: 118, title: 'Roles' },
+  { kind: 'skill', x: 468, title: 'Shared skills' },
+  { kind: 'project', x: 792, title: 'Projects' },
+  { kind: 'category', x: 1008, title: 'Area' },
+];
+const COL_X = Object.fromEntries(COLUMNS.map((c) => [c.kind, c.x]));
+const GAP = { role: 64, skill: 30, project: 40, group: 22 };
+const PAD = { top: 56, bottom: 24 };
+export const PILL_H = 26;
 
 const norm = (s) => s.trim().toLowerCase();
 
@@ -31,12 +41,14 @@ function shortTitle(title, max = 22) {
 const shortRole = (title) =>
   title.replace('Machine Learning', 'ML').replace('Developer ', '').replace('Assistant', 'Asst.');
 
+// Pill width from the label: roles and projects are set a size up from skills.
+const pillWidth = (n) => Math.round(n.label.length * (n.kind === 'role' || n.kind === 'project' ? 7.7 : 7.1) + 26);
+
 export function buildGraph() {
   const items = [
     ...resume.experience.map((e, i) => ({
       id: `r:${i}`,
       kind: 'role',
-      group: 'Experience',
       title: `${e.title}, ${e.org.split(',')[0]}`,
       label: shortRole(e.title),
       href: '/experience',
@@ -68,10 +80,10 @@ export function buildGraph() {
     .filter(([, ids]) => ids.length > 1)
     .map(([key]) => ({ id: `s:${key}`, kind: 'skill', title: display.get(key), label: display.get(key) }));
 
-  const groupNames = [...new Set(items.map((i) => i.group))];
+  const groupNames = [...new Set(projects.map((p) => p.category))];
   const hubs = groupNames.map((g) => ({ id: `c:${g}`, kind: 'category', title: g, label: g }));
 
-  const nodes = new Map([...items, ...skills, ...hubs].map((n) => [n.id, { ...n, adj: [] }]));
+  const nodes = new Map([...items, ...skills, ...hubs].map((n) => [n.id, { ...n, adj: [], w: pillWidth(n) }]));
   const edges = [];
   const link = (a, b, cost) => {
     nodes.get(a).adj.push({ id: b, cost });
@@ -80,14 +92,15 @@ export function buildGraph() {
   };
   for (const it of items) {
     for (const s of new Set(it.skills.map(norm))) if (nodes.has(`s:${s}`)) link(it.id, `s:${s}`, 1);
-    link(it.id, `c:${it.group}`, HUB_COST);
+    if (it.kind === 'project') link(it.id, `c:${it.group}`, HUB_COST);
   }
 
-  layout(nodes, items, groupNames);
+  const view = layout(nodes, groupNames);
   const maxEdge = Math.max(...edges.map(([a, b]) => dist(nodes.get(a), nodes.get(b))));
   return {
     nodes,
     edges,
+    view,
     items: items.map((i) => i.id),
     skills: skills.map((s) => s.id),
     hubs: hubs.map((h) => h.id),
@@ -96,76 +109,78 @@ export function buildGraph() {
 }
 
 const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+const mean = (xs) => xs.reduce((t, v) => t + v, 0) / xs.length;
 
-function layout(nodes, items, order) {
-  // Items on the outer ellipse, grouped by category, with a gap between groups.
-  const sorted = order.flatMap((g) => items.filter((i) => i.group === g));
-  const slots = sorted.length + order.length; // one empty slot between groups
-  let slot = 0;
-  let prev = null;
-  for (const it of sorted) {
-    if (prev !== null && it.group !== prev) slot += 1;
-    prev = it.group;
-    const a = -Math.PI / 2 + (slot / slots) * Math.PI * 2;
-    const n = nodes.get(it.id);
-    n.angle = a;
-    n.x = VIEW.cx + RING.rx * Math.cos(a);
-    n.y = VIEW.cy + RING.ry * Math.sin(a);
-    slot += 1;
-  }
+function layout(nodes, groupNames) {
+  const all = [...nodes.values()];
+  const roles = all.filter((n) => n.kind === 'role');
+  let skills = all.filter((n) => n.kind === 'skill');
+  const projectsIn = (g) => all.filter((n) => n.kind === 'project' && n.group === g);
+  let groups = groupNames.map((g) => ({ name: g, members: projectsIn(g) }));
 
-  // Each category hub sits just inside the middle of its group.
-  for (const g of order) {
-    const angles = items.filter((i) => i.group === g).map((i) => nodes.get(i.id).angle);
-    const mid = (Math.min(...angles) + Math.max(...angles)) / 2;
-    Object.assign(nodes.get(`c:${g}`), ringPoint(mid, -HUB_INSET), { angle: mid });
-  }
+  const spans = {
+    role: (roles.length - 1) * GAP.role,
+    skill: (skills.length - 1) * GAP.skill,
+    project: (all.filter((n) => n.kind === 'project').length - 1) * GAP.project + (groups.length - 1) * GAP.group,
+  };
+  const height = Math.max(...Object.values(spans)) + PAD.top + PAD.bottom + PILL_H;
+  const mid = PAD.top + (height - PAD.top - PAD.bottom) / 2;
 
-  // Skills start at the mean of the items they connect, pulled toward the centre,
-  // then relax: spring to that target, push away from each other and from hubs.
-  const skills = [...nodes.values()].filter((n) => n.kind === 'skill');
-  const hubs = [...nodes.values()].filter((n) => n.kind === 'category');
-  for (const s of skills) {
-    const nb = s.adj.map((e) => nodes.get(e.id));
-    s.tx = VIEW.cx + (nb.reduce((t, n) => t + n.x, 0) / nb.length - VIEW.cx) * 0.62;
-    s.ty = VIEW.cy + (nb.reduce((t, n) => t + n.y, 0) / nb.length - VIEW.cy) * 0.62;
-    s.x = s.tx;
-    s.y = s.ty;
+  const placeColumn = (list, kind, gap) => {
+    let y = mid - ((list.length - 1) * gap) / 2;
+    for (const n of list) { n.x = COL_X[kind]; n.y = y; y += gap; }
+  };
+  const placeProjectsExact = () => {
+    let y = mid - spans.project / 2;
+    groups.forEach((g, gi) => {
+      if (gi > 0) y += GAP.group;
+      for (const n of g.members) { n.x = COL_X.project; n.y = y; y += GAP.project; }
+    });
+  };
+
+  // Roles keep resume order (newest first). Skills and projects are ordered by
+  // the average height of what they connect to (the barycentre heuristic),
+  // repeated a few times so the columns settle with few crossings.
+  placeColumn(roles, 'role', GAP.role);
+  placeProjectsExact();
+  const neighbourY = (n, kinds) => {
+    const ys = n.adj.map((e) => nodes.get(e.id)).filter((m) => kinds.includes(m.kind)).map((m) => m.y);
+    return ys.length ? mean(ys) : n.y;
+  };
+  for (let round = 0; round < 8; round++) {
+    skills = skills
+      .map((n) => ({ n, k: neighbourY(n, ['role', 'project']) }))
+      .sort((a, b) => a.k - b.k || a.n.label.localeCompare(b.n.label))
+      .map((e) => e.n);
+    placeColumn(skills, 'skill', GAP.skill);
+    groups = groups
+      .map((g) => {
+        const members = g.members
+          .map((n) => ({ n, k: neighbourY(n, ['skill']) }))
+          .sort((a, b) => a.k - b.k || a.n.label.localeCompare(b.n.label));
+        return { ...g, members: members.map((e) => e.n), k: mean(members.map((e) => e.k)) };
+      })
+      .sort((a, b) => a.k - b.k);
+    placeProjectsExact();
   }
-  for (let iter = 0; iter < 160; iter++) {
-    for (const s of skills) {
-      let fx = (s.tx - s.x) * 0.06;
-      let fy = (s.ty - s.y) * 0.06;
-      for (const o of [...skills, ...hubs]) {
-        if (o === s) continue;
-        let dx = s.x - o.x;
-        let dy = s.y - o.y;
-        let d = Math.hypot(dx, dy);
-        if (d < 0.01) { dx = Math.cos(s.id.length + o.id.length); dy = Math.sin(s.id.length * 7); d = 1; }
-        if (d < 74) {
-          const push = (74 - d) / 74;
-          fx += (dx / d) * push * 6;
-          fy += (dy / d) * push * 6;
-        }
-      }
-      s.x += fx;
-      s.y += fy;
-      // Stay inside the inner ellipse so skills never sit on the item ring.
-      const ex = (s.x - VIEW.cx) / INNER.rx;
-      const ey = (s.y - VIEW.cy) / INNER.ry;
-      const e = Math.hypot(ex, ey);
-      if (e > 1) {
-        s.x = VIEW.cx + (ex / e) * INNER.rx;
-        s.y = VIEW.cy + (ey / e) * INNER.ry;
-      }
-    }
+  for (const g of groups) {
+    const hub = nodes.get(`c:${g.name}`);
+    hub.x = COL_X.category;
+    hub.y = mean(g.members.map((n) => n.y));
   }
+  return { w: 1100, h: height };
 }
 
-export const ringPoint = (a, grow = 0) => ({
-  x: VIEW.cx + (RING.rx + grow) * Math.cos(a),
-  y: VIEW.cy + (RING.ry + grow * (RING.ry / RING.rx)) * Math.sin(a),
-});
+// The two attach points and a horizontal S-curve between two nodes in
+// neighbouring columns (or a loop back into the same side for a skill shared
+// by two projects, which is still left-to-right between columns).
+export function edgePath(a, b) {
+  const [l, r] = a.x <= b.x ? [a, b] : [b, a];
+  const x1 = l.x + l.w / 2;
+  const x2 = r.x - r.w / 2;
+  const dx = Math.max(40, (x2 - x1) / 2);
+  return `M${x1},${l.y} C${x1 + dx},${l.y} ${x2 - dx},${r.y} ${x2},${r.y}`;
+}
 
 class MinHeap {
   constructor() { this.a = []; }
@@ -203,9 +218,9 @@ class MinHeap {
 }
 
 // A* over the graph. A skill hop costs 1 and a category hop costs HUB_COST. The
-// heuristic is straight-line distance divided by the longest edge: every hop
-// covers at most that distance and costs at least 1, so it never overestimates
-// the cost left, and the path returned is a cheapest one. Returns the same event log as the grid demo:
+// heuristic is straight-line distance (between node centres) divided by the
+// longest edge: every hop covers at most that distance and costs at least 1,
+// so it never overestimates the cost left, and the path is a cheapest one. Returns the same event log as the grid demo:
 // [0, id] when a node joins the frontier, [1, id] when it is expanded.
 export function searchGraph(graph, start, goal) {
   const { nodes, maxEdge } = graph;
