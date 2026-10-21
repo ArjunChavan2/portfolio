@@ -25,10 +25,10 @@ const DETAILS = {
     slug: 'forward-kinematics',
     category: 'Robotics',
     summary:
-      'Forward kinematics for any URDF robot, with the parser and the transform math written from scratch. It runs as pub/sub nodes '
-      + 'on the same TCP and JSON gateway as the A* runtime, publishing every link pose at 10 Hz, and a browser viewer draws the robot '
-      + 'live from that stream.',
-    highlight: { value: '10 Hz', label: 'Link transforms published over TCP and JSON' },
+      'From a robot\'s description file to a robot in motion. A URDF parser and transform math written from scratch place every '
+      + 'link, pub/sub nodes stream those poses over the A* runtime\'s TCP and JSON gateway, and a live viewer draws them. A MediaPipe '
+      + 'tool turns dance video into choreography, and the demo below runs a port of the code on the project\'s 26-joint dual-arm robot.',
+    highlight: { value: 'URDF → motion', label: 'Description file in, moving robot out: parser, kinematics, pub/sub, live viewer' },
     media: {
       type: 'demo',
       demo: 'fk',
