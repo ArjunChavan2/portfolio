@@ -85,6 +85,32 @@
         "Scoped a two-week MVP timeline and two-developer staffing plan for Nerd Perfect Media, recommendation adopted",
         "Led a schema audit, facilitating cross-team discussion to align frontend and backend on a shared data format"
       ],
+      "bulletSkills": [
+        [
+          "Team Leadership",
+          "Sprint Planning",
+          "Agile",
+          "Healthcare"
+        ],
+        [
+          "Code Review",
+          "Team Leadership",
+          "Deployment"
+        ],
+        [
+          "Stakeholder Communication",
+          "Technical Demos"
+        ],
+        [
+          "Project Scoping",
+          "Team Leadership"
+        ],
+        [
+          "Project Scoping",
+          "Stakeholder Communication",
+          "REST APIs"
+        ]
+      ],
       "skills": [
         "Team Leadership",
         "Sprint Planning",
@@ -107,6 +133,31 @@
         "Collaborated in Agile and Scrum sprint planning, translating user stories into actionable UI tasks",
         "Migrated build tooling from deprecated react-scripts to Vite, restoring CI pipeline stability",
         "Authored the team deployment runbook covering release packaging, secure upload, and rollback procedures"
+      ],
+      "bulletSkills": [
+        [
+          "React",
+          "JavaScript",
+          "CSS",
+          "UI Development",
+          "Figma",
+          "Healthcare"
+        ],
+        [
+          "Agile",
+          "Sprint Planning",
+          "UI Development"
+        ],
+        [
+          "Vite",
+          "Build Tooling",
+          "CI/CD",
+          "React"
+        ],
+        [
+          "Deployment",
+          "CI/CD"
+        ]
       ],
       "skills": [
         "React",
@@ -132,6 +183,24 @@
         "Automated data collection pipelines in Python, reducing preparation time for the research team",
         "Deployed control scripts that increased the success rate of robotic pick-and-place operations"
       ],
+      "bulletSkills": [
+        [
+          "Model Training",
+          "Pathfinding",
+          "Research",
+          "Motion Control"
+        ],
+        [
+          "Python",
+          "Data Pipelines",
+          "Research"
+        ],
+        [
+          "Python",
+          "Motion Control",
+          "Research"
+        ]
+      ],
       "skills": [
         "Model Training",
         "Pathfinding",
@@ -149,6 +218,23 @@
         "Implemented autonomous navigation using OpenCV to track pool lane lines in real time",
         "Processed AprilTag detection data to compute relative 3D position and heading between robotic units",
         "Tuned PID controllers to stabilize robot orientation, producing smoother and more consistent trajectory tracking"
+      ],
+      "bulletSkills": [
+        [
+          "OpenCV",
+          "Computer Vision",
+          "Autonomous Navigation",
+          "Python"
+        ],
+        [
+          "Computer Vision",
+          "Sensor Processing",
+          "OpenCV"
+        ],
+        [
+          "PID Control",
+          "Motion Control"
+        ]
       ],
       "skills": [
         "OpenCV",
@@ -171,6 +257,23 @@
         "Planned optimal 4-connected paths with A* over occupancy grids, backed by a hand-written binary min-heap",
         "Scored 100% on a black-box autograder validating paths against unseen staff-authored grading maps"
       ],
+      "bulletSkills": [
+        [
+          "Python",
+          "Systems Programming",
+          "Networking"
+        ],
+        [
+          "Python",
+          "Pathfinding",
+          "Data Structures",
+          "Autonomous Navigation"
+        ],
+        [
+          "Python",
+          "Pathfinding"
+        ]
+      ],
       "skills": [
         "Python",
         "Systems Programming",
@@ -178,7 +281,8 @@
         "Pathfinding",
         "Data Structures",
         "Autonomous Navigation"
-      ]
+      ],
+      "onResume": true
     },
     {
       "title": "Memory-Mapped FPGA Peripheral Interface",
@@ -189,6 +293,25 @@
         "Programmed Verilog address decoding with D-latch write registers and tristate read drivers for LED and button ports",
         "Designed a C state machine that debounced button input, stepping LED cycle time between 375ms and 6s per press"
       ],
+      "bulletSkills": [
+        [
+          "ARM Cortex-M",
+          "FPGA",
+          "Memory-Mapped I/O",
+          "C"
+        ],
+        [
+          "Verilog",
+          "RTL Design",
+          "FPGA",
+          "Memory-Mapped I/O"
+        ],
+        [
+          "C",
+          "State Machines",
+          "ARM Cortex-M"
+        ]
+      ],
       "skills": [
         "ARM Cortex-M",
         "FPGA",
@@ -197,7 +320,8 @@
         "Verilog",
         "RTL Design",
         "State Machines"
-      ]
+      ],
+      "onResume": true
     },
     {
       "title": "Forward Kinematics for URDF Robots",
@@ -208,6 +332,24 @@
         "Published link transforms at 10 Hz over a TCP and JSON pub/sub gateway, rejecting malformed robot descriptions safely",
         "Verified with 116 unit and wire-level tests, and converted dance video into choreography for a dual-arm demo robot"
       ],
+      "bulletSkills": [
+        [
+          "Python",
+          "Kinematics",
+          "Robotics",
+          "Linear Algebra"
+        ],
+        [
+          "Python",
+          "Systems Programming",
+          "Networking"
+        ],
+        [
+          "Python",
+          "Testing",
+          "Computer Vision"
+        ]
+      ],
       "skills": [
         "Python",
         "Kinematics",
@@ -217,7 +359,8 @@
         "Networking",
         "Testing",
         "Computer Vision"
-      ]
+      ],
+      "onResume": true
     },
     {
       "title": "ICU Mortality Prediction",
@@ -228,6 +371,22 @@
         "Tuned logistic regression across 20 settings with stratified 5-fold cross-validation, reaching 0.858 AUROC",
         "Raised out-of-fold F1 from 0.517 to 0.551 by tuning the decision threshold on out-of-fold scores"
       ],
+      "bulletSkills": [
+        [
+          "Python",
+          "Feature Engineering",
+          "Healthcare"
+        ],
+        [
+          "scikit-learn",
+          "Model Training",
+          "Cross-Validation"
+        ],
+        [
+          "scikit-learn",
+          "Model Evaluation"
+        ]
+      ],
       "skills": [
         "Python",
         "Feature Engineering",
@@ -236,7 +395,8 @@
         "Model Training",
         "Cross-Validation",
         "Model Evaluation"
-      ]
+      ],
+      "onResume": true
     },
     {
       "title": "BillLess, AI Medical Bill Auditor",
@@ -247,6 +407,23 @@
         "Wrote deterministic rules flagging duplicate charges, amounts above the EOB balance, and charges with no record",
         "Integrated Gemini extraction, an ElevenLabs voice agent, and Photon iMessage approvals, storing cases in Neon"
       ],
+      "bulletSkills": [
+        [
+          "TypeScript",
+          "React",
+          "Healthcare"
+        ],
+        [
+          "TypeScript",
+          "Healthcare",
+          "Data Validation"
+        ],
+        [
+          "LLM Integration",
+          "PostgreSQL",
+          "Voice AI"
+        ]
+      ],
       "skills": [
         "TypeScript",
         "React",
@@ -255,7 +432,8 @@
         "LLM Integration",
         "PostgreSQL",
         "Voice AI"
-      ]
+      ],
+      "onResume": false
     },
     {
       "title": "Gamified Financial Dashboard",
@@ -266,6 +444,24 @@
         "Developed a TypeScript onboarding engine parsing the Capital One REST API to surface AI-curated financial insights",
         "Secured 1st Place in the Visa Track, presenting a scalable fintech solution to industry executives"
       ],
+      "bulletSkills": [
+        [
+          "React",
+          "UI Development",
+          "Fintech"
+        ],
+        [
+          "TypeScript",
+          "REST APIs",
+          "Node.js",
+          "Fintech"
+        ],
+        [
+          "Stakeholder Communication",
+          "Technical Demos",
+          "Fintech"
+        ]
+      ],
       "skills": [
         "React",
         "UI Development",
@@ -275,7 +471,8 @@
         "Node.js",
         "Stakeholder Communication",
         "Technical Demos"
-      ]
+      ],
+      "onResume": true
     },
     {
       "title": "Underwater Inspection ROV",
@@ -286,6 +483,24 @@
         "Added a latching cruise control that locked forward thrust for long transits, improving measured forward speed by 1.5x",
         "Briefed engineering stakeholders on hardware and software integration through a live technical demo"
       ],
+      "bulletSkills": [
+        [
+          "C++",
+          "Arduino",
+          "Motion Control",
+          "Marine Robotics"
+        ],
+        [
+          "C++",
+          "Arduino",
+          "Motion Control",
+          "State Machines"
+        ],
+        [
+          "Technical Demos",
+          "Stakeholder Communication"
+        ]
+      ],
       "skills": [
         "C++",
         "Arduino",
@@ -294,7 +509,8 @@
         "State Machines",
         "Technical Demos",
         "Stakeholder Communication"
-      ]
+      ],
+      "onResume": false
     },
     {
       "title": "Facial Emotion Recognition",
@@ -304,12 +520,25 @@
         "Trained a real-time emotion classifier using facial landmark detection and a deep neural network",
         "Achieved 60% validated prediction accuracy, outperforming baseline emotion classifiers on the test set"
       ],
+      "bulletSkills": [
+        [
+          "TensorFlow",
+          "Computer Vision",
+          "Model Training",
+          "Python"
+        ],
+        [
+          "Model Training",
+          "Computer Vision"
+        ]
+      ],
       "skills": [
         "TensorFlow",
         "Computer Vision",
         "Model Training",
         "Python"
-      ]
+      ],
+      "onResume": false
     },
     {
       "title": "Four-Function Calculator",
@@ -319,11 +548,24 @@
         "Implemented a four-function arithmetic unit in Verilog using Booth multiplication and repeated-subtraction division",
         "Debugged overflow flag handling and testbench timing across a Verilog testbench suite"
       ],
+      "bulletSkills": [
+        [
+          "Verilog",
+          "RTL Design",
+          "FPGA"
+        ],
+        [
+          "Verilog",
+          "RTL Design",
+          "FPGA"
+        ]
+      ],
       "skills": [
         "Verilog",
         "RTL Design",
         "FPGA"
-      ]
+      ],
+      "onResume": false
     }
   ]
 }
