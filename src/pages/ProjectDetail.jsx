@@ -10,6 +10,7 @@ import NotFound from './NotFound';
 // Interactive demos, keyed by `media.demo` in projects.js. Register new demos here.
 const DEMOS = {
   astar: lazy(() => import('../demos/AStarDemo')),
+  fk: lazy(() => import('../demos/FkDemo')),
 };
 
 function Media({ media, title }) {
@@ -40,10 +41,7 @@ function Media({ media, title }) {
         <div className="container">
           <div className="pd-demo-head">
             <h2 id="demo-title">Try it in the browser</h2>
-            <p>
-              A browser reimplementation of the planner. Change the map, then compare how many cells A* expands
-              against uninformed Dijkstra search for the same shortest path.
-            </p>
+            {media.blurb && <p>{media.blurb}</p>}
           </div>
           <Suspense fallback={<div className="demo-loading">Loading demo…</div>}>
             <Demo />

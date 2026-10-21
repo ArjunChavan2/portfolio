@@ -18,6 +18,9 @@ const toEntry = (e, bullets) => ({
   org: clean(e.org),
   date: e.date,
   bullets: bullets.map((b) => b.t),
+  // Skills each bullet shows, in bullet order. The site's work map uses these
+  // to weigh links and to quote the line behind each one.
+  bulletSkills: bullets.map((b) => b.s || []),
   skills: [...new Set(bullets.flatMap((b) => b.s || []))],
 });
 
@@ -28,7 +31,9 @@ const entries = (list) => list.filter((e) => ships(e)).map((e) => toEntry(e, e.b
 // benched projects show all of theirs.
 const allProjects = PROJECTS.map((e) => {
   const shipped = e.bullets.filter((b) => ships(b, projectTags));
-  return toEntry(e, shipped.length ? shipped : e.bullets);
+  // onResume: the project is on the one-page resume. The work map treats those
+  // as stronger evidence than projects cut for space.
+  return { ...toEntry(e, shipped.length ? shipped : e.bullets), onResume: ships(e) && e.bullets.some((b) => ships(b)) };
 });
 
 const out = {

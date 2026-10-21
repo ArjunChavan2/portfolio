@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { buildGraph, searchGraph, edgePath, COLUMNS, PILL_H } from '../demos/workGraph';
 
 // "How my work connects": roles, shared skills, projects and their areas laid
-// out in four columns. Pick two ends (or click a node) and the same A* idea as
-// the path planner demo searches it live: frontier, explored nodes, then the
-// path. The result reads as a chain with links, and can filter the project list.
+// out in four columns. Pick two ends (or click a start, then an end) and the
+// same A* idea as the path planner demo searches it live: frontier, explored
+// nodes, then the path. Links are weighted by evidence (see workGraph.js), so
+// the path is the most relevant connection, and each step quotes the resume
+// line behind it. The path can also filter the project list.
 const DEFAULT_FROM = 'r:0';
 const DEFAULT_TO = 'p:astar-path-planner';
 const KIND_NAME = { role: 'Role', project: 'Project', skill: 'Skill', category: 'Area' };
@@ -21,6 +23,7 @@ export default function WorkPath({ onShowProjects }) {
   const [pathShown, setPathShown] = useState(0);
   const [stats, setStats] = useState(null);
   const [hover, setHover] = useState(null);
+  const [picking, setPicking] = useState('from'); // what the next click on the map sets
   const timer = useRef(0);
   const root = useRef(null);
   const started = useRef(false);
@@ -77,8 +80,23 @@ export default function WorkPath({ onShowProjects }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const go = (a, b) => { setFrom(a); setTo(b); started.current = true; run(a, b); };
-  const onNode = (id) => { if (id !== from) go(from, id); };
+  const go = (a, b) => { setFrom(a); setTo(b); setPicking('from'); started.current = true; run(a, b); };
+  // First click picks the start and clears the map; the second picks the end and searches.
+  const onNode = (id) => {
+    if (picking === 'from') {
+      clearInterval(timer.current);
+      started.current = true;
+      setFrom(id);
+      setState({});
+      setPath([]);
+      setPathShown(0);
+      setStats(null);
+      setPicking('to');
+    } else if (id !== from) {
+      go(from, id);
+    }
+  };
+  const linkTo = (a, b) => nodes.get(a).adj.find((e) => e.id === b);
 
   const shownPath = path.slice(0, pathShown);
   const onPath = new Set(shownPath);
@@ -130,7 +148,17 @@ export default function WorkPath({ onShowProjects }) {
                   : hoverEdges.has(key)
                     ? 'hovered'
                     : (state[a] === 'closed' && state[b]) || (state[b] === 'closed' && state[a]) ? 'touched' : null;
-                return <path key={key} d={edgePath(na, nb)} className={['wp-edge', hub && 'hub', lit].filter(Boolean).join(' ')} />;
+                // Thicker links have more resume lines behind them.
+                const strength = linkTo(a, b).evidence.strength;
+                const width = lit === 'on-path' ? undefined : Math.min(3, 0.9 + 0.55 * strength);
+                return (
+                  <path
+                    key={key}
+                    d={edgePath(na, nb)}
+                    style={width ? { strokeWidth: width } : undefined}
+                    className={['wp-edge', hub && 'hub', lit].filter(Boolean).join(' ')}
+                  />
+                );
               })}
             </g>
             {[...nodes.values()].map((n) => {
@@ -153,13 +181,19 @@ export default function WorkPath({ onShowProjects }) {
             })}
           </svg>
         </div>
+        <p className="wp-hint" aria-live="polite">
+          {picking === 'to'
+            ? `Start: ${nodes.get(from).title}. Now click where the path should end.`
+            : 'Click any name on the map to start a new path.'}
+        </p>
         <ul className="wp-legend" aria-hidden="true">
           <li><span className="wp-key k-start" />Start</li>
           <li><span className="wp-key k-goal" />End</li>
           <li><span className="wp-key k-frontier" />Frontier</li>
           <li><span className="wp-key k-explored" />Explored</li>
           <li><span className="wp-key k-path" />Path</li>
-          <li><span className="wp-key k-hub" />Same area (costs a little more than a shared skill)</li>
+          <li><span className="wp-key k-strong" />Thicker link: more resume lines show it</li>
+          <li><span className="wp-key k-hub" />Same area (a weaker link than a shared skill)</li>
         </ul>
       </div>
 
@@ -167,15 +201,35 @@ export default function WorkPath({ onShowProjects }) {
         {stats && path.length > 0 && (
           <>
             <p className="wp-stats">
-              A* explored {stats.expanded} of {stats.total} nodes and found a path of {stats.hops} hops.
+              Most relevant connection: {stats.hops} steps. A* explored {stats.expanded} of {stats.total} nodes to find it.
             </p>
-            <ol className="wp-chain">
-              {path.map((id) => {
+            <ol className="wp-steps">
+              {path.map((id, i) => {
                 const n = nodes.get(id);
+                const next = path[i + 1];
+                const ev = next ? linkTo(id, next).evidence : null;
+                // A line quoted for the previous link isn't repeated for this one.
+                const prevLines = i > 0 ? linkTo(path[i - 1], id).evidence.lines : [];
+                const lines = ev ? ev.lines.filter((l) => !prevLines.includes(l)) : [];
+                const repeated = ev && ev.lines.length > 0 && lines.length === 0;
                 return (
-                  <li key={id} className={`k-${n.kind}`}>
-                    <span className="wp-kind">{KIND_NAME[n.kind]}</span>
-                    {n.href ? <Link to={n.href}>{n.title}</Link> : <span>{n.title}</span>}
+                  <li key={id} className={`wp-step k-${n.kind}`}>
+                    <div className="wp-step-head">
+                      <span className="wp-kind">{KIND_NAME[n.kind]}</span>
+                      {n.href ? <Link to={n.href}>{n.title}</Link> : <span className="wp-step-name">{n.title}</span>}
+                    </div>
+                    {ev && (ev.area ? (
+                      <p className="wp-proof wp-proof-area">Both are {ev.area.toLowerCase()} projects.</p>
+                    ) : repeated ? (
+                      <p className="wp-proof wp-proof-area">Same line as above.</p>
+                    ) : lines.length > 0 ? (
+                      <div className="wp-proof">
+                        {lines.slice(0, 2).map((line) => <blockquote key={line}>{line}</blockquote>)}
+                        {lines.length > 2 && <p className="wp-proof-more">and {lines.length - 2} more lines</p>}
+                      </div>
+                    ) : (
+                      <p className="wp-proof wp-proof-area">Listed as a skill on this project.</p>
+                    ))}
                   </li>
                 );
               })}

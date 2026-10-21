@@ -2,8 +2,12 @@
 // so is every skill that two or more of them share, and so is each project
 // category (Robotics, Full stack, ...). Items connect to their skills, projects
 // also connect to their category, so a path reads "role -> skill -> project".
-// Category hops cost a little more than skill hops, so paths prefer a real
-// shared skill and fall back on the category when there is none.
+// Links are weighted by evidence, so the shortest path is also the most
+// relevant one: an item-skill link costs 1 plus a penalty that shrinks the
+// more of that item's resume lines show the skill, plus small penalties for
+// older work and for projects that didn't make the one-page resume. Category links cost more, so paths prefer a real shared skill
+// and fall back on the category when there is none. Every link costs at least
+// 1, which keeps the A* heuristic below admissible.
 //
 // Layout is four ordered columns, left to right: roles, shared skills,
 // projects (grouped by category), categories. Every edge joins neighbouring
@@ -13,6 +17,19 @@ import resume from '../data/resume.json';
 import { projects } from '../data/projects';
 
 export const HUB_COST = 1.5;
+const EVIDENCE_PENALTY = 0.6; // one supporting line adds 0.6, two add 0.3, three 0.2
+const AGE_PENALTY = 0.4; // the oldest work adds 0.4, the newest adds nothing
+const OFF_RESUME_PENALTY = 0.3; // projects cut from the one-page resume, or only on this site
+
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+// End of a date range as a month count ("Feb 2026 – Present" ends now).
+function endMonth(date) {
+  if (/present/i.test(date)) return Infinity;
+  const parts = [...date.toLowerCase().matchAll(/(?:([a-z]{3})[a-z]*\s+)?(\d{4})/g)];
+  if (!parts.length) return 0;
+  const [, mon, year] = parts[parts.length - 1];
+  return Number(year) * 12 + (mon && MONTHS.includes(mon) ? MONTHS.indexOf(mon) : 11);
+}
 export const COLUMNS = [
   { kind: 'role', x: 118, title: 'Roles' },
   { kind: 'skill', x: 468, title: 'Shared skills' },
@@ -52,6 +69,9 @@ export function buildGraph() {
       title: `${e.title}, ${e.org.split(',')[0]}`,
       label: shortRole(e.title),
       href: '/experience',
+      date: e.date,
+      bullets: e.bullets || [],
+      bulletSkills: e.bulletSkills,
       skills: e.skills || [],
     })),
     ...projects.map((p) => ({
@@ -62,6 +82,10 @@ export function buildGraph() {
       label: shortTitle(p.title),
       href: `/projects/${p.slug}`,
       slug: p.slug,
+      date: p.date,
+      offResume: !p.onResume,
+      bullets: p.bullets || [],
+      bulletSkills: p.bulletSkills,
       skills: p.skills || [],
     })),
   ];
@@ -84,15 +108,37 @@ export function buildGraph() {
   const hubs = groupNames.map((g) => ({ id: `c:${g}`, kind: 'category', title: g, label: g }));
 
   const nodes = new Map([...items, ...skills, ...hubs].map((n) => [n.id, { ...n, adj: [], w: pillWidth(n) }]));
+  // Age penalty: 0 for the most recent end date, AGE_PENALTY for the oldest.
+  const ends = items.map((i) => endMonth(i.date || ''));
+  const finite = ends.filter(Number.isFinite);
+  const newest = Math.max(...finite);
+  const oldest = Math.min(...finite);
+  const age = (it) => {
+    const e = Math.min(endMonth(it.date || ''), newest);
+    return newest === oldest ? 0 : (AGE_PENALTY * (newest - e)) / (newest - oldest);
+  };
+
   const edges = [];
-  const link = (a, b, cost) => {
-    nodes.get(a).adj.push({ id: b, cost });
-    nodes.get(b).adj.push({ id: a, cost });
-    edges.push([a, b, cost]);
+  const link = (a, b, cost, evidence) => {
+    nodes.get(a).adj.push({ id: b, cost, evidence });
+    nodes.get(b).adj.push({ id: a, cost, evidence });
+    edges.push([a, b, cost, evidence]);
   };
   for (const it of items) {
-    for (const s of new Set(it.skills.map(norm))) if (nodes.has(`s:${s}`)) link(it.id, `s:${s}`, 1);
-    if (it.kind === 'project') link(it.id, `c:${it.group}`, HUB_COST);
+    for (const s of new Set(it.skills.map(norm))) {
+      if (!nodes.has(`s:${s}`)) continue;
+      // The resume lines that show this skill. Older data without per-line
+      // tags counts as one supporting line.
+      const lines = it.bulletSkills
+        ? it.bullets.filter((_, i) => (it.bulletSkills[i] || []).some((x) => norm(x) === s))
+        : [];
+      const strength = Math.max(1, lines.length);
+      const cost = 1 + EVIDENCE_PENALTY / strength + age(it) + (it.offResume ? OFF_RESUME_PENALTY : 0);
+      link(it.id, `s:${s}`, cost, { lines, strength });
+    }
+    if (it.kind === 'project') {
+      link(it.id, `c:${it.group}`, HUB_COST + age(it) + (it.offResume ? OFF_RESUME_PENALTY : 0), { lines: [], strength: 0, area: it.group });
+    }
   }
 
   const view = layout(nodes, groupNames);

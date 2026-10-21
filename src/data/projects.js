@@ -11,7 +11,13 @@ const DETAILS = {
     summary:
       'A ROS-style robotics runtime written from scratch: publish/subscribe topics and services served over a TCP and JSON gateway, '
       + 'with an A* planner over occupancy grids on top. The planner\'s open set is a hand-written binary min-heap.',
-    media: { type: 'demo', demo: 'astar' },
+    media: {
+      type: 'demo',
+      demo: 'astar',
+      blurb:
+        'A browser reimplementation of the planner. Change the map, then compare how many cells A* expands '
+        + 'against uninformed Dijkstra search for the same shortest path.',
+    },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/A-Star-Path-Planning' }],
     featured: true,
   },
@@ -23,6 +29,14 @@ const DETAILS = {
       + 'on the same TCP and JSON gateway as the A* runtime, publishing every link pose at 10 Hz, and a browser viewer draws the robot '
       + 'live from that stream.',
     highlight: { value: '10 Hz', label: 'Link transforms published over TCP and JSON' },
+    media: {
+      type: 'demo',
+      demo: 'fk',
+      blurb:
+        'The robot, its joint limits, and every link pose below come from the project itself: the demo robot\'s '
+        + 'URDF is parsed in the browser, and the transform and forward-kinematics code is a port of the '
+        + 'Python in the repo. Play a choreography, or take a slider and pose it yourself.',
+    },
     howItWorks: [
       'Parse: the URDF reader takes apart links, joints, origins, and axes, and rejects a malformed robot description instead of publishing a wrong robot.',
       'Solve: the transform module composes rotations and translations, and the solver walks the joint tree to place every link in the robot frame.',
