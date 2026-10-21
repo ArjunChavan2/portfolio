@@ -8,7 +8,7 @@
   font: 400 15px var(--font); color: var(--text); background: var(--surface);
   border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 12px; width: 100%;
 }
-.wp-controls select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.wp-controls select:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
 .wp-controls .btn { flex: 0 0 auto; }
 
 .wp-stage {

@@ -31,7 +31,7 @@
 }
 .page-contact .contact-method:hover {
   text-decoration: none; color: var(--text);
-  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
 }
 .page-contact .contact-method-label { font-size: 14px; font-weight: 500; color: var(--muted); }
 .page-contact .contact-method-main { display: grid; gap: 2px; min-width: 0; }
@@ -39,10 +39,10 @@
   font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text);
   overflow-wrap: anywhere;
 }
-.page-contact .contact-method:hover .contact-method-value { color: var(--accent); }
+.page-contact .contact-method:hover .contact-method-value { color: var(--text); }
 .page-contact .contact-method-note { font-size: 14px; color: var(--muted); }
 .page-contact .contact-method-arrow { color: var(--muted); font-size: 16px; transition: transform .15s, color .15s; }
-.page-contact .contact-method:hover .contact-method-arrow { color: var(--accent); transform: translateX(2px); }
+.page-contact .contact-method:hover .contact-method-arrow { color: var(--text); transform: translateX(2px); }
 
 /* Compose panel */
 .page-contact .contact-compose {
@@ -72,8 +72,8 @@
 .page-contact .cform textarea:focus-visible,
 .page-contact .cform input:focus,
 .page-contact .cform textarea:focus {
-  outline: none; border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent);
+  outline: none; border-color: var(--text);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 24%, transparent);
 }
 .page-contact .cform [aria-invalid='true'] { border-color: var(--danger); }
 .page-contact .cform [aria-invalid='true']:focus {

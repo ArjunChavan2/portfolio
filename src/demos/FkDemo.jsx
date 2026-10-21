@@ -66,6 +66,7 @@ export default function FkDemo() {
   const [speed, setSpeed] = useState(CHOREOS.orangeJustice.speed ?? 1);
   const [distance, setDistance] = useState(2.8);
   const [showFrames, setShowFrames] = useState(false);
+  const [groupIndex, setGroupIndex] = useState(0);
   const [readout, setReadout] = useState({ links: 0, hand: [0, 0, 0], pose: 'home' });
 
   // Everything the animation loop owns, kept out of React state so a frame costs nothing.
@@ -211,7 +212,7 @@ export default function FkDemo() {
       const width = Math.max(240, Math.floor(wrap.clientWidth));
       const height = hasRef
         ? Math.max(260, Math.floor(wrap.clientHeight))
-        : Math.round(Math.min(460, Math.max(300, width * 0.62)));
+        : Math.round(Math.min(560, Math.max(320, width * 0.6)));
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = `${width}px`;
@@ -314,6 +315,24 @@ export default function FkDemo() {
             aria-label={`${robot.name}, posed by forward kinematics`}
             role="img"
           />
+          <dl className="fk-stats">
+            <div>
+              <dt>Links posed</dt>
+              <dd>{readout.links} <span className="muted">of {robot.links.length}</span></dd>
+            </div>
+            <div>
+              <dt>Joints driven</dt>
+              <dd>{joints.length}</dd>
+            </div>
+            <div>
+              <dt>Left hand, world</dt>
+              <dd>{readout.hand.map((v) => v.toFixed(2)).join(', ')} <span className="muted">m</span></dd>
+            </div>
+            <div>
+              <dt>Pose</dt>
+              <dd className="muted">{readout.pose}</dd>
+            </div>
+          </dl>
         </div>
         {reference && (
           <ReferenceVideo
@@ -333,34 +352,26 @@ export default function FkDemo() {
         robot&apos;s own joints, read from its URDF with their real limits.
       </p>
 
-      <dl className="demo-stats">
-        <div>
-          <dt>Links posed</dt>
-          <dd>{readout.links} <span className="muted">of {robot.links.length}</span></dd>
-        </div>
-        <div>
-          <dt>Joints driven</dt>
-          <dd>{joints.length}</dd>
-        </div>
-        <div>
-          <dt>Left hand, world</dt>
-          <dd>{readout.hand.map((v) => v.toFixed(2)).join(', ')} <span className="muted">m</span></dd>
-        </div>
-        <div>
-          <dt>Pose</dt>
-          <dd className="muted">{readout.pose}</dd>
-        </div>
-      </dl>
 
       <div className="fk-joints">
-        {groups.map((group) => (
-          <fieldset key={group.label}>
-            <legend>{group.label}</legend>
-            {group.joints.map((joint) => (
-              <JointSlider key={joint.name} joint={joint} sim={sim} onChange={setJoint} />
-            ))}
-          </fieldset>
-        ))}
+        <div className="segmented" role="group" aria-label="Joint group">
+          {groups.map((group, n) => (
+            <button
+              key={group.label}
+              type="button"
+              className={n === groupIndex ? 'active' : undefined}
+              aria-pressed={n === groupIndex}
+              onClick={() => setGroupIndex(n)}
+            >
+              {group.label} <span className="demo-value">{group.joints.length}</span>
+            </button>
+          ))}
+        </div>
+        <div className="fk-joint-grid">
+          {groups[groupIndex]?.joints.map((joint) => (
+            <JointSlider key={joint.name} joint={joint} sim={sim} onChange={setJoint} />
+          ))}
+        </div>
       </div>
     </div>
   );

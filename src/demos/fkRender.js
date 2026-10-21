@@ -335,11 +335,13 @@ export function drawRobot(ctx, { robot, world, camera, width, height, showFrames
       }
     }
     const virtual = !shaped(joint.child) && anyShapes;
-    if (childPose && joint.type === 'prismatic' && joint.upper > 0.02 && !virtual) {
-      const axis = unit(joint.axis);
-      for (const pts of segment(transformPoint(childPose, [0, 0, 0]), transformPoint(childPose, axis.map((v) => -v * joint.upper)), 0.07)) {
-        addSolid(pts, SHELL);
-      }
+    // Only the stroke in use: from where the child sits at the lower limit up to where it is now.
+    // Drawing the whole range hung it out under the base, which a painter's sort can't hide.
+    if (parentPose && childPose && joint.type === 'prismatic' && joint.upper > 0.02 && !virtual) {
+      const tip = transformPoint(childPose, [0, 0, 0]);
+      const dir = sub(transformPoint(childPose, unit(joint.axis)), tip);
+      const mount = transformPoint(parentPose, joint.originXyz).map((v, i) => v + dir[i] * joint.lower);
+      for (const pts of segment(mount, tip, 0.07)) addSolid(pts, SHELL);
     }
     if (childPose && joint.type !== 'fixed' && !virtual) {
       const slide = joint.type === 'prismatic';

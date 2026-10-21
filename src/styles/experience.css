@@ -28,9 +28,9 @@
 .page-experience .xp-when .date { font-size: 15px; font-weight: 500; color: var(--text-2); white-space: normal; }
 .page-experience .role-now {
   display: inline-flex; align-items: center; gap: 7px;
-  font-size: 14px; font-weight: 600; color: var(--accent);
+  font-size: 14px; font-weight: 600; color: var(--text);
 }
-.page-experience .role-now::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.page-experience .role-now::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 1px var(--on-accent); }
 
 /* Quiet rail: a hairline that runs through every role, a small dot per role. */
 .page-experience .xp-rail { position: relative; }
@@ -46,7 +46,7 @@
   background: var(--bg); border: 2px solid var(--border-strong);
 }
 .page-experience .is-current .xp-dot {
-  background: var(--accent); border-color: var(--accent);
+  background: var(--accent); border-color: var(--on-accent);
   box-shadow: 0 0 0 5px var(--accent-soft);
 }
 

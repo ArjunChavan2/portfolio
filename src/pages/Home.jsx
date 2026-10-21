@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import resume from '../data/resume.json';
 import { projects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
-import BlurText from '../components/BlurText';
 import AuroraBackground from '../components/AuroraBackground';
 import AStarLive from '../components/AStarLive';
 import ProjectThumb from '../components/ProjectThumb';
@@ -11,14 +10,14 @@ import { HEADSHOT, RESUME_PDF, contact, currentRole, currentOrg } from '../site'
 const FOCUS = [
   { title: 'Full-stack product', body: 'React and Node.js applications taken from Figma spec to production, including build tooling and release process.' },
   { title: 'Robotics and autonomy', body: 'Path planning, PID control, and computer vision for navigation, from simulation to hardware in the water.' },
-  { title: 'Technical leadership', body: 'Co-leading a 10-engineer team: sprint planning, code review with merge authority, and demos to stakeholders.' },
+  { title: 'Technical leadership', body: 'Co-led a 10-engineer team: sprint planning, code review with merge authority, and demos to stakeholders.' },
 ];
 
 function LeadProject({ project }) {
-  const live = project.media?.demo === 'astar';
+  const live = project.media?.type === 'demo';
   return (
     <Link to={`/projects/${project.slug}`} className="lead-card">
-      <div className="lead-media">{live ? <AStarLive /> : <ProjectThumb project={project} />}</div>
+      <div className="lead-media"><ProjectThumb project={project} /></div>
       <div className="lead-body">
         <div className="card-meta">
           <span>{project.category}</span>
@@ -37,19 +36,24 @@ function LeadProject({ project }) {
 
 export default function Home() {
   const featured = projects.filter((p) => p.featured);
-  const lead = featured.find((p) => p.media?.demo === 'astar') || featured[0];
+  const lead = featured.find((p) => p.media?.demo === 'fk') || featured[0];
   const rest = featured.filter((p) => p !== lead);
+  const astar = projects.find((p) => p.media?.demo === 'astar');
   return (
     <>
       <section className="hero">
         <AuroraBackground />
+        <div className="container">
+          <p className="kicker">Computer Science · {resume.education.school}</p>
+          <h1>Software engineer building products and the systems behind them.</h1>
+        </div>
         <div className="container hero-grid">
           <div className="hero-copy">
-            <p className="kicker">Computer Science · {resume.education.school}</p>
-            <h1><BlurText text="Software engineer building products and the systems behind them." /></h1>
             <p className="lede">
               I'm {resume.name.split(' ')[0]}, a computer science student graduating {resume.education.date.replace('Expected ', '')}.
-              I'm currently {currentRole.title} at {currentOrg}, co-leading the team building a healthcare scheduling platform.
+              {/present/i.test(currentRole.date)
+                ? ` I'm currently ${currentRole.title} at ${currentOrg}, co-leading the team building a healthcare scheduling platform. `
+                : ` Most recently I was ${currentRole.title} at ${currentOrg}, co-leading the team that built a healthcare scheduling platform. `}
               My work spans full-stack web, machine learning, and robotics.
             </p>
             <div className="hero-actions">
@@ -62,44 +66,45 @@ export default function Home() {
               <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
             </ul>
           </div>
+          {astar && (
+            <Link to={`/projects/${astar.slug}`} className="hero-live">
+              <AStarLive />
+              <span className="hero-live-cap"><span className="hero-live-dot" aria-hidden="true" />Live: the A* planner from my robotics runtime →</span>
+            </Link>
+          )}
           <div className="hero-photo">
             <img src={HEADSHOT} alt={`Portrait of ${resume.name}`} width="360" height="480" />
           </div>
         </div>
       </section>
 
-      <section className="section section-subtle">
-        <div className="container">
-          <ul className="focus-list">
-            {FOCUS.map((f) => (
-              <li key={f.title} className="focus-row">
-                <h2>{f.title}</h2>
-                <p>{f.body}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="section">
+      <section className="section on-dark">
         <div className="container">
           <div className="section-head">
-            <h2>Featured projects</h2>
+            <h2>Selected work</h2>
             <Link to="/projects" className="text-link">All projects →</Link>
           </div>
-          {lead && <LeadProject project={lead} />}
-          {rest.length > 0 && (
-            <div className="card-grid pair">
-              {rest.map((p) => <ProjectCard key={p.slug} project={p} />)}
-            </div>
-          )}
+          <div className="bento">
+            {lead && <LeadProject project={lead} />}
+            {rest.slice(0, 2).map((p) => <ProjectCard key={p.slug} project={p} />)}
+            <ul className="focus-tiles">
+              {FOCUS.map((f, i) => (
+                <li key={f.title} className="focus-tile">
+                  <span className="focus-num">0{i + 1}</span>
+                  <h3>{f.title}</h3>
+                  <p>{f.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
       <section className="section section-subtle">
-        <div className="container">
-          <div className="section-head">
+        <div className="container split">
+          <div className="split-head">
             <h2>Where I've worked</h2>
+            <p>From ML research at MIT Lincoln Lab to leading a product team.</p>
             <Link to="/experience" className="text-link">Full experience →</Link>
           </div>
           <ol className="roles">
@@ -120,7 +125,6 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="closing">
-            <AuroraBackground />
             <h2>Hiring for an internship or new-grad role?</h2>
             <p>I'd be glad to talk about how I can help your team.</p>
             <div className="closing-actions">

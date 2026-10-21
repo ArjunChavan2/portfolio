@@ -7,7 +7,7 @@
 .page-notfound .aurora { opacity: 0.6; }
 .page-notfound .nf-inner { max-width: 780px; }
 .page-notfound .nf-code {
-  margin: 0 0 14px; font-size: 15px; font-weight: 600; color: var(--accent);
+  margin: 0 0 14px; font-size: 15px; font-weight: 600; color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 .page-notfound h1 {
@@ -29,12 +29,12 @@
   margin: 0 -12px; padding: 20px 12px; border-radius: 8px; color: var(--text);
   transition: background-color .15s;
 }
-.page-notfound .nf-link:hover { text-decoration: none; color: var(--text); background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.page-notfound .nf-link:hover { text-decoration: none; color: var(--text); background: color-mix(in srgb, var(--text) 6%, transparent); }
 .page-notfound .nf-link-label { font-size: 18px; font-weight: 650; letter-spacing: -0.01em; }
-.page-notfound .nf-link:hover .nf-link-label { color: var(--accent); }
+.page-notfound .nf-link:hover .nf-link-label { color: var(--text); }
 .page-notfound .nf-link-note { font-size: 15px; color: var(--muted); }
 .page-notfound .nf-link-arrow { color: var(--muted); transition: transform .15s, color .15s; }
-.page-notfound .nf-link:hover .nf-link-arrow { color: var(--accent); transform: translateX(3px); }
+.page-notfound .nf-link:hover .nf-link-arrow { color: var(--text); transform: translateX(3px); }
 
 @media (max-width: 640px) {
   .page-notfound { padding: 48px 0 72px; min-height: 0; }
