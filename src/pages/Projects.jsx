@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import ProjectThumb from '../components/ProjectThumb';
-import BlurText from '../components/BlurText';
 import AuroraBackground from '../components/AuroraBackground';
 import WorkPath from '../components/WorkPath';
 
@@ -11,7 +10,7 @@ const mediaLabel = (p) => (p.media?.type === 'demo' ? 'Interactive demo' : p.med
 
 // The lead of any filtered set: the live demo if it's in the set, then a featured project, then the newest.
 function pickLead(set) {
-  return set.find((p) => p.featured && p.media?.demo === 'astar') || set.find((p) => p.featured) || set[0];
+  return set.find((p) => p.media?.demo === 'astar') || set.find((p) => p.featured) || set[0];
 }
 
 const years = projects.flatMap((p) => (p.date.match(/\d{4}/g) || []).map(Number));
@@ -40,23 +39,37 @@ function LeadProject({ project }) {
   );
 }
 
+// Every project gets a full-width showcase: big media, its headline stat first, then the story.
 function ProjectRow({ project }) {
   const tag = mediaLabel(project);
+  // Lead with the stat only when it's a number; a thumb without a poster already shows it.
+  const stat = project.media?.poster && /\d/.test(project.highlight?.value) && project.highlight;
   return (
     <li>
-      <Link to={`/projects/${project.slug}`} className="pp-row">
-        <div className="pp-row-thumb"><ProjectThumb project={project} /></div>
-        <div className="pp-row-main">
+      <Link to={`/projects/${project.slug}`} className="pp-show">
+        <div className="pp-show-media">
+          <ProjectThumb project={project} />
+          {tag && <span className="pp-show-tag">{tag}</span>}
+        </div>
+        <div className="pp-show-body">
+          <div className="card-meta">
+            <span>{project.category}</span>
+            <span>{project.date}</span>
+          </div>
+          {stat && (
+            <p className="pp-show-stat">
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </p>
+          )}
           <h3>{project.title}</h3>
           <p>{project.summary}</p>
           <ul className="tags">
             {project.stack.slice(0, 4).map((t) => <li key={t}>{t}</li>)}
           </ul>
-        </div>
-        <div className="pp-row-meta">
-          <span className="date">{project.date}</span>
-          <span className="pp-row-cat">{project.category}</span>
-          {tag && <span className="pill">{tag}</span>}
+          <span className="lead-cta">
+            {project.media?.type === 'demo' ? 'Open the interactive demo' : tag === 'Video' ? 'Watch the video' : 'Read the project'} →
+          </span>
         </div>
       </Link>
     </li>
@@ -89,7 +102,7 @@ export default function Projects() {
         <AuroraBackground />
         <div className="container">
           <p className="pp-span">{projects.length} projects, {span}</p>
-          <h1><BlurText text="Things I've built, in software and in hardware." /></h1>
+          <h1>Things I've built, in software and in hardware.</h1>
           <p className="lede">
             Coursework, hackathons, and team builds across robotics, machine learning, hardware, and the web.
             Some include an interactive demo or video.
@@ -97,7 +110,7 @@ export default function Projects() {
         </div>
       </section>
 
-      <section className="pp-connect" aria-labelledby="pp-connect-title">
+      <section className="pp-connect on-dark" aria-labelledby="pp-connect-title">
         <div className="container">
           <div className="section-head pp-head">
             <h2 id="pp-connect-title">How my work connects</h2>

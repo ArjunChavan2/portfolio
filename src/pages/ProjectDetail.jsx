@@ -2,7 +2,6 @@ import '../styles/project-detail.css';
 import { lazy, Suspense } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { projects, projectBySlug } from '../data/projects';
-import BlurText from '../components/BlurText';
 import AuroraBackground from '../components/AuroraBackground';
 import ProjectThumb from '../components/ProjectThumb';
 import NotFound from './NotFound';
@@ -17,7 +16,7 @@ function Media({ media, title }) {
   if (!media) return null;
   if (media.type === 'video') {
     return (
-      <section className="pd-band" aria-label={`${title} video`}>
+      <section className="pd-band on-dark" aria-label={`${title} video`}>
         <div className="container">
           <figure className="pd-video">
             <div className="pd-video-frame">
@@ -37,7 +36,7 @@ function Media({ media, title }) {
     const Demo = DEMOS[media.demo];
     if (!Demo) return null;
     return (
-      <section id="demo" className="pd-band pd-demo" aria-labelledby="demo-title">
+      <section id="demo" className="pd-band pd-demo on-dark" aria-labelledby="demo-title">
         <div className="container">
           <div className="pd-demo-head">
             <h2 id="demo-title">Try it in the browser</h2>
@@ -61,6 +60,27 @@ function splitStep(s) {
   return [s.slice(0, at), body.charAt(0).toUpperCase() + body.slice(1)];
 }
 
+// How it works as connected stages, for projects that describe a pipeline.
+function Pipeline({ steps, pipeline }) {
+  const byLabel = new Map(steps.map((s) => splitStep(s)));
+  const stage = (name, caption) => (
+    <li key={name} className="pd-stage">
+      {caption && <span className="pd-stage-caption">{caption}</span>}
+      <h3>{name}</h3>
+      <p>{byLabel.get(name)}</p>
+      {pipeline.tech[name] && <span className="pd-stage-tech">{pipeline.tech[name]}</span>}
+    </li>
+  );
+  return (
+    <>
+      <ol className="pd-flow">{pipeline.flow.map((name) => stage(name))}</ol>
+      <ul className="pd-flow-side">
+        {Object.entries(pipeline.side).map(([name, caption]) => stage(name, caption))}
+      </ul>
+    </>
+  );
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = projectBySlug(slug);
@@ -82,7 +102,7 @@ export default function ProjectDetail() {
           <div className="pd-head-grid">
             <div className="pd-head-copy">
               {showBadge && <p className="pd-badge">{badge}</p>}
-              <h1 key={project.slug}><BlurText text={project.title} stagger={45} /></h1>
+              <h1 key={project.slug}>{project.title}</h1>
               <p className="pd-lede">{project.summary}</p>
               {(links.length > 0 || hasDemo) && (
                 <div className="pd-actions">
@@ -136,7 +156,14 @@ export default function ProjectDetail() {
       <Media media={media} title={project.title} />
 
       <div className="container pd-body">
-        {project.howItWorks.length > 0 && (
+        {project.pipeline && (
+          <section className="pd-section" aria-labelledby="how-title">
+            <h2 id="how-title">How it works</h2>
+            <Pipeline steps={project.howItWorks} pipeline={project.pipeline} />
+          </section>
+        )}
+
+        {!project.pipeline && project.howItWorks.length > 0 && (
           <section className="pd-section" aria-labelledby="how-title">
             <h2 id="how-title">How it works</h2>
             <ol className="pd-steps">
@@ -154,7 +181,7 @@ export default function ProjectDetail() {
           </section>
         )}
 
-        {project.tech.length > 0 && (
+        {!project.pipeline && project.tech.length > 0 && (
           <section className="pd-section" aria-labelledby="tech-title">
             <h2 id="tech-title">Built with</h2>
             <dl className="pd-tech">

@@ -1,7 +1,6 @@
 import '../styles/experience.css';
 import { Link } from 'react-router-dom';
 import resume from '../data/resume.json';
-import BlurText from '../components/BlurText';
 import AuroraBackground from '../components/AuroraBackground';
 import { RESUME_PDF } from '../site';
 
@@ -45,7 +44,7 @@ export default function Experience() {
       <section className="xp-hero">
         <AuroraBackground />
         <div className="container">
-          <h1><BlurText text="Experience and education" /></h1>
+          <h1>Experience and education</h1>
           <p className="lede">
             Every role in detail, from current work back to research, plus coursework and
             the tools I use. The one-page version is available as a{' '}
@@ -159,7 +158,6 @@ export default function Experience() {
       <section className="xp-section xp-last">
         <div className="container">
           <div className="closing">
-            <AuroraBackground />
             <h2>Need the one-page version?</h2>
             <p>The PDF has the same roles and skills on a single page, ready to share.</p>
             <div className="closing-actions">

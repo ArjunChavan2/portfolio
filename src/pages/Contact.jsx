@@ -1,6 +1,5 @@
 import '../styles/contact.css';
 import ContactForm from '../components/ContactForm';
-import BlurText from '../components/BlurText';
 import AuroraBackground from '../components/AuroraBackground';
 import { contact } from '../site';
 
@@ -18,7 +17,7 @@ export default function Contact() {
       <section className="contact-hero">
         <AuroraBackground />
         <div className="container">
-          <h1><BlurText text="Let's talk about your team." /></h1>
+          <h1>Let's talk about your team.</h1>
           <p className="lede">
             I'm looking for software engineering internships and new-grad roles.
             Write to me directly, or use the form to start an email.

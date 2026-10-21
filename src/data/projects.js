@@ -19,7 +19,6 @@ const DETAILS = {
         + 'against uninformed Dijkstra search for the same shortest path.',
     },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/A-Star-Path-Planning' }],
-    featured: true,
   },
   'Forward Kinematics for URDF Robots': {
     slug: 'forward-kinematics',
@@ -32,6 +31,8 @@ const DETAILS = {
     media: {
       type: 'demo',
       demo: 'fk',
+      poster: asset('media/forward-kinematics-poster.jpg'),
+      preview: asset('media/forward-kinematics-preview.mp4'),
       blurb:
         'The robot, its joint limits, and every link pose below come from the project itself: the demo robot\'s '
         + 'URDF is parsed in the browser, and the transform and forward-kinematics code is a port of the '
@@ -52,7 +53,18 @@ const DETAILS = {
       { name: 'MediaPipe', use: 'Pose tracking for the video-to-choreography tool' },
       { name: 'pytest', use: 'Per-module unit tests and wire-level integration tests' },
     ],
+    // Draws How it works as a flow: stages keyed by their howItWorks label, each with the tech it runs on.
+    // Steps left out of `flow` sit beside it, captioned by `side`.
+    pipeline: {
+      flow: ['Parse', 'Solve', 'Serve', 'Gateway', 'Watch'],
+      side: { Choreograph: 'Feeds the viewer', Test: 'Covers every stage' },
+      tech: {
+        Parse: 'Python', Solve: 'Python', Serve: 'asyncio', Gateway: 'TCP + JSON',
+        Watch: 'Browser', Choreograph: 'MediaPipe', Test: 'pytest',
+      },
+    },
     links: [],
+    featured: true,
   },
   'Underwater Inspection ROV': {
     slug: 'underwater-rov',
@@ -68,8 +80,8 @@ const DETAILS = {
     slug: 'financial-dashboard',
     category: 'Full stack',
     summary:
-      'A personal finance app built at CMU TartanHacks that turns budgeting into a game: an AI-driven virtual pet, real-time quests, '
-      + 'and insights generated from Capital One account data. Won 1st Place in the Visa Track.',
+      'Won 1st Place in the Visa Track at CMU TartanHacks with a personal finance app that turns budgeting into a game: '
+      + 'an AI-driven virtual pet, real-time quests, and insights generated from Capital One account data.',
     badge: '1st Place · Visa Track',
     highlight: { value: '1st Place', label: 'Visa Track, CMU TartanHacks' },
     media: { type: 'video', src: asset('media/financial-dashboard.mp4'), poster: asset('media/financial-dashboard-poster.jpg'), caption: 'A quest completes and Scotty\'s happiness climbs, recreated from the app\'s own screens and sprites.' },
@@ -197,6 +209,7 @@ export const projects = [...resume.projects, ...SITE_ONLY].map((p) => {
     media: d.media || null,
     howItWorks: d.howItWorks || [],
     tech: d.tech || [],
+    pipeline: d.pipeline || null,
     links: d.links || [],
     badge: d.badge || null,
     highlight: d.highlight || null,

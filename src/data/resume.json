@@ -77,7 +77,7 @@
     {
       "title": "Tech Lead",
       "org": "Altheros Capital, Ann Arbor, MI",
-      "date": "May 2026 – Present",
+      "date": "May 2026 – Oct 2026",
       "bullets": [
         "Co-led a 10-engineer fullstack team on Midwest Health, a healthcare patient-scheduling platform for an Altheros Capital portfolio company, planning sprints",
         "Reviewed pull requests and held merge authority for the team, gating all changes before production deployment",
@@ -321,7 +321,7 @@
         "RTL Design",
         "State Machines"
       ],
-      "onResume": true
+      "onResume": false
     },
     {
       "title": "Forward Kinematics for URDF Robots",
