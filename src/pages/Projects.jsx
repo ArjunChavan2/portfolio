@@ -1,4 +1,5 @@
 import '../styles/projects.css';
+import Keyterms from '../components/Keyterms';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
@@ -27,7 +28,7 @@ function LeadProject({ project }) {
           <span>{project.date}</span>
         </div>
         <h3>{project.title}</h3>
-        <p>{project.summary}</p>
+        <p><Keyterms text={project.summary} /></p>
         <ul className="tags">
           {project.stack.slice(0, 5).map((t) => <li key={t}>{t}</li>)}
         </ul>
@@ -63,7 +64,7 @@ function ProjectRow({ project }) {
             </p>
           )}
           <h3>{project.title}</h3>
-          <p>{project.summary}</p>
+          <p><Keyterms text={project.summary} /></p>
           <ul className="tags">
             {project.stack.slice(0, 4).map((t) => <li key={t}>{t}</li>)}
           </ul>

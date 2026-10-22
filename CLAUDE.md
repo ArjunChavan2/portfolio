@@ -6,14 +6,15 @@ and **prod** `ArjunChavan2/portfolio` (promoted from dev, see below).
 
 ## Commands
 - `npx vite --port 5199`: dev server
-- `npm run lint` (oxlint) and `npm run build`: both must pass before any push;
+- `npm run lint` (oxlint), `npm test` (node:test, demo math) and `npm run build`: all must pass before any push;
   CI runs the same on push to `main`
 - `npm run sync-resume`: regenerates `src/data/resume.json` from `~/ResumeDaily/content.js`
 
 ## Data, and what not to hand-edit
 - `src/data/resume.json` is generated. Edit `content.js` in ResumeDaily, then sync.
 - `src/data/projects.js` is hand-written site detail in `DETAILS`, keyed by the
-  **exact resume title**. If the resume renames a project, rename its key too.
+  **exact resume title**. If the resume renames a project, rename its key too,
+  and its key in `src/data/slugs.json` (the URL slugs, read by the build's route script).
 - `public/resume.pdf` is copied from `~/Desktop/Resumes/Arjun_Chavan_Resume.pdf`
   (built by `~/ResumeDaily/build.sh`); `public/skillmap.html` comes from
   `node ~/ResumeDaily/build_mindmap.js public/skillmap.html`.

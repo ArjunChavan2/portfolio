@@ -476,7 +476,8 @@ main h1 { animation: title-in .3s ease both; }
 
 /* Forward-kinematics demo: one slider per joint of the loaded robot */
 .demo-value { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
-.demo-canvas canvas.fk { cursor: grab; }
+/* Vertical swipes scroll past the robot on phones; sideways drags still orbit it */
+.demo-canvas canvas.fk { cursor: grab; touch-action: pan-y; }
 .fk-joints { margin-top: 20px; }
 .fk-joints .segmented { max-width: 100%; overflow-x: auto; }
 .fk-joints .segmented button { white-space: nowrap; }
@@ -530,7 +531,8 @@ main h1 { animation: title-in .3s ease both; }
   .fk-stage.has-ref .demo-canvas { min-height: 360px; }
   .fk-stats div:nth-child(n+3) { display: none; }
   .fk-stage.has-ref .fk-ref { align-items: center; border-left: 0; border-top: 1px solid #2b2f36; }
-  .fk-ref-frame { width: min(100%, 260px); }
+  /* Short enough that the robot and the clip fit on one phone screen together */
+  .fk-ref-frame { width: auto; height: 300px; }
 }
 
 /* Labels, dates, tags and figures in monospace: the readout voice of the demos, used site-wide */
@@ -566,3 +568,6 @@ main h1 { animation: title-in .3s ease both; }
   :is(.project-card, .lead-card, .pp-show, .pd-next):hover { transform: none; }
   :is(.project-card, .lead-card, .pp-show, .pd-next):hover .t-path { animation: none; }
 }
+
+/* Key terms in project summaries (see Keyterms.jsx) */
+.kt { color: var(--text); font-weight: 650; }

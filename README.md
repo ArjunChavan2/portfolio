@@ -5,7 +5,7 @@ by `.github/workflows/deploy.yml` on every push to `main`.
 
 ## Environments
 
-Two repos, same code, each on its own GitHub Pages site (this repo is prod):
+Two repos, same code (this README included), each on its own GitHub Pages site:
 
 | Repo | Site | Role |
 |---|---|---|
@@ -22,6 +22,7 @@ npm install
 npm run dev        # http://localhost:5173/
 npm run build      # vite build + scripts/spa-routes.mjs
 npm run lint
+npm test           # node:test checks for the demos' kinematics, A* and resume dates
 ```
 
 ## Content
@@ -36,7 +37,7 @@ npm run sync-resume    # regenerate src/data/resume.json, then commit it
 - Projects include everything in `content.js`, benched ones too: a portfolio has room the one-page resume doesn't.
 
 Project pages (`/projects/:slug`) combine each synced entry with the portfolio-only detail in
-`src/data/projects.js`: slug, category, summary, headline stat, links, and media. Site-only projects that
+`src/data/projects.js`: category, summary, headline stat, links, and media. URL slugs live in `src/data/slugs.json`. Site-only projects that
 aren't on the resume (like Assignment Calendar) live in `SITE_ONLY` in the same file.
 
 - **Video:** put the file in `public/media/` and set `media: { type: 'video', src: asset('media/…'), poster }`.

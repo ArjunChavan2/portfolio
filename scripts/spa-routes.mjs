@@ -11,15 +11,13 @@ const dist = path.join(root, 'dist');
 const base = process.env.VITE_BASE || '/';
 const shell = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 
-// Project slugs: explicit ones from projects.js, plus the slugified title for
+// Project slugs: explicit ones from src/data/slugs.json, plus the slugified title for
 // any synced project without one. Mirrors slugify() in src/data/projects.js.
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-const projectsSrc = fs.readFileSync(path.join(root, 'src/data/projects.js'), 'utf8');
-const detailTitles = [...projectsSrc.matchAll(/^ {2}'([^']+)': \{\n {4}slug: '([^']+)'/gm)];
-const slugByTitle = new Map(detailTitles.map(([, title, slug]) => [title, slug]));
-const resume = JSON.parse(fs.readFileSync(path.join(root, 'src/data/resume.json'), 'utf8'));
-const titles = [...resume.projects.map((p) => p.title), ...slugByTitle.keys()];
-const slugs = [...new Set(titles.map((t) => slugByTitle.get(t) || slugify(t)))];
+const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+const slugByTitle = readJson('src/data/slugs.json');
+const titles = [...readJson('src/data/resume.json').projects.map((p) => p.title), ...Object.keys(slugByTitle)];
+const slugs = [...new Set(titles.map((t) => slugByTitle[t] || slugify(t)))];
 
 const routes = ['projects', 'experience', 'contact', ...slugs.map((s) => `projects/${s}`)];
 for (const route of routes) {
