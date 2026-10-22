@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Keyterms from './Keyterms';
 import ProjectThumb from './ProjectThumb';
 
 export default function ProjectCard({ project }) {
@@ -12,7 +13,7 @@ export default function ProjectCard({ project }) {
           <span>{project.date}</span>
         </div>
         <h3>{project.title}</h3>
-        <p>{project.summary}</p>
+        <p><Keyterms text={project.summary} /></p>
         <div className="card-foot">
           <ul className="tags">
             {project.stack.slice(0, 4).map((s) => <li key={s}>{s}</li>)}

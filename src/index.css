@@ -568,3 +568,6 @@ main h1 { animation: title-in .3s ease both; }
   :is(.project-card, .lead-card, .pp-show, .pd-next):hover { transform: none; }
   :is(.project-card, .lead-card, .pp-show, .pd-next):hover .t-path { animation: none; }
 }
+
+/* Key terms in project summaries (see Keyterms.jsx) */
+.kt { color: var(--text); font-weight: 650; }

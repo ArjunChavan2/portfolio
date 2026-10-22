@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Keyterms from '../components/Keyterms';
 import resume from '../data/resume.json';
 import { projects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
@@ -25,7 +26,7 @@ function LeadProject({ project }) {
           <span>{project.date}</span>
         </div>
         <h3>{project.title}</h3>
-        <p>{project.summary}</p>
+        <p><Keyterms text={project.summary} /></p>
         <ul className="tags">
           {project.stack.slice(0, 5).map((t) => <li key={t}>{t}</li>)}
         </ul>

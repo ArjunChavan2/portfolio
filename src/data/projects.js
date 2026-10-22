@@ -11,8 +11,7 @@ const DETAILS = {
   'A* Path Planner and Robotics Runtime': {
     category: 'Robotics',
     summary:
-      'A ROS-style robotics runtime written from scratch: publish/subscribe topics and services served over a TCP and JSON gateway, '
-      + 'with an A* planner over occupancy grids on top. The planner\'s open set is a hand-written binary min-heap.',
+      "Robot middleware first, then the planner on top: a **ROS-style robotics runtime** written from scratch, with pub/sub topics and services over a TCP and JSON gateway, driving an **A* planner** on occupancy grids. Its open set is a hand-written **binary min-heap**.",
     media: {
       type: 'demo',
       demo: 'astar',
@@ -25,9 +24,7 @@ const DETAILS = {
   'Forward Kinematics for URDF Robots': {
     category: 'Robotics',
     summary:
-      'From a robot\'s description file to a robot in motion. A URDF parser and transform math written from scratch place every '
-      + 'link, pub/sub nodes stream those poses over the A* runtime\'s TCP and JSON gateway, and a live viewer draws them. A MediaPipe '
-      + 'tool turns dance video into choreography, and the demo below runs a port of the code on the project\'s 26-joint dual-arm robot.',
+      "URDF in, moving robot out. A from-scratch **URDF parser** and **forward kinematics** solver place every link, pub/sub nodes stream the poses to a live viewer, and a **MediaPipe** tool turns dance video into choreography. The demo below runs a port of the code on the project's 26-joint dual-arm robot.",
     highlight: { value: 'URDF → motion', label: 'Description file in, moving robot out: parser, kinematics, pub/sub, live viewer' },
     media: {
       type: 'demo',
@@ -70,8 +67,7 @@ const DETAILS = {
   'Underwater Inspection ROV': {
     category: 'Embedded',
     summary:
-      'A four-thruster remotely operated vehicle built by a four-person team. I wrote the C++ Arduino control system that turns '
-      + 'pilot input into surge, heave, and yaw, including a latching cruise control for long transits.',
+      "Building a four-thruster ROV from scratch and steering it underwater. On a four-person team, I wrote the **C++ Arduino control system** that turns pilot input into **surge, heave, and yaw**, including a latching **cruise control** for long transits.",
     media: { type: 'video', src: asset('media/rov-showcase.mp4'), poster: asset('media/rov-poster.jpg'), caption: 'Pool test of the ROV under live pilot control.' },
     links: [],
     featured: true,
@@ -79,8 +75,7 @@ const DETAILS = {
   'Gamified Financial Dashboard': {
     category: 'Full stack',
     summary:
-      'Won 1st Place in the Visa Track at CMU TartanHacks with a personal finance app that turns budgeting into a game: '
-      + 'an AI-driven virtual pet, real-time quests, and insights generated from Capital One account data.',
+      "**1st Place, Visa Track** at CMU TartanHacks. A personal finance app that turns budgeting into a game: an **AI-driven virtual pet**, real-time quests, and insights generated from **Capital One** account data.",
     badge: '1st Place · Visa Track',
     highlight: { value: '1st Place', label: 'Visa Track, CMU TartanHacks' },
     media: { type: 'video', src: asset('media/financial-dashboard.mp4'), poster: asset('media/financial-dashboard-poster.jpg'), caption: 'A quest completes and Scotty\'s happiness climbs, recreated from the app\'s own screens and sprites.' },
@@ -90,8 +85,7 @@ const DETAILS = {
   'ICU Mortality Prediction': {
     category: 'Machine learning',
     summary:
-      'A logistic regression model predicting in-hospital mortality from ICU records for 10,000 patients, with feature engineering '
-      + 'over time-series vitals and threshold tuning for the imbalanced outcome.',
+      "**0.858 AUROC** predicting in-hospital mortality for 10,000 ICU patients. A **logistic regression** model on 253 features engineered from raw **time-series vitals**, with threshold tuning for the imbalanced outcome.",
     highlight: { value: '0.858', label: 'AUROC, stratified 5-fold cross-validation' },
     media: { type: 'video', src: asset('media/icu-mortality-prediction.mp4'), poster: asset('media/icu-mortality-prediction-poster.jpg'), caption: 'From 40 raw features to 253 engineered ones, with the ROC plot from the project.' },
     links: [],
@@ -99,8 +93,7 @@ const DETAILS = {
   'Memory-Mapped FPGA Peripheral Interface': {
     category: 'Hardware',
     summary:
-      'An ARM Cortex-M4 microcontroller driving LEDs and reading buttons on a Tang Nano FPGA through a 16-bit memory-mapped parallel bus, '
-      + 'with address decoding written in Verilog and the control logic in C.',
+      "An **ARM Cortex-M4** talking to an FPGA over a **16-bit memory-mapped bus**: address decoding in **Verilog**, control logic in C, buttons read and LEDs driven on a Tang Nano.",
     highlight: { value: '16-bit', label: 'Memory-mapped parallel bus, ARM to FPGA' },
     media: { type: 'video', src: asset('media/fpga-peripheral-interface.mp4'), poster: asset('media/fpga-peripheral-interface-poster.jpg'), caption: 'The bus, the C that reads the buttons through it, and the LEDs it drives.' },
     links: [],
@@ -108,7 +101,7 @@ const DETAILS = {
   'Facial Emotion Recognition': {
     category: 'Machine learning',
     summary:
-      'A real-time emotion classifier that locates facial landmarks with OpenCV and classifies expressions with a deep neural network in TensorFlow.',
+      "Reads emotion off a face in **real time**: **OpenCV** locates the facial landmarks and a **TensorFlow** deep neural network classifies the expression.",
     highlight: { value: 'Real-time', label: 'Emotion classification from facial landmarks' },
     media: { type: 'video', src: asset('media/facial-emotion-recognition.mp4'), poster: asset('media/facial-emotion-recognition-poster.jpg'), caption: 'An illustrated landmark face; the 60% validated accuracy is the project\'s result.' },
     links: [],
@@ -116,10 +109,7 @@ const DETAILS = {
   'BillLess, AI Medical Bill Auditor': {
     category: 'Full stack',
     summary:
-      'A patient-side agent built at MHacks 2026 that handles a medical bill from start to finish. If the patient has no explanation of '
-      + 'benefits, it first drafts a letter asking the insurer for one. Then it audits the bill against records from every provider with '
-      + 'rules that cite every line, asks the patient for approval over iMessage, disputes the charges by letter or by a phone call the '
-      + 'patient controls, verifies the corrected bill, and appeals denials with evidence.',
+      "An **AI agent** that takes a medical bill from start to finish, built at MHacks 2026. It audits every charge with **rule-based findings that cite each line**, gets the patient's approval over iMessage, disputes by letter or a **voice-agent phone call** the patient controls, and appeals denials with evidence.",
     highlight: { value: '3 checks', label: 'Duplicates, over-balance, and unrecorded charges' },
     media: { type: 'video', src: asset('media/billless.mp4'), poster: asset('media/billless-poster.jpg'), caption: 'One case start to finish on the project\'s synthetic demo patient: EOB request, cited findings, iMessage approval, a patient-controlled call, and a denial appeal.' },
     howItWorks: [
@@ -147,7 +137,7 @@ const DETAILS = {
   'Four-Function Calculator': {
     category: 'Hardware',
     summary:
-      'A four-function arithmetic unit in Verilog for an FPGA, using Booth multiplication and repeated-subtraction division, verified against a testbench suite.',
+      "Arithmetic in hardware: a four-function unit in **Verilog** for an FPGA, with **Booth multiplication** and repeated-subtraction division, verified against a **testbench** suite.",
     highlight: { value: 'Booth', label: 'Multiplication in Verilog RTL' },
     media: { type: 'video', src: asset('media/four-function-calculator.mp4'), poster: asset('media/four-function-calculator-poster.jpg'), caption: 'A worked Booth multiplication and the controller\'s state names from the Verilog.' },
     links: [],
@@ -155,7 +145,7 @@ const DETAILS = {
   'Assignment Calendar': {
     category: 'Full stack',
     summary:
-      'A single calendar of assignment deadlines pulled from multiple course websites, so nothing slips between course pages.',
+      "Every course deadline in **one calendar**: a **web scraper** pulls assignments from multiple course websites so nothing slips between course pages.",
     highlight: { value: 'One view', label: 'Deadlines from every course site' },
     links: [{ label: 'Source on GitHub', href: 'https://github.com/ArjunChavan2/assignment-calendar' }],
   },

@@ -1,4 +1,5 @@
 import '../styles/project-detail.css';
+import Keyterms from '../components/Keyterms';
 import { lazy, Suspense } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { projects, projectBySlug } from '../data/projects';
@@ -103,7 +104,7 @@ export default function ProjectDetail() {
             <div className="pd-head-copy">
               {showBadge && <p className="pd-badge">{badge}</p>}
               <h1 key={project.slug}>{project.title}</h1>
-              <p className="pd-lede">{project.summary}</p>
+              <p className="pd-lede"><Keyterms text={project.summary} /></p>
               {(links.length > 0 || hasDemo) && (
                 <div className="pd-actions">
                   {links.map((l, n) => (
@@ -223,7 +224,7 @@ export default function ProjectDetail() {
               <div className="pd-next-body">
                 <span className="pd-next-meta">{next.category}, {next.date}</span>
                 <h3>{next.title}</h3>
-                <p>{next.summary}</p>
+                <p><Keyterms text={next.summary} /></p>
                 <span className="pd-next-cta">Read the project →</span>
               </div>
             </Link>
