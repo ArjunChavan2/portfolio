@@ -72,7 +72,7 @@ export default function FkDemo() {
   // Everything the animation loop owns, kept out of React state so a frame costs nothing.
   const sim = useRef({
     positions: {}, velocities: {}, accels: {}, segments: new Map(),
-    state: null, elapsed: 0, playing: false, speed: 1, manual: false,
+    state: null, elapsed: 0, playing: false, speed: 1, manual: false, visible: true,
   });
   // The project viewer's camera: in front of the robot (it faces +x), slightly to its left.
   const camera = useRef({ azimuth: 0.263, elevation: 0.306, distance: 2.8, target: [0, 0, 0.45] });
@@ -183,7 +183,8 @@ export default function FkDemo() {
         step(dt * s.speed);
         dirty.current = true;
       }
-      if (!dirty.current) return;
+      // Off screen the choreography keeps time with the clip, but nothing is drawn until it is back.
+      if (!dirty.current || !s.visible) return;
       dirty.current = false;
       const world = render();
       // Mirror the state React shows at about the rate the real robot publishes /tf.
@@ -225,7 +226,10 @@ export default function FkDemo() {
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     const repaint = () => { dirty.current = true; };
     mq.addEventListener('change', repaint);
-    return () => { ro.disconnect(); mq.removeEventListener('change', repaint); };
+    const io = new IntersectionObserver(([entry]) => { sim.current.visible = entry.isIntersecting; });
+    // The whole demo, not just the canvas: the sliders below it read the same flag.
+    io.observe(wrap.closest('.demo'));
+    return () => { ro.disconnect(); io.disconnect(); mq.removeEventListener('change', repaint); };
   }, [hasRef]);
 
   const drag = useRef(null);
@@ -382,7 +386,7 @@ function JointSlider({ joint, sim, onChange }) {
   const value = sim.current.positions[joint.name] ?? 0;
   // Follow the choreography while it plays, without re-rendering the whole panel.
   useEffect(() => {
-    const id = setInterval(() => { if (sim.current.playing) force((n) => n + 1); }, 100);
+    const id = setInterval(() => { if (sim.current.playing && sim.current.visible) force((n) => n + 1); }, 100);
     return () => clearInterval(id);
   }, [sim]);
   return (

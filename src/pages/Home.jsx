@@ -6,6 +6,7 @@ import AuroraBackground from '../components/AuroraBackground';
 import AStarLive from '../components/AStarLive';
 import ProjectThumb from '../components/ProjectThumb';
 import { HEADSHOT, RESUME_PDF, contact, currentRole, currentOrg } from '../site';
+import { isCurrent } from '../dates';
 
 const FOCUS = [
   { title: 'Full-stack product', body: 'React and Node.js applications taken from Figma spec to production, including build tooling and release process.' },
@@ -39,6 +40,11 @@ export default function Home() {
   const lead = featured.find((p) => p.media?.demo === 'fk') || featured[0];
   const rest = featured.filter((p) => p !== lead);
   const astar = projects.find((p) => p.media?.demo === 'astar');
+  const now = isCurrent(currentRole.date);
+  // The platform describes Altheros only; a newer role synced to the top gets the plain sentence.
+  const work = currentOrg.startsWith('Altheros')
+    ? `, co-leading the team ${now ? 'building' : 'that built'} a healthcare scheduling platform`
+    : '';
   return (
     <>
       <section className="hero">
@@ -51,9 +57,7 @@ export default function Home() {
           <div className="hero-copy">
             <p className="lede">
               I'm {resume.name.split(' ')[0]}, a computer science student graduating {resume.education.date.replace('Expected ', '')}.
-              {/present/i.test(currentRole.date)
-                ? ` I'm currently ${currentRole.title} at ${currentOrg}, co-leading the team building a healthcare scheduling platform. `
-                : ` Most recently I was ${currentRole.title} at ${currentOrg}, co-leading the team that built a healthcare scheduling platform. `}
+              {` ${now ? "I'm currently" : 'Most recently I was'} ${currentRole.title} at ${currentOrg}${work}. `}
               My work spans full-stack web, machine learning, and robotics.
             </p>
             <div className="hero-actions">
@@ -115,7 +119,7 @@ export default function Home() {
                   <strong>{e.title}</strong>
                   <span>{e.org.split(',')[0]}</span>
                 </div>
-                {/present/i.test(e.date) && <span className="role-now">Current</span>}
+                {isCurrent(e.date) && <span className="role-now">Current</span>}
               </li>
             ))}
           </ol>

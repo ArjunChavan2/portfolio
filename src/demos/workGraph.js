@@ -15,21 +15,13 @@
 // deterministic, so the picture is the same on every visit.
 import resume from '../data/resume.json';
 import { projects } from '../data/projects';
+import { endMonth } from '../dates';
 
 export const HUB_COST = 1.5;
 const EVIDENCE_PENALTY = 0.6; // one supporting line adds 0.6, two add 0.3, three 0.2
 const AGE_PENALTY = 0.4; // the oldest work adds 0.4, the newest adds nothing
 const OFF_RESUME_PENALTY = 0.3; // projects cut from the one-page resume, or only on this site
 
-const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-// End of a date range as a month count ("Feb 2026 – Present" ends now).
-function endMonth(date) {
-  if (/present/i.test(date)) return Infinity;
-  const parts = [...date.toLowerCase().matchAll(/(?:([a-z]{3})[a-z]*\s+)?(\d{4})/g)];
-  if (!parts.length) return 0;
-  const [, mon, year] = parts[parts.length - 1];
-  return Number(year) * 12 + (mon && MONTHS.includes(mon) ? MONTHS.indexOf(mon) : 11);
-}
 export const COLUMNS = [
   { kind: 'role', x: 118, title: 'Roles' },
   { kind: 'skill', x: 468, title: 'Shared skills' },

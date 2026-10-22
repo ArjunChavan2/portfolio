@@ -1,0 +1,12 @@
+{
+  "A* Path Planner and Robotics Runtime": "astar-path-planner",
+  "Forward Kinematics for URDF Robots": "forward-kinematics",
+  "Underwater Inspection ROV": "underwater-rov",
+  "Gamified Financial Dashboard": "financial-dashboard",
+  "ICU Mortality Prediction": "icu-mortality-prediction",
+  "Memory-Mapped FPGA Peripheral Interface": "fpga-peripheral-interface",
+  "Facial Emotion Recognition": "facial-emotion-recognition",
+  "BillLess, AI Medical Bill Auditor": "billless",
+  "Four-Function Calculator": "four-function-calculator",
+  "Assignment Calendar": "assignment-calendar"
+}
