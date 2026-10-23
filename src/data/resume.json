@@ -363,6 +363,55 @@
       "onResume": true
     },
     {
+      "title": "Endless Runner Mod for a Claude Code Plugin",
+      "org": "TypeScript, Claude Code plugin hooks, open source",
+      "date": "Oct 2026",
+      "bullets": [
+        "Extended the open-source clawd-actor Claude Code plugin with a 3-lane endless runner drawn above the prompt, merged with the original act behind a persistent /runner switch",
+        "Directed a dependency-free software 3D renderer with perspective, shaded obstacles and distance haze, averaging 0.92 ms per frame against an 80 ms tick",
+        "Specified a seeded procedural course and an autopilot that changes lanes, jumps, slides and hops onto platforms",
+        "Covered the renderer, course, runner band, switch and leaderboard with 8 new tests alongside 18 from upstream",
+        "Kept token cost at zero by having hooks only draw and never add text to the model context, then published on GitHub with credit to the original author"
+      ],
+      "bulletSkills": [
+        [
+          "TypeScript",
+          "Plugin Development",
+          "Open Source"
+        ],
+        [
+          "TypeScript",
+          "3D Rendering",
+          "Performance Profiling"
+        ],
+        [
+          "Procedural Generation",
+          "Autonomous Navigation",
+          "State Machines"
+        ],
+        [
+          "TypeScript",
+          "Testing"
+        ],
+        [
+          "Plugin Development",
+          "Open Source"
+        ]
+      ],
+      "skills": [
+        "TypeScript",
+        "Plugin Development",
+        "Open Source",
+        "3D Rendering",
+        "Performance Profiling",
+        "Procedural Generation",
+        "Autonomous Navigation",
+        "State Machines",
+        "Testing"
+      ],
+      "onResume": false
+    },
+    {
       "title": "ICU Mortality Prediction",
       "org": "Python, scikit-learn, EECS 445",
       "date": "Oct 2026",
