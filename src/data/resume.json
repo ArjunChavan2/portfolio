@@ -330,7 +330,7 @@
       "bullets": [
         "Wrote a URDF parser and forward-kinematics solver from scratch, composing joint transforms into link poses",
         "Published link transforms at 10 Hz over a TCP and JSON pub/sub gateway, rejecting malformed robot descriptions safely",
-        "Verified with 116 unit and wire-level tests, and converted dance video into choreography for a dual-arm demo robot"
+        "Verified with 116 unit and wire-level tests, and hand-choreographed a dual-arm demo robot dance in the live viewer"
       ],
       "bulletSkills": [
         [
@@ -346,8 +346,7 @@
         ],
         [
           "Python",
-          "Testing",
-          "Computer Vision"
+          "Testing"
         ]
       ],
       "skills": [
@@ -357,8 +356,7 @@
         "Linear Algebra",
         "Systems Programming",
         "Networking",
-        "Testing",
-        "Computer Vision"
+        "Testing"
       ],
       "onResume": true
     },
