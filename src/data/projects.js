@@ -24,7 +24,7 @@ const DETAILS = {
   'Forward Kinematics for URDF Robots': {
     category: 'Robotics',
     summary:
-      "URDF in, moving robot out. A from-scratch **URDF parser** and **forward kinematics** solver place every link, pub/sub nodes stream the poses to a live viewer, and a **MediaPipe** tool turns dance video into choreography. The demo below runs a port of the code on the project's 26-joint dual-arm robot.",
+      "URDF in, moving robot out. A from-scratch **URDF parser** and **forward kinematics** solver place every link, and pub/sub nodes stream the poses to a live viewer. The demo below runs a port of the code on the project's 26-joint dual-arm robot.",
     highlight: { value: 'URDF → motion', label: 'Description file in, moving robot out: parser, kinematics, pub/sub, live viewer' },
     media: {
       type: 'demo',
@@ -42,23 +42,21 @@ const DETAILS = {
       'Serve: a parameter server holds the robot description, one node turns joint states into transforms at 10 Hz, and another combines those with the global pose into world coordinates.',
       'Gateway: a single asyncio process serves every topic and service over a rosbridge-style TCP and JSON protocol, reused from the A* project.',
       'Watch: a browser viewer draws each link from the world transforms with a slider per joint, and steps a demo dual-arm robot through saved choreographies.',
-      'Choreograph: a MediaPipe tool reads a dance video and solves it into keyframes against the arm geometry of the robot, with the waist taken from shoulders against hips.',
       'Test: unit tests per module plus wire-level integration tests that talk to the running gateway over a raw socket.',
     ],
     tech: [
       { name: 'Python + asyncio', use: 'URDF parser, transform math, and the node processes' },
       { name: 'TCP + JSON gateway', use: 'Pub/sub topics and services, rosbridge-style' },
-      { name: 'MediaPipe', use: 'Pose tracking for the video-to-choreography tool' },
       { name: 'pytest', use: 'Per-module unit tests and wire-level integration tests' },
     ],
     // Draws How it works as a flow: stages keyed by their howItWorks label, each with the tech it runs on.
     // Steps left out of `flow` sit beside it, captioned by `side`.
     pipeline: {
       flow: ['Parse', 'Solve', 'Serve', 'Gateway', 'Watch'],
-      side: { Choreograph: 'Feeds the viewer', Test: 'Covers every stage' },
+      side: { Test: 'Covers every stage' },
       tech: {
         Parse: 'Python', Solve: 'Python', Serve: 'asyncio', Gateway: 'TCP + JSON',
-        Watch: 'Browser', Choreograph: 'MediaPipe', Test: 'pytest',
+        Watch: 'Browser', Test: 'pytest',
       },
     },
     links: [],
